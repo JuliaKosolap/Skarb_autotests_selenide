@@ -14,7 +14,7 @@ public class FirstTest {
     private String baseUrl = "https://skarb.foxminded.ua/";
 
     @BeforeMethod
-    public void SetUp() {
+    public void setUp() {
         driver = new FirefoxDriver();
         driver.get(baseUrl);
     }
