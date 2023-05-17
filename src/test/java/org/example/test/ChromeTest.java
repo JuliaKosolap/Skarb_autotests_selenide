@@ -18,13 +18,11 @@ public class ChromeTest {
         driver = new ChromeDriver();
         driver.get(baseUrl);
     }
-
     @Test
     public void goToHomePageTest() {
         WebElement title = driver.findElement(By.cssSelector("h4.text-dark-red"));
         Assert.assertEquals(title.getText(), "SKARB NGO");
     }
-
     @AfterMethod
     public void tearDown() {
         if (driver != null) {

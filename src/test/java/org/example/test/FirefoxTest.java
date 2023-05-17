@@ -18,13 +18,11 @@ public class FirefoxTest {
         driver = new FirefoxDriver();
         driver.get(baseUrl);
     }
-
     @Test
     public void getToHomePageTest() {
         WebElement title = driver.findElement(By.cssSelector("h4.text-dark-red"));
         Assert.assertEquals(title.getText(), "SKARB NGO");
     }
-
     @AfterMethod(alwaysRun = true)
         public void tearDown() {
         if (driver != null) {
