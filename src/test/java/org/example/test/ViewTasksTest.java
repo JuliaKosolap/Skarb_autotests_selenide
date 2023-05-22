@@ -15,6 +15,8 @@ import java.util.List;
 public class ViewTasksTest {
     private WebDriver driver;
     private String baseUrl = "https://skarb.foxminded.ua/";
+    private WebElement buttonViewTasks = driver.
+            findElement(By.cssSelector("button.button.statistic_button.button--orange"));
 
     @BeforeMethod
     public void setUp() {
@@ -23,13 +25,12 @@ public class ViewTasksTest {
     }
     @Test
     public void goToViewTasksPageTest() throws InterruptedException {
-        WebElement buttonViewTasks = driver.findElement(By.cssSelector("button.button.statistic_button.button--orange"));
         buttonViewTasks.click();
         Assert.assertEquals(driver.getTitle(), "Task page");
     }
     @Test
     public void checkInitialTasksAmountTest() throws InterruptedException {
-        goToViewTasksPageTest();
+        buttonViewTasks.click();
         List<WebElement> tasks = driver.findElements(By.cssSelector("div.card.task-card.h-100.mr-3"));
         Assert.assertEquals(tasks.size(),6);
 
