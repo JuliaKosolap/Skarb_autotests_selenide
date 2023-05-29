@@ -12,20 +12,21 @@ import java.util.List;
 public class CreateVolunteerTest {
 
     private WebDriver driver;
-    String volunteerCreationUrl = "https://skarb.foxminded.ua/registration/volunteers";
-    String successPageUrl = "https://skarb.foxminded.ua/registration/result/success";
+    private String baseUrl = "https://skarb.foxminded.ua/";
+    private  String successPageUrl = "https://skarb.foxminded.ua/registration/result/success";
 
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
-        driver.get(volunteerCreationUrl);
-
+        driver.get(baseUrl);
+        driver.manage().window().maximize();
     }
 
     @Test
     public void createVolunteerWithValidValues() {
         Volunteer volunteer = new Volunteer("Sara", "Konnor", "email" + Math.random() + "@gmail.com",
                 "+380984444444", "PA$$word123", "PA$$word123");
+        goToVolunteersCreationPage();
         WebElement firstName = driver.findElement(By.id("firstName"));
         WebElement lastName = driver.findElement(By.id("lastName"));
         WebElement email = driver.findElement(By.id("email"));
@@ -50,6 +51,7 @@ public class CreateVolunteerTest {
     public void createVolunteerWithInvalidEmail() {
         Volunteer volunteer = new Volunteer("Sara", "Konnor", "test",
                 "+380984444444", "PA$$word123", "PA$$word123");
+        goToVolunteersCreationPage();
         WebElement firstName = driver.findElement(By.id("firstName"));
         WebElement lastName = driver.findElement(By.id("lastName"));
         WebElement email = driver.findElement(By.id("email"));
@@ -70,6 +72,7 @@ public class CreateVolunteerTest {
 
     @Test
     public void createVolunteerWithEmptyFields() {
+        goToVolunteersCreationPage();
         WebElement submitButton = driver.findElement(By.className("btn-success"));
         submitButton.click();
         List<WebElement> errors = driver.findElements(By.className("text-danger"));
@@ -77,6 +80,12 @@ public class CreateVolunteerTest {
         for (int i = 0; i < errors.size(); i++) {
             Assert.assertEquals(errors.get(i).getText(), "Field can`t be empty");
         }
+    }
+    private void goToVolunteersCreationPage() {
+        WebElement addUserItem = driver.findElement(By.className("fa-user-plus"));
+        addUserItem.click();
+        WebElement createVolunteerButton = driver.findElement(By.className("btn-primary"));
+        createVolunteerButton.click();
     }
 
     @AfterMethod
