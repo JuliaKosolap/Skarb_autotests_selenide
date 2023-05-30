@@ -24,49 +24,37 @@ public class SwitchLanguagesTest {
 
     @Test
     public void switchToUkrainian() {
-        WebElement languageSwitcher = driver.findElement(By.id("langDropdown"));
-        languageSwitcher.click();
-        List<WebElement> dropdownItems = driver.findElements(By.cssSelector("a.dropdown-item.link"));
-        for (int i = 0; i < dropdownItems.size(); i++) {
-            if (dropdownItems.get(i).getText().equals("UA") || dropdownItems.get(i).getText().equals("Укр")) {
-                dropdownItems.get(i).click();
-                WebElement title = driver.findElement(By.className("info_title"));
-                Assert.assertEquals(title.getText(), "Довгий заголовок на два рядки");
-                break;
-            }
-        }
+        selectLanguage(Language.UA, Language.Укр);
+        WebElement title = driver.findElement(By.className("info_title"));
+        Assert.assertEquals(title.getText(), "Довгий заголовок на два рядки");
     }
 
     @Test
     public void switchToRussian() {
-        WebElement languageSwitcher = driver.findElement(By.id("langDropdown"));
-        languageSwitcher.click();
-        List<WebElement> dropdownItems = driver.findElements(By.cssSelector("a.dropdown-item.link"));
-        for (int i = 0; i < dropdownItems.size(); i++) {
-            if (dropdownItems.get(i).getText().equals("RU") || dropdownItems.get(i).getText().equals("Рос")) {
-                dropdownItems.get(i).click();
-                WebElement title = driver.findElement(By.className("info_title"));
-                Assert.assertEquals(title.getText(), "Длинный заголовок в 2 строчки");
-                break;
-            }
-        }
+        selectLanguage(Language.RU, Language.Рос);
+        WebElement title = driver.findElement(By.className("info_title"));
+        Assert.assertEquals(title.getText(), "Длинный заголовок в 2 строчки");
     }
 
     @Test
     public void switchToEnglish() {
+        selectLanguage(Language.EN, Language.Англ);
+        WebElement title = driver.findElement(By.className("info_title"));
+        Assert.assertEquals(title.getText(), "Long caption for 2 rows");
+
+    }
+
+    private void selectLanguage(Language langLatin, Language langCyrillic) {
         WebElement languageSwitcher = driver.findElement(By.id("langDropdown"));
         languageSwitcher.click();
         List<WebElement> dropdownItems = driver.findElements(By.cssSelector("a.dropdown-item.link"));
         for (int i = 0; i < dropdownItems.size(); i++) {
-            if (dropdownItems.get(i).getText().equals("EN") || dropdownItems.get(i).getText().equals("Англ")) {
+            if (dropdownItems.get(i).getText().equals(langLatin.toString()) || dropdownItems.get(i).getText().equals(langCyrillic.toString())) {
                 dropdownItems.get(i).click();
-                WebElement title = driver.findElement(By.className("info_title"));
-                Assert.assertEquals(title.getText(), "Long caption for 2 rows");
                 break;
             }
         }
     }
-
 
     @AfterClass
     public void tearDown() {
