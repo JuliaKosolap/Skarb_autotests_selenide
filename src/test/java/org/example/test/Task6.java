@@ -2,7 +2,6 @@ package org.example.test;
 
 import entity.Gender;
 import entity.Partner;
-import entity.Volunteer;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.example.helpers.PasswordGeneratingUtil;
 import org.openqa.selenium.By;
@@ -14,7 +13,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class CreatePartnerTest {
+public class Task6 {
     private WebDriver driver;
     private String baseUrl = "https://skarb.foxminded.ua/";
     private String successPageUrl = "https://skarb.foxminded.ua/registration/result/success";

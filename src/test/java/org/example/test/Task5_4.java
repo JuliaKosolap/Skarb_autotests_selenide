@@ -4,15 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import java.time.Duration;
 import java.util.List;
 
-public class ViewTasksTest {
+public class Task5_4 {
     private WebDriver driver;
     private String baseUrl = "https://skarb.foxminded.ua/";
     private WebElement buttonViewTasks = driver.

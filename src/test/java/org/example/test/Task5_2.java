@@ -1,7 +1,5 @@
 package org.example.test;
 
-import org.checkerframework.checker.units.qual.A;
-import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,7 +9,7 @@ import org.testng.annotations.*;
 
 import java.util.List;
 
-public class NavigationTest {
+public class Task5_2 {
     private WebDriver driver;
     String baseUrl = "https://skarb.foxminded.ua/";
 

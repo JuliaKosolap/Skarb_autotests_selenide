@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class SwitchLanguagesTest {
+public class Task5_3 {
     private WebDriver driver;
     String baseUrl = "https://skarb.foxminded.ua/";
 

@@ -12,7 +12,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.List;
 
-public class CreateVolunteerTest {
+public class Task5_1 {
 
     private WebDriver driver;
     private String baseUrl = "https://skarb.foxminded.ua/";
