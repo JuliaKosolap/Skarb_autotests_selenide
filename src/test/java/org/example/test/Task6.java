@@ -35,8 +35,8 @@ public class Task6 {
     private void goToPartnerCreationPage() {
         WebElement addUserItem = driver.findElement(By.className("fa-user-plus"));
         addUserItem.click();
-        WebElement createVolunteerButton = driver.findElement(By.xpath("//button[@class='btn btn-success btn-lg btn-block']"));
-        createVolunteerButton.click();
+        WebElement createPartnerButton = driver.findElement(By.xpath("//button[@class='btn btn-success btn-lg btn-block']"));
+        createPartnerButton.click();
     }
 
     @Test
