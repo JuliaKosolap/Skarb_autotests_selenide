@@ -5,7 +5,6 @@ import entity.Partner;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.example.helpers.PasswordGeneratingUtil;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,12 +13,10 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 public class Task7 {
     private WebDriver driver;
@@ -32,7 +29,6 @@ public class Task7 {
     private String confirmPassword = password;
     private String organization = RandomStringUtils.randomAlphabetic(10).toLowerCase();
     private String positionInOrganization = RandomStringUtils.randomAlphabetic(10).toLowerCase();
-    private String creationTime = "a few seconds ago";
 
     @BeforeMethod
     public void setUp() {
@@ -59,7 +55,6 @@ public class Task7 {
         WebElement successMessage = driver.findElement(By.className("display-3"));
         Assert.assertEquals(successMessage.getText(), "Your email confirmed!");
     }
-
 
     private void confirmRegistration(Partner partner) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(3));
