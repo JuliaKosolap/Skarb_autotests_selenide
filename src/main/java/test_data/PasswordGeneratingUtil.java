@@ -1,4 +1,4 @@
-package org.example.helpers;
+package test_data;
 
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
@@ -12,7 +12,7 @@ public class PasswordGeneratingUtil {
     public PasswordGeneratingUtil() {
     }
 
-    public static String generatePassword() {
+    public static String generatePassword(int length) {
         CharacterRule alphabetsUppercase = new CharacterRule(EnglishCharacterData.UpperCase, 2);
         CharacterRule alphabetsLowercase = new CharacterRule(EnglishCharacterData.LowerCase, 2);
         CharacterRule special = new CharacterRule(EnglishCharacterData.Special, 1);
@@ -22,7 +22,7 @@ public class PasswordGeneratingUtil {
         rulesList.add(special);
 
         PasswordGenerator passwordGenerator = new PasswordGenerator();
-        String password = passwordGenerator.generatePassword(8, rulesList);
+        String password = passwordGenerator.generatePassword(length, rulesList);
         return password;
     }
 }

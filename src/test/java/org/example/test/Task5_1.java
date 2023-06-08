@@ -1,14 +1,13 @@
 package org.example.test;
 
 import entity.Volunteer;
-import org.example.helpers.PasswordGeneratingUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import org.apache.commons.lang3.RandomStringUtils;
+import test_data.RandomData;
 
 import java.util.List;
 
@@ -17,17 +16,13 @@ public class Task5_1 {
     private WebDriver driver;
     private String baseUrl = "https://skarb.foxminded.ua/";
     private String successPageUrl = "https://skarb.foxminded.ua/registration/result/success";
-    private String firstName = RandomStringUtils.randomAlphabetic(10).toLowerCase();
-    private String lastName = RandomStringUtils.randomAlphabetic(10).toLowerCase();
-    private String email = RandomStringUtils.randomAlphanumeric(10) + "@gmail.com";
-    private String phoneNumber = "+38098" + RandomStringUtils.randomNumeric(7);
-
-    private String password = PasswordGeneratingUtil.generatePassword();
+    private String firstName = RandomData.randomFirstName(8);
+    private String lastName = RandomData.randomLastName(8);
+    private String email = RandomData.randomEmail();
+    private String phoneNumber = RandomData.randomPhoneNumber();
+    private String password = RandomData.randomPassword(8);
     private String confirmPassword = password;
-    private String invalidEmail = RandomStringUtils.randomAlphabetic(10);
-
-
-
+    private String invalidEmail = RandomData.invalidRandomEmail();
 
     @BeforeMethod
     public void setUp() {

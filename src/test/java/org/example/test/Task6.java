@@ -2,8 +2,6 @@ package org.example.test;
 
 import entity.Gender;
 import entity.Partner;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.example.helpers.PasswordGeneratingUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,18 +10,19 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import test_data.RandomData;
 
 public class Task6 {
     private WebDriver driver;
     private String baseUrl = "https://skarb.foxminded.ua/";
     private String successPageUrl = "https://skarb.foxminded.ua/registration/result/success";
-    private String firstName = "Test" + RandomStringUtils.randomAlphabetic(10).toLowerCase();
-    private String lastName = "Test" + RandomStringUtils.randomAlphabetic(10).toLowerCase();
-    private String email = RandomStringUtils.randomAlphanumeric(10) + "@skarb.ngo";
-    private String password = PasswordGeneratingUtil.generatePassword();
+    private String firstName = RandomData.randomFirstName(8);
+    private String lastName = RandomData.randomLastName(8);
+    private String email = RandomData.randomCorporateEmail();
+    private String password = RandomData.randomPassword(8);
     private String confirmPassword = password;
-    private String organization = RandomStringUtils.randomAlphabetic(10).toLowerCase();
-    private String positionInOrganization = RandomStringUtils.randomAlphabetic(10).toLowerCase();
+    private String organization = RandomData.randomString(10);
+    private String positionInOrganization = RandomData.randomString(10);
 
     @BeforeMethod
     public void setUp() {
@@ -32,6 +31,7 @@ public class Task6 {
         driver.manage().window().maximize();
     }
 
+    //This method opens the Registration page and then opens the Create Partner page
     private void goToPartnerCreationPage() {
         WebElement addUserItem = driver.findElement(By.className("fa-user-plus"));
         addUserItem.click();
@@ -39,6 +39,7 @@ public class Task6 {
         createPartnerButton.click();
     }
 
+    //This test creates a partner with valid values and verifies if success message appeared
     @Test
     public void createPartnerWithValidValues() {
         Partner partner = new Partner(email, firstName, lastName, Gender.FEMALE, password, confirmPassword, organization, positionInOrganization);
@@ -50,7 +51,7 @@ public class Task6 {
                 "Please confirm it.");
 
     }
-
+    //This method fills the mandatory fields for registration with provided values
     private void fillInMandatoryFields(Partner partner) {
         WebElement firstName = driver.findElement(By.xpath("//input[@id='firstName']"));
         WebElement lastName = driver.findElement(By.xpath("//input[@id='lastName']"));
@@ -70,6 +71,7 @@ public class Task6 {
         positionInOrganization.sendKeys(partner.getOrganizationPosition());
     }
 
+    //This method submits the partner creation form
     private void submit() {
         WebElement submitButton = driver.findElement(By.xpath("//button[@type='submit']"));
         submitButton.click();
