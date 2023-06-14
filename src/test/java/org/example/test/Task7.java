@@ -22,8 +22,8 @@ public class Task7 {
     private WebDriver driver;
     private String baseUrl = "https://skarb.foxminded.ua/";
     private String mailHogUrl = "http://185.149.40.46:8025/";
-    private String firstName = RandomData.randomFirstName(8);
-    private String lastName = RandomData.randomLastName(8);
+    private String firstName = RandomData.randomFirstOrLastName(8);
+    private String lastName = RandomData.randomFirstOrLastName(8);
     private String corporateEmail = RandomData.randomCorporateEmail();
     private String password = RandomData.randomPassword(8);
     private String confirmPassword = password;

@@ -8,19 +8,13 @@ public class RandomData {
         String string = RandomStringUtils.randomAlphabetic(length).toLowerCase();
         return string;
     }
-    //This method generates random first name with the given length that starts from the uppercase letter
-    public static String randomFirstName(int length) {
+    //This method generates random first or last name with the given length that starts from the uppercase letter
+    public static String randomFirstOrLastName(int length) {
         String firstName = RandomStringUtils.randomAlphabetic(1).toUpperCase() +
                 RandomStringUtils.randomAlphabetic(length - 1).toLowerCase();
         return firstName;
     }
 
-    //This method generates random last name with the given length that starts from the uppercase letter
-    public static String randomLastName(int length) {
-        String lastName = RandomStringUtils.randomAlphabetic(1).toUpperCase() +
-                RandomStringUtils.randomAlphabetic(length - 1).toLowerCase();
-        return lastName;
-    }
 
     //This method generates valid email
     public static String randomEmail() {

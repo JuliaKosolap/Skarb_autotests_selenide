@@ -16,8 +16,8 @@ public class Task6 {
     private WebDriver driver;
     private String baseUrl = "https://skarb.foxminded.ua/";
     private String successPageUrl = "https://skarb.foxminded.ua/registration/result/success";
-    private String firstName = RandomData.randomFirstName(8);
-    private String lastName = RandomData.randomLastName(8);
+    private String firstName = RandomData.randomFirstOrLastName(8);
+    private String lastName = RandomData.randomFirstOrLastName(8);
     private String email = RandomData.randomCorporateEmail();
     private String password = RandomData.randomPassword(8);
     private String confirmPassword = password;
