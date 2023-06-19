@@ -47,7 +47,7 @@ public class Task7 {
 
     //This test creates a partner with valid values and verifies if success message appeared
     @Test
-    public void createPartnerWithValidValues() throws InterruptedException {
+    public void createPartnerWithValidValues() {
         Partner partner = new Partner(corporateEmail, firstName, lastName, Gender.MALE, password, confirmPassword, organization, positionInOrganization);
         goToPartnerCreationPage();
         fillInMandatoryFields(partner);

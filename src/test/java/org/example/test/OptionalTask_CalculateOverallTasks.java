@@ -11,9 +11,8 @@ import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-public class OptionalTaskCalculateTasks {
+public class OptionalTask_CalculateOverallTasks {
     private WebDriver driver;
     private String baseUrl = "https://skarb.foxminded.ua/";
     @BeforeMethod
