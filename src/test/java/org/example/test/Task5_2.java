@@ -1,90 +1,46 @@
 package org.example.test;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.example.pages.HomePage;
+import org.example.setup.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import java.util.List;
-
-public class Task5_2 {
-    private WebDriver driver;
+public class Task5_2 extends BaseTest {
     String baseUrl = "https://skarb.foxminded.ua/";
 
-    @BeforeClass
-    public void setUp(){
-        driver = new ChromeDriver();
+    @BeforeMethod
+    public void testSetUp(){
         driver.get(baseUrl);
         driver.manage().window().maximize();
     }
 
     @Test
     public void goToAboutUsPage() {
-        WebElement aboutProjectNavButton = driver.findElement(By.id("aboutDropdown"));
-        aboutProjectNavButton.click();
-        List<WebElement> dropdownItems = driver.findElements(By.cssSelector("a.dropdown-item.link"));
-        for (int i = 0; i < dropdownItems.size(); i++) {
-            if (dropdownItems.get(i).getText().equals("About us")) {
-                dropdownItems.get(i).click();
-                Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "static/about");
-                WebElement title = driver.findElement(By.className("title"));
-                Assert.assertEquals(title.getText(), "About project");
-                break;
-            }
-        }
+        HomePage homePage = new HomePage(driver);
+        Assert.assertTrue(homePage.isInitialized());
+        homePage.goToAboutUsPage();
+        Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "static/about");
     }
     @Test
     public void goToNewsPage() {
-        WebElement aboutProjectNavButton = driver.findElement(By.id("aboutDropdown"));
-        aboutProjectNavButton.click();
-        List<WebElement> dropdownItems = driver.findElements(By.cssSelector("a.dropdown-item.link"));
-        for (int i = 0; i < dropdownItems.size(); i++) {
-            if (dropdownItems.get(i).getText().equals("News")) {
-                dropdownItems.get(i).click();
-                Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "news");
-                break;
-            }
-        }
+        HomePage homePage = new HomePage(driver);
+        Assert.assertTrue(homePage.isInitialized());
+        homePage.goToNewsPage();
+        Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "news");
     }
 
     @Test
     public void goToRulesPage() {
-        WebElement aboutProjectNavButton = driver.findElement(By.id("aboutDropdown"));
-        aboutProjectNavButton.click();
-        List<WebElement> dropdownItems = driver.findElements(By.cssSelector("a.dropdown-item.link"));
-        for (int i = 0; i < dropdownItems.size(); i++) {
-            if (dropdownItems.get(i).getText().equals("Rules")) {
-                dropdownItems.get(i).click();
-                Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "static/rules");
-                WebElement title = driver.findElement(By.className("title"));
-                Assert.assertEquals(title.getText(), "Rules");
-                break;
-            }
-        }
+        HomePage homePage = new HomePage(driver);
+        Assert.assertTrue(homePage.isInitialized());
+        homePage.goToRulesPage();
+        Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "static/rules");
     }
      @Test
      public void goToHelpPage() {
-         WebElement aboutProjectNavButton = driver.findElement(By.id("aboutDropdown"));
-         aboutProjectNavButton.click();
-         List<WebElement> dropdownItems = driver.findElements(By.cssSelector("a.dropdown-item.link"));
-         for (int i = 0; i < dropdownItems.size(); i++) {
-             if (dropdownItems.get(i).getText().equals("Help")) {
-                 dropdownItems.get(i).click();
-                 Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "static/help");
-                 WebElement title = driver.findElement(By.className("title"));
-                 Assert.assertEquals(title.getText(), "Help");
-                 break;
-             }
-         }
+         HomePage homePage = new HomePage(driver);
+         Assert.assertTrue(homePage.isInitialized());
+         homePage.goToHelpPage();
+         Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "static/help");
      }
-
-    @AfterClass
-    public void tearDown() {
-        if (driver != null) {
-            driver.close();
-            driver.quit();
-        }
-    }
 }

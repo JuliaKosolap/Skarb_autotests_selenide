@@ -1,21 +1,20 @@
 package org.example.test;
 
 import entity.Volunteer;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.example.pages.HomePage;
+import org.example.pages.RegistrationPage;
+import org.example.pages.SuccessRegistrationPage;
+import org.example.pages.VolunteerCreationPage;
+import org.example.setup.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import test_data.RandomData;
 
 import java.util.List;
 
-public class Task5_1 {
+public class Task5_1 extends BaseTest {
 
-    private WebDriver driver;
     private String baseUrl = "https://skarb.foxminded.ua/";
-    private String successPageUrl = "https://skarb.foxminded.ua/registration/result/success";
     private String firstName = RandomData.randomFirstOrLastName(8);
     private String lastName = RandomData.randomFirstOrLastName(8);
     private String email = RandomData.randomEmail();
@@ -25,8 +24,7 @@ public class Task5_1 {
     private String invalidEmail = RandomData.invalidRandomEmail();
 
     @BeforeMethod
-    public void setUp() {
-        driver = new ChromeDriver();
+    public void testSetUp() {
         driver.get(baseUrl);
         driver.manage().window().maximize();
     }
@@ -35,11 +33,12 @@ public class Task5_1 {
     public void createVolunteerWithValidValues() {
         Volunteer volunteer = new Volunteer(firstName, lastName, email, phoneNumber, password, confirmPassword);
         goToVolunteersCreationPage();
-        fillInMandatoryFields(volunteer);
-        submit();
-        Assert.assertEquals(driver.getCurrentUrl(), successPageUrl);
-        WebElement successMessage = driver.findElement(By.name("message"));
-        Assert.assertEquals(successMessage.getText(), "Congratulation! Your registration succeeded! Message was sent to your email. " +
+        VolunteerCreationPage volunteerCreationPage = new VolunteerCreationPage(driver);
+        Assert.assertTrue(volunteerCreationPage.isInitialized());
+        fillInMandatoryFields(volunteer, volunteerCreationPage);
+        SuccessRegistrationPage successPage = (SuccessRegistrationPage) volunteerCreationPage.submit();
+        Assert.assertTrue(successPage.isInitialized());
+        Assert.assertEquals(successPage.getMessage(), "Congratulation! Your registration succeeded! Message was sent to your email. " +
                 "Please confirm it.");
     }
 
@@ -47,55 +46,40 @@ public class Task5_1 {
     public void createVolunteerWithInvalidEmail() {
         Volunteer volunteerWithInvalidEmail = new Volunteer(firstName, lastName, invalidEmail, phoneNumber, password, confirmPassword);
         goToVolunteersCreationPage();
-        fillInMandatoryFields(volunteerWithInvalidEmail);
-        submit();
-        WebElement error = driver.findElement(By.className("text-danger"));
-        Assert.assertEquals(error.getText(), "Email is incorrect");
+        VolunteerCreationPage volunteerCreationPage = new VolunteerCreationPage(driver);
+        Assert.assertTrue(volunteerCreationPage.isInitialized());
+        fillInMandatoryFields(volunteerWithInvalidEmail, volunteerCreationPage);
+        volunteerCreationPage.submit();
+        Assert.assertEquals(volunteerCreationPage.getEmailError(), "Email is incorrect");
     }
 
     @Test
     public void createVolunteerWithEmptyFields() {
         goToVolunteersCreationPage();
-        submit();
-        List<WebElement> errors = driver.findElements(By.className("text-danger"));
-        Assert.assertEquals(errors.size(), 5);
-        for (int i = 0; i < errors.size(); i++) {
-            Assert.assertEquals(errors.get(i).getText(), "Field can`t be empty");
+        VolunteerCreationPage volunteerCreationPage = new VolunteerCreationPage(driver);
+        Assert.assertTrue(volunteerCreationPage.isInitialized());
+        volunteerCreationPage.submit();
+        List<String> allErrorsOnPage = volunteerCreationPage.getAllErrorsOnPage();
+        Assert.assertEquals(allErrorsOnPage.size(), 5);
+        for (String error : allErrorsOnPage
+        ) {
+            Assert.assertEquals(error, "Field can`t be empty");
         }
     }
-
 
     private void goToVolunteersCreationPage() {
-        WebElement addUserItem = driver.findElement(By.className("fa-user-plus"));
-        addUserItem.click();
-        WebElement createVolunteerButton = driver.findElement(By.className("btn-primary"));
-        createVolunteerButton.click();
-    }
-    private void fillInMandatoryFields(Volunteer volunteer) {
-        WebElement firstName = driver.findElement(By.id("firstName"));
-        WebElement lastName = driver.findElement(By.id("lastName"));
-        WebElement email = driver.findElement(By.id("email"));
-        WebElement phoneNumber = driver.findElement(By.id("phoneNumber"));
-        WebElement password = driver.findElement(By.id("password"));
-        WebElement confirmPassword = driver.findElement(By.id("confirmPassword"));
-        firstName.sendKeys(volunteer.getFirstName());
-        lastName.sendKeys(volunteer.getLastName());
-        email.sendKeys(volunteer.getEmail());
-        phoneNumber.sendKeys(volunteer.getPhoneNumber());
-        password.sendKeys(volunteer.getPassword());
-        confirmPassword.sendKeys(volunteer.getConfirmPassword());
+        HomePage homePage = new HomePage(driver);
+        Assert.assertTrue(homePage.isInitialized());
+        RegistrationPage registrationPage = homePage.goToRegistrationPage();
+        registrationPage.goToVolunteerCreationPage();
     }
 
-    private void submit() {
-        WebElement submitButton = driver.findElement(By.className("btn-success"));
-        submitButton.click();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        if (driver != null) {
-            driver.close();
-            driver.quit();
-        }
+    private void fillInMandatoryFields(Volunteer volunteer, VolunteerCreationPage volunteerCreationPage) {
+        volunteerCreationPage.enterFirstName(volunteer.getFirstName());
+        volunteerCreationPage.enterLastName(volunteer.getLastName());
+        volunteerCreationPage.enterEmail(volunteer.getEmail());
+        volunteerCreationPage.enterPhoneNumber(volunteer.getPhoneNumber());
+        volunteerCreationPage.enterPassword(volunteer.getPassword());
+        volunteerCreationPage.enterConfirmPassword(volunteer.getConfirmPassword());
     }
 }
