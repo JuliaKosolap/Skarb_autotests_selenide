@@ -19,15 +19,11 @@ import java.util.List;
 
 public class OptionalTask_CalculateOverallTasks extends BaseTest {
 
-    //This method opens the Volunteer Tasks Page
-    private PartnerTasksPage goToPartnersTasksPage() {
-        HomePage homePage = new HomePage(driver);
-        Assert.assertTrue(homePage.isInitialized());
-        return (PartnerTasksPage) homePage.goToTasksPage(TasksType.PARTNERS);
-    }
     @Test
     public void calculateNumberOfTasks() {
-        PartnerTasksPage partnerTasksPage = goToPartnersTasksPage();
+        HomePage homePage = new HomePage(driver);
+        Assert.assertTrue(homePage.isInitialized());
+        PartnerTasksPage partnerTasksPage = (PartnerTasksPage) homePage.goToTasksPage(TasksType.PARTNERS);
         partnerTasksPage.clickOnShowMoreLinkUntilAllPagesAreLoaded();
         ArrayList<String> listOfTasks = partnerTasksPage.getListOfTasksOnCurrentPage();
         int index = 1;

@@ -26,10 +26,13 @@ public class Task5_1 extends BaseTest {
     @Test
     public void createVolunteerWithValidValues() {
         Volunteer volunteer = new Volunteer(firstName, lastName, email, phoneNumber, password, confirmPassword);
-        goToVolunteersCreationPage();
+        HomePage homePage = new HomePage(driver);
+        Assert.assertTrue(homePage.isInitialized());
+        RegistrationPage registrationPage = homePage.goToRegistrationPage();
+        registrationPage.goToVolunteerCreationPage();
         VolunteerCreationPage volunteerCreationPage = new VolunteerCreationPage(driver);
         Assert.assertTrue(volunteerCreationPage.isInitialized());
-        fillInMandatoryFields(volunteer, volunteerCreationPage);
+        volunteerCreationPage.fillInMandatoryFields(volunteer);
         SuccessRegistrationPage successPage = (SuccessRegistrationPage) volunteerCreationPage.submit();
         Assert.assertTrue(successPage.isInitialized());
         Assert.assertEquals(successPage.getMessage(), "Congratulation! Your registration succeeded! Message was sent to your email. " +
@@ -39,17 +42,23 @@ public class Task5_1 extends BaseTest {
     @Test
     public void createVolunteerWithInvalidEmail() {
         Volunteer volunteerWithInvalidEmail = new Volunteer(firstName, lastName, invalidEmail, phoneNumber, password, confirmPassword);
-        goToVolunteersCreationPage();
+        HomePage homePage = new HomePage(driver);
+        Assert.assertTrue(homePage.isInitialized());
+        RegistrationPage registrationPage = homePage.goToRegistrationPage();
+        registrationPage.goToVolunteerCreationPage();
         VolunteerCreationPage volunteerCreationPage = new VolunteerCreationPage(driver);
         Assert.assertTrue(volunteerCreationPage.isInitialized());
-        fillInMandatoryFields(volunteerWithInvalidEmail, volunteerCreationPage);
+        volunteerCreationPage.fillInMandatoryFields(volunteerWithInvalidEmail);
         volunteerCreationPage.submit();
         Assert.assertEquals(volunteerCreationPage.getEmailError(), "Email is incorrect");
     }
 
     @Test
     public void createVolunteerWithEmptyFields() {
-        goToVolunteersCreationPage();
+        HomePage homePage = new HomePage(driver);
+        Assert.assertTrue(homePage.isInitialized());
+        RegistrationPage registrationPage = homePage.goToRegistrationPage();
+        registrationPage.goToVolunteerCreationPage();
         VolunteerCreationPage volunteerCreationPage = new VolunteerCreationPage(driver);
         Assert.assertTrue(volunteerCreationPage.isInitialized());
         volunteerCreationPage.submit();
@@ -59,21 +68,5 @@ public class Task5_1 extends BaseTest {
         ) {
             Assert.assertEquals(error, "Field can`t be empty");
         }
-    }
-
-    private void goToVolunteersCreationPage() {
-        HomePage homePage = new HomePage(driver);
-        Assert.assertTrue(homePage.isInitialized());
-        RegistrationPage registrationPage = homePage.goToRegistrationPage();
-        registrationPage.goToVolunteerCreationPage();
-    }
-
-    private void fillInMandatoryFields(Volunteer volunteer, VolunteerCreationPage volunteerCreationPage) {
-        volunteerCreationPage.enterFirstName(volunteer.getFirstName());
-        volunteerCreationPage.enterLastName(volunteer.getLastName());
-        volunteerCreationPage.enterEmail(volunteer.getEmail());
-        volunteerCreationPage.enterPhoneNumber(volunteer.getPhoneNumber());
-        volunteerCreationPage.enterPassword(volunteer.getPassword());
-        volunteerCreationPage.enterConfirmPassword(volunteer.getConfirmPassword());
     }
 }

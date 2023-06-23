@@ -23,15 +23,11 @@ import java.util.concurrent.TimeUnit;
 
 public class OptionalTask_CalculateTasksOnFivePages extends BaseTest {
 
-    //This method opens the Volunteer Tasks Page
-    private PartnerTasksPage goToPartnersTasksPage() {
-        HomePage homePage = new HomePage(driver);
-        Assert.assertTrue(homePage.isInitialized());
-        return (PartnerTasksPage) homePage.goToTasksPage(TasksType.PARTNERS);
-    }
     @Test
     public void calculateNumberOfTasksOnFivePages() throws InterruptedException {
-        PartnerTasksPage partnerTasksPage = goToPartnersTasksPage();
+        HomePage homePage = new HomePage(driver);
+        Assert.assertTrue(homePage.isInitialized());
+        PartnerTasksPage partnerTasksPage = (PartnerTasksPage) homePage.goToTasksPage(TasksType.PARTNERS);
         ArrayList<String> listOfTasks = partnerTasksPage.getListOfTasksForGivenNumberOfPages(5);
         System.out.println(listOfTasks.size());
         for (int i = 0; i < listOfTasks.size(); i++) {

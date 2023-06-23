@@ -1,5 +1,6 @@
 package org.example.pages;
 
+import entity.Volunteer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -62,6 +63,15 @@ public class VolunteerCreationPage extends NavigationMenu {
         } else {
             return new SuccessRegistrationPage(driver);
         }
+    }
+    //This method fills the mandatory fields for registration with provided values
+    public void fillInMandatoryFields(Volunteer volunteer) {
+        enterFirstName(volunteer.getFirstName());
+        enterLastName(volunteer.getLastName());
+        enterEmail(volunteer.getEmail());
+        enterPhoneNumber(volunteer.getPhoneNumber());
+        enterPassword(volunteer.getPassword());
+        enterConfirmPassword(volunteer.getConfirmPassword());
     }
     public String getEmailError() {
         WebElement error = driver.findElement(By.xpath("//div[@name='email']//small[@class='text-danger']"));

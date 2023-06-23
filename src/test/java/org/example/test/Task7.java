@@ -32,56 +32,33 @@ public class Task7 extends BaseTest {
     private String positionInOrganization = RandomData.randomString(10);
 
 
-    //This method opens the Registration page and then opens the Create Partner page
-    private void goToPartnerCreationPage() {
-        HomePage homePage = new HomePage(driver);
-        Assert.assertTrue(homePage.isInitialized());
-        RegistrationPage registrationPage = homePage.goToRegistrationPage();
-        registrationPage.goToPartnerCreationPage();
-    }
-
     //This test creates a partner with valid values and verifies if success message appeared
     @Test
     public void createPartnerWithValidValues() {
         Partner partner = new Partner(corporateEmail, firstName, lastName, Gender.FEMALE, password, confirmPassword, organization, positionInOrganization);
-        goToPartnerCreationPage();
+        HomePage homePage = new HomePage(driver);
+        Assert.assertTrue(homePage.isInitialized());
+        RegistrationPage registrationPage = homePage.goToRegistrationPage();
+        registrationPage.goToPartnerCreationPage();
         PartnerCreationPage partnerCreationPage = new PartnerCreationPage(driver);
         Assert.assertTrue(partnerCreationPage.isInitialized());
-        fillInMandatoryFields(partner, partnerCreationPage);
+        partnerCreationPage.fillInMandatoryFields(partner);
         SuccessRegistrationPage successPage = (SuccessRegistrationPage) partnerCreationPage.submit();
         Assert.assertTrue(successPage.isInitialized());
-        confirmRegistration(partner);
-        WebElement successMessage = driver.findElement(By.className("display-3"));
-        Assert.assertEquals(successMessage.getText(), "Your email confirmed!");
-    }
-
-    //This method opens the MailHog service, waits for new record to appear in the list of registered users;
-    //then opens this email, clicks on the Registration confirmation link and switches to the main site https://skarb.foxminded.ua/
-    private void confirmRegistration(Partner partner) {
         driver.get(mailHogUrl);
         MailHogPage mailHogPage = new MailHogPage(driver);
         mailHogPage.waitForNewMessageToAppear(partner.getEmail());
         mailHogPage.confirmRegistrationOfNewPartner(partner.getEmail());
-                String parentPage = driver.getWindowHandle();
-                Set<String> s = driver.getWindowHandles();
-                Iterator<String> I1 = s.iterator();
-                while (I1.hasNext()) {
-                    String child_window = I1.next();
-                    if (!parentPage.equals(child_window)) {
-                        driver.switchTo().window(child_window);
-                    }
+        String parentPage = driver.getWindowHandle();
+        Set<String> s = driver.getWindowHandles();
+        Iterator<String> I1 = s.iterator();
+        while (I1.hasNext()) {
+            String child_window = I1.next();
+            if (!parentPage.equals(child_window)) {
+                driver.switchTo().window(child_window);
             }
         }
-
-    //This method fills the mandatory fields for registration with provided values
-    private void fillInMandatoryFields(Partner partner, PartnerCreationPage partnerCreationPage) {
-        partnerCreationPage.enterFirstName(partner.getFirstName());
-        partnerCreationPage.enterLastName(partner.getLastName());
-        partnerCreationPage.enterEmail(partner.getEmail());
-        partnerCreationPage.selectRadioButton(partner.getGender());
-        partnerCreationPage.enterPassword(partner.getPassword());
-        partnerCreationPage.enterConfirmPassword(partner.getConfirmPassword());
-        partnerCreationPage.enterOrganization(partner.getOrganizationName());
-        partnerCreationPage.enterPositionInOrganization(partner.getOrganizationPosition());
+        WebElement successMessage = driver.findElement(By.className("display-3"));
+        Assert.assertEquals(successMessage.getText(), "Your email confirmed!");
     }
 }

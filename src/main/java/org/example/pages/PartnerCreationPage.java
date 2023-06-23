@@ -1,6 +1,7 @@
 package org.example.pages;
 
 import entity.Gender;
+import entity.Partner;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -86,5 +87,16 @@ public class PartnerCreationPage extends NavigationMenu {
         } else {
             return new SuccessRegistrationPage(driver);
         }
+    }
+    //This method fills the mandatory fields for registration with provided values
+    public void fillInMandatoryFields(Partner partner) {
+        enterFirstName(partner.getFirstName());
+        enterLastName(partner.getLastName());
+        enterEmail(partner.getEmail());
+        selectRadioButton(partner.getGender());
+        enterPassword(partner.getPassword());
+        enterConfirmPassword(partner.getConfirmPassword());
+        enterOrganization(partner.getOrganizationName());
+        enterPositionInOrganization(partner.getOrganizationPosition());
     }
 }
