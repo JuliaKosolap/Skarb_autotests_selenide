@@ -9,13 +9,6 @@ import org.testng.annotations.Test;
 
 public class Task5_3 extends BaseTest {
 
-    String baseUrl = "https://skarb.foxminded.ua/";
-
-    @BeforeClass
-    public void testSetUp() {
-        driver.get(baseUrl);
-        driver.manage().window().maximize();
-    }
 
     @Test
     public void switchToUkrainian() {

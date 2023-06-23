@@ -25,11 +25,6 @@ public class Task6 extends BaseTest {
     private String organization = RandomData.randomString(10);
     private String positionInOrganization = RandomData.randomString(10);
 
-    @BeforeMethod
-    public void testSetUp() {
-        driver.get(baseUrl);
-        driver.manage().window().maximize();
-    }
 
     //This method opens the Registration page and then opens the Create Partner page
     private void goToPartnerCreationPage() {

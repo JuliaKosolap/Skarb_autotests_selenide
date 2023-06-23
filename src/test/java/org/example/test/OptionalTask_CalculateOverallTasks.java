@@ -18,12 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OptionalTask_CalculateOverallTasks extends BaseTest {
-    private String baseUrl = "https://skarb.foxminded.ua/";
-    @BeforeMethod
-    public void testSetUp() {
-        driver.get(baseUrl);
-        driver.manage().window().maximize();
-    }
+
     //This method opens the Volunteer Tasks Page
     private PartnerTasksPage goToPartnersTasksPage() {
         HomePage homePage = new HomePage(driver);

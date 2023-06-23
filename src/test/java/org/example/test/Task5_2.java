@@ -8,11 +8,6 @@ import org.testng.annotations.*;
 public class Task5_2 extends BaseTest {
     String baseUrl = "https://skarb.foxminded.ua/";
 
-    @BeforeMethod
-    public void testSetUp(){
-        driver.get(baseUrl);
-        driver.manage().window().maximize();
-    }
 
     @Test
     public void goToAboutUsPage() {

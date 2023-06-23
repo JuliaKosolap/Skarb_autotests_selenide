@@ -14,7 +14,6 @@ import java.util.List;
 
 public class Task5_1 extends BaseTest {
 
-    private String baseUrl = "https://skarb.foxminded.ua/";
     private String firstName = RandomData.randomFirstOrLastName(8);
     private String lastName = RandomData.randomFirstOrLastName(8);
     private String email = RandomData.randomEmail();
@@ -23,11 +22,6 @@ public class Task5_1 extends BaseTest {
     private String confirmPassword = password;
     private String invalidEmail = RandomData.invalidRandomEmail();
 
-    @BeforeMethod
-    public void testSetUp() {
-        driver.get(baseUrl);
-        driver.manage().window().maximize();
-    }
 
     @Test
     public void createVolunteerWithValidValues() {

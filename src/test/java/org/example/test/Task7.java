@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Task7 extends BaseTest {
-    private String baseUrl = "https://skarb.foxminded.ua/";
+
     private String mailHogUrl = "http://185.149.40.46:8025/";
     private String firstName = RandomData.randomFirstOrLastName(8);
     private String lastName = RandomData.randomFirstOrLastName(8);
@@ -31,11 +31,6 @@ public class Task7 extends BaseTest {
     private String organization = RandomData.randomString(10);
     private String positionInOrganization = RandomData.randomString(10);
 
-    @BeforeMethod
-    public void testSetUp() {
-        driver.get(baseUrl);
-        driver.manage().window().maximize();
-    }
 
     //This method opens the Registration page and then opens the Create Partner page
     private void goToPartnerCreationPage() {
