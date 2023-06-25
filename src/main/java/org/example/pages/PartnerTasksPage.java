@@ -32,9 +32,8 @@ public class PartnerTasksPage extends NavigationMenu {
             //so I catch this exception
             try {
                 driver.findElement(By.cssSelector("a[aria-label='Next']")).click();
+                new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.urlContains("page=" + index));
                 index++;
-                Thread.sleep(100);
-                boolean isNewPageLoaded = driver.getCurrentUrl().contains("page=" + index);
             } catch (ElementClickInterceptedException e) {
                 e.printStackTrace();
                 break;
