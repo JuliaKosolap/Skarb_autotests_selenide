@@ -36,19 +36,28 @@ public class Task7 extends BaseTest {
     @Test
     public void createPartnerWithValidValues() {
         Partner partner = new Partner(corporateEmail, firstName, lastName, Gender.FEMALE, password, confirmPassword, organization, positionInOrganization);
+
         HomePage homePage = new HomePage(driver);
         Assert.assertTrue(homePage.isInitialized());
+
         RegistrationPage registrationPage = homePage.goToRegistrationPage();
         registrationPage.goToPartnerCreationPage();
+
         PartnerCreationPage partnerCreationPage = new PartnerCreationPage(driver);
         Assert.assertTrue(partnerCreationPage.isInitialized());
+
         partnerCreationPage.fillInMandatoryFields(partner);
         SuccessRegistrationPage successPage = (SuccessRegistrationPage) partnerCreationPage.submit();
         Assert.assertTrue(successPage.isInitialized());
+
+        //here we go to MailHog and confirm registration
         driver.get(mailHogUrl);
+
         MailHogPage mailHogPage = new MailHogPage(driver);
         mailHogPage.waitForNewMessageToAppear(partner.getEmail());
         mailHogPage.confirmRegistrationOfNewPartner(partner.getEmail());
+
+        //here we switch from mailHog window to the base site
         String parentPage = driver.getWindowHandle();
         Set<String> s = driver.getWindowHandles();
         Iterator<String> I1 = s.iterator();

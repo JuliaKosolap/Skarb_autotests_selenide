@@ -42,14 +42,19 @@ public class Task5_1 extends BaseTest {
     @Test
     public void createVolunteerWithInvalidEmail() {
         Volunteer volunteerWithInvalidEmail = new Volunteer(firstName, lastName, invalidEmail, phoneNumber, password, confirmPassword);
+
         HomePage homePage = new HomePage(driver);
         Assert.assertTrue(homePage.isInitialized());
+
         RegistrationPage registrationPage = homePage.goToRegistrationPage();
         registrationPage.goToVolunteerCreationPage();
+
         VolunteerCreationPage volunteerCreationPage = new VolunteerCreationPage(driver);
         Assert.assertTrue(volunteerCreationPage.isInitialized());
+
         volunteerCreationPage.fillInMandatoryFields(volunteerWithInvalidEmail);
         volunteerCreationPage.submit();
+
         Assert.assertEquals(volunteerCreationPage.getEmailError(), "Email is incorrect");
     }
 
@@ -57,13 +62,18 @@ public class Task5_1 extends BaseTest {
     public void createVolunteerWithEmptyFields() {
         HomePage homePage = new HomePage(driver);
         Assert.assertTrue(homePage.isInitialized());
+
         RegistrationPage registrationPage = homePage.goToRegistrationPage();
         registrationPage.goToVolunteerCreationPage();
+
         VolunteerCreationPage volunteerCreationPage = new VolunteerCreationPage(driver);
         Assert.assertTrue(volunteerCreationPage.isInitialized());
+
         volunteerCreationPage.submit();
+
         List<String> allErrorsOnPage = volunteerCreationPage.getAllErrorsOnPage();
         Assert.assertEquals(allErrorsOnPage.size(), 5);
+
         for (String error : allErrorsOnPage
         ) {
             Assert.assertEquals(error, "Field can`t be empty");

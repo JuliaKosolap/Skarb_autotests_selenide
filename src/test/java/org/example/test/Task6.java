@@ -30,14 +30,19 @@ public class Task6 extends BaseTest {
     public void createPartnerWithValidValues() {
         HomePage homePage = new HomePage(driver);
         Assert.assertTrue(homePage.isInitialized());
+
         RegistrationPage registrationPage = homePage.goToRegistrationPage();
         registrationPage.goToPartnerCreationPage();
+
         Partner partner = new Partner(email, firstName, lastName, Gender.FEMALE, password, confirmPassword, organization, positionInOrganization);
+
         PartnerCreationPage partnerCreationPage = new PartnerCreationPage(driver);
         Assert.assertTrue(partnerCreationPage.isInitialized());
+
         partnerCreationPage.fillInMandatoryFields(partner);
         SuccessRegistrationPage successPage = (SuccessRegistrationPage) partnerCreationPage.submit();
         Assert.assertTrue(successPage.isInitialized());
+
         Assert.assertEquals(successPage.getMessage(), "Congratulation! Your registration succeeded! Message was sent to your email. " +
                 "Please confirm it.");
 

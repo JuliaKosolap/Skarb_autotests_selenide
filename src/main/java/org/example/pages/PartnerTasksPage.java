@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.dnd.DragGestureEvent;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,30 +14,31 @@ import java.util.ListIterator;
 
 public class PartnerTasksPage extends NavigationMenu {
 
-    @FindBy(css = "a[aria-label='Next']")
-    private WebElement nextPageLink;
-
-    @FindBy(xpath = "//nav[@id='paginationContainer']//li[1]")
-    private WebElement firstPaginationItem;
-    @FindBy(xpath = "//nav[@id='paginationContainer']//li[9]")
-    private WebElement lastPaginationItem;
-
     public PartnerTasksPage(WebDriver driver) {
         super(driver);
     }
 
     //This method clicks on the Next link in the pagination section until the provided number of page is reached
     // and returns the names of the Tasks from all these pages.
-    public ArrayList<String> getListOfTasksForGivenNumberOfPages(int numberOfPage){
+    public ArrayList<String> getListOfTasksForGivenNumberOfPages(int numberOfPage) throws InterruptedException {
         ArrayList<String> overallTasks = new ArrayList<>();
 
         int index = 1;
-        while (index < numberOfPage) {
+        while (index <= numberOfPage) {
             List<String> listOfTasksOnCurrentPage = getListOfTasksOnCurrentPage();
             overallTasks.addAll(listOfTasksOnCurrentPage);
-            driver.findElement(By.cssSelector("a[aria-label='Next']")).click();
-            index++;
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+
+            //When the last page is reached the StaleElementReferenceException is thrown if try to click on Next because it is disabled
+            //so I catch this exception
+            try {
+                driver.findElement(By.cssSelector("a[aria-label='Next']")).click();
+                index++;
+                Thread.sleep(100);
+                boolean isNewPageLoaded = driver.getCurrentUrl().contains("page=" + index);
+            } catch (ElementClickInterceptedException e) {
+                e.printStackTrace();
+                break;
+            }
         }
         return overallTasks;
     }
@@ -46,6 +48,8 @@ public class PartnerTasksPage extends NavigationMenu {
     public List<String> getListOfTasksOnCurrentPage() {
         ArrayList<String> tasks = new ArrayList<>();
 
+        //from time to time the StaleElementReferenceException is thrown if cards are not loaded yet
+        // so I catch this exception and do one more attempt to find elements
         int attemptCount = 2;
         int startIndex = 0;
         List<WebElement> searchResultContainer = null;
@@ -59,11 +63,12 @@ public class PartnerTasksPage extends NavigationMenu {
             }
         }
         for (int i = 0; i < searchResultContainer.size(); i++) {
+            //from time to time the StaleElementReferenceException is thrown if cards are not loaded yet so I catch this exception
             try {
                 String text = driver.findElements(By.
                         xpath("//div[@name='task-card']//div[@name='task-header']//div[@class='row']//h5")).get(i).getText();
                 tasks.add(text);
-            } catch (StaleElementReferenceException | IndexOutOfBoundsException e) {
+            } catch (StaleElementReferenceException e) {
                 e.printStackTrace();
             }
         } return tasks;
@@ -81,6 +86,7 @@ public class PartnerTasksPage extends NavigationMenu {
         new WebDriverWait(driver, Duration.ofSeconds(30))
                 .until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("page-link")));
 
+        //from time to time the StaleElementReferenceException is thrown so I do 2 attempts to click on the link
         int attemptCount = 2;
         int startIndex = 0;
         while (startIndex < attemptCount) {
@@ -92,8 +98,13 @@ public class PartnerTasksPage extends NavigationMenu {
                 startIndex++;
             }
         }
-        new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.attributeContains(By
-                .xpath("//nav[@id='paginationContainer']//li[9]"), "class", "page-item disabled"));
+        //from time to time the StaleElementReferenceException is thrown if element is not loaded yet so I catch this exception
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.attributeContains(By
+                    .xpath("//nav[@id='paginationContainer']//li[9]"), "class", "page-item disabled"));
+        } catch (StaleElementReferenceException e) {
+            e.printStackTrace();
+        }
             return getListOfTasksOnCurrentPage();
         }
 

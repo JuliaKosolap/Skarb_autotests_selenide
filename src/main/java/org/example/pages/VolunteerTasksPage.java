@@ -16,10 +16,12 @@ public class VolunteerTasksPage extends NavigationMenu {
         super(driver);
     }
 
+    //this method returns the names of the tasks on the last page
     public List<String> getListOfTasksOnLastPage() {
         new WebDriverWait(driver, Duration.ofSeconds(30))
                 .until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("page-link")));
 
+        //from time to time the StaleElementReferenceException is thrown so I do 2 attempts to click on the link
         int attemptCount = 2;
         int startIndex = 0;
         while (startIndex < attemptCount) {
@@ -31,13 +33,22 @@ public class VolunteerTasksPage extends NavigationMenu {
                 startIndex++;
             }
         }
-        new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.attributeContains(By
-                .xpath("//nav[@id='paginationContainer']//li[9]"), "class", "page-item disabled"));
+        //from time to time the StaleElementReferenceException is thrown if element is not loaded yet so I catch this exception
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.attributeContains(By
+                    .xpath("//nav[@id='paginationContainer']//li[9]"), "class", "page-item disabled"));
+        } catch (StaleElementReferenceException e) {
+            e.printStackTrace();
+        }
         return getListOfTasksOnCurrentPage();
     }
+    //this method waits until all tasks on the current page are loaded,
+    // then returns the names of the tasks on the current page as a list
     public List<String> getListOfTasksOnCurrentPage() {
         ArrayList<String> tasks = new ArrayList<>();
 
+        //from time to time the StaleElementReferenceException is thrown if cards are not loaded yet
+        // so I catch this exception and do one more attempt to find elements
         int attemptCount = 2;
         int startIndex = 0;
         List<WebElement> searchResultContainer = null;
@@ -51,6 +62,7 @@ public class VolunteerTasksPage extends NavigationMenu {
             }
         }
         for (int i = 0; i < searchResultContainer.size(); i++) {
+            //from time to time the StaleElementReferenceException is thrown if cards are not loaded yet so I catch this exception
             try {
                 String text = driver.findElements(By.
                         xpath("//div[@name='task-card']//div[@name='task-header']//div[@class='row']//h5")).get(i).getText();
