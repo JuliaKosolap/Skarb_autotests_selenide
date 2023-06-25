@@ -20,12 +20,13 @@ import java.util.List;
 public class OptionalTask_CalculateOverallTasks extends BaseTest {
 
     @Test
-    public void calculateNumberOfTasks() {
+    public void calculateNumberOfTasks() throws InterruptedException {
         HomePage homePage = new HomePage(driver);
         Assert.assertTrue(homePage.isInitialized());
         PartnerTasksPage partnerTasksPage = (PartnerTasksPage) homePage.goToTasksPage(TasksType.PARTNERS);
-        partnerTasksPage.clickOnShowMoreLinkUntilAllPagesAreLoaded();
-        ArrayList<String> listOfTasks = partnerTasksPage.getListOfTasksOnCurrentPage();
+        int lastPageNumber = Integer.parseInt(partnerTasksPage.getTheLastPageNumber());
+        ArrayList<String> listOfTasks =  partnerTasksPage.getListOfTasksForGivenNumberOfPages(lastPageNumber);
+
         int index = 1;
         for (String task : listOfTasks) {
             System.out.println("Task #" + (index) + ": " + task);
