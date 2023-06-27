@@ -67,7 +67,9 @@ public class Task7 extends BaseTest {
                 driver.switchTo().window(child_window);
             }
         }
-        WebElement successMessage = driver.findElement(By.className("display-3"));
-        Assert.assertEquals(successMessage.getText(), "Your email confirmed!");
+        SuccessRegistrationPage successRegistrationPage = new SuccessRegistrationPage(driver);
+        Assert.assertTrue(successRegistrationPage.isInitialized());
+
+        Assert.assertEquals(successRegistrationPage.getMessage(), "Your email confirmed!");
     }
 }

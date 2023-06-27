@@ -18,10 +18,7 @@ public class OptionalTask_CalculateTasksOnLastPage extends BaseTest {
 
         List<String> taskNames = partnerTasksPage.getListOfTasksOnLastPage();
         System.out.println("The tasks number on the last page is: " + taskNames.size());
-        for (String task: taskNames
-             ) {
-            System.out.println(task);
-        }
+        partnerTasksPage.printTheNamesOfTheTasks(taskNames);
     }
     @Test
     public void calculateNumberOfVolunteerTasksOnLastPage() {
@@ -32,9 +29,6 @@ public class OptionalTask_CalculateTasksOnLastPage extends BaseTest {
 
         List<String> taskNames = volunteerTasksPage.getListOfTasksOnLastPage();
         System.out.println("The tasks number on the last page is: " + taskNames.size());
-        for (String task: taskNames
-        ) {
-            System.out.println(task);
-        }
+        volunteerTasksPage.printTheNamesOfTheTasks(taskNames);
     }
 }

@@ -32,9 +32,7 @@ public class OptionalTask_CalculateTasksOnFivePages extends BaseTest {
 
         ArrayList<String> listOfTasks = partnerTasksPage.getListOfTasksForGivenNumberOfPages(5);
 
-        for (int i = 0; i < listOfTasks.size(); i++) {
-            System.out.println("Task #" + (i + 1) + ": " + listOfTasks.get(i));
-        }
+        partnerTasksPage.printTheNamesOfTheTasks(listOfTasks);
         System.out.println("Overall number of tasks on 5 pages is: " + listOfTasks.size());
 
     }

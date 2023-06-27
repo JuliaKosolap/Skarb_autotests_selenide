@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class SuccessRegistrationPage extends NavigationMenu {
 
-    @FindBy(name = "message")
+    @FindBy(className = "display-3")
     private WebElement successMessage;
 
     public SuccessRegistrationPage(WebDriver driver) {

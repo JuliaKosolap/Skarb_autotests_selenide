@@ -29,11 +29,7 @@ public class OptionalTask_CalculateOverallTasks extends BaseTest {
         int lastPageNumber = Integer.parseInt(partnerTasksPage.getTheLastPageNumber());
         ArrayList<String> listOfTasks =  partnerTasksPage.getListOfTasksForGivenNumberOfPages(lastPageNumber);
 
-        int index = 1;
-        for (String task : listOfTasks) {
-            System.out.println("Task #" + (index) + ": " + task);
-            index = index + 1;
-        }
+        partnerTasksPage.printTheNamesOfTheTasks(listOfTasks);
         System.out.println("Overall number of tasks is: " + listOfTasks.size());
         }
 

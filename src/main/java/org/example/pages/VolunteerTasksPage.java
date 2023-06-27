@@ -72,4 +72,10 @@ public class VolunteerTasksPage extends NavigationMenu {
             }
         } return tasks;
     }
+
+    public void printTheNamesOfTheTasks(List<String> taskNames) {
+        for (int i = 0; i < taskNames.size(); i++) {
+            System.out.println("Task #" + (i + 1) + ": " + taskNames.get(i));
+        }
+    }
 }
