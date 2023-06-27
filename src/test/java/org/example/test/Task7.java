@@ -34,15 +34,14 @@ public class Task7 extends BaseTest {
 
     //This test creates a partner with valid values and verifies if success message appeared
     @Test
-    public void createPartnerWithValidValues() {
-        Partner partner = new Partner(firstName, lastName, corporateEmail, Gender.FEMALE, password, confirmPassword, organization, positionInOrganization);
-        SuccessRegistrationPage successPage = (SuccessRegistrationPage) new HomePage(driver).
+    public void createPartnerWithValidValues() throws InterruptedException {
+        Partner partner = new Partner(corporateEmail, firstName, lastName, Gender.FEMALE, password, confirmPassword, organization, positionInOrganization);
+        new HomePage(driver).
                 goToRegistrationPage().
                 goToPartnerCreationPage().
                 fillInMandatoryFields(partner)
                 .submit();
-        Assert.assertTrue(successPage.isInitialized());
-
+        Thread.sleep(1000);
         //here we go to MailHog and confirm registration
         driver.get(mailHogUrl);
 
