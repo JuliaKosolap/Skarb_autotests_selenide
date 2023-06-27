@@ -62,20 +62,24 @@ public class PartnerCreationPage extends NavigationMenu {
         }
     }
 
-    public void enterPassword(String password) {
+    public PartnerCreationPage enterPassword(String password) {
         this.password.sendKeys(password);
+        return this;
     }
 
-    public void enterConfirmPassword(String confirmPassword) {
+    public PartnerCreationPage enterConfirmPassword(String confirmPassword) {
         this.confirmPassword.sendKeys(confirmPassword);
+        return this;
     }
 
-    public void enterOrganization(String organization) {
+    public PartnerCreationPage enterOrganization(String organization) {
         this.organization.sendKeys(organization);
+        return this;
     }
 
-    public void enterPositionInOrganization(String position) {
+    public PartnerCreationPage enterPositionInOrganization(String position) {
         this.positionInOrganization.sendKeys(position);
+        return this;
     }
 
     //This method submits the partner creation form and returns success page in case of success registration or current page is case of any error
@@ -89,7 +93,7 @@ public class PartnerCreationPage extends NavigationMenu {
         }
     }
     //This method fills the mandatory fields for registration with provided values
-    public void fillInMandatoryFields(Partner partner) {
+    public PartnerCreationPage fillInMandatoryFields(Partner partner) {
         enterFirstName(partner.getFirstName());
         enterLastName(partner.getLastName());
         enterEmail(partner.getEmail());
@@ -98,5 +102,6 @@ public class PartnerCreationPage extends NavigationMenu {
         enterConfirmPassword(partner.getConfirmPassword());
         enterOrganization(partner.getOrganizationName());
         enterPositionInOrganization(partner.getOrganizationPosition());
+        return this;
     }
 }

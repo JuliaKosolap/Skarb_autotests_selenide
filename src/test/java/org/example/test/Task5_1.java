@@ -60,23 +60,13 @@ public class Task5_1 extends BaseTest {
 
     @Test
     public void createVolunteerWithEmptyFields() {
-        HomePage homePage = new HomePage(driver);
-        Assert.assertTrue(homePage.isInitialized());
-
-        RegistrationPage registrationPage = homePage.goToRegistrationPage();
-        registrationPage.goToVolunteerCreationPage();
-
-        VolunteerCreationPage volunteerCreationPage = new VolunteerCreationPage(driver);
-        Assert.assertTrue(volunteerCreationPage.isInitialized());
-
-        volunteerCreationPage.submit();
+        VolunteerCreationPage volunteerCreationPage = (VolunteerCreationPage) (new HomePage(driver))
+                .goToRegistrationPage().
+                goToVolunteerCreationPage().
+                submit();
 
         List<String> allErrorsOnPage = volunteerCreationPage.getAllErrorsOnPage();
         Assert.assertEquals(allErrorsOnPage.size(), 5);
-
-        for (String error : allErrorsOnPage
-        ) {
-            Assert.assertEquals(error, "Field can`t be empty");
-        }
+        Assert.assertTrue(volunteerCreationPage.checkEmptyFieldsErrors(allErrorsOnPage));
     }
 }

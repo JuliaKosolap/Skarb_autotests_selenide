@@ -65,13 +65,14 @@ public class VolunteerCreationPage extends NavigationMenu {
         }
     }
     //This method fills the mandatory fields for registration with provided values
-    public void fillInMandatoryFields(Volunteer volunteer) {
+    public VolunteerCreationPage fillInMandatoryFields(Volunteer volunteer) {
         enterFirstName(volunteer.getFirstName());
         enterLastName(volunteer.getLastName());
         enterEmail(volunteer.getEmail());
         enterPhoneNumber(volunteer.getPhoneNumber());
         enterPassword(volunteer.getPassword());
         enterConfirmPassword(volunteer.getConfirmPassword());
+        return this;
     }
     public String getEmailError() {
         WebElement error = driver.findElement(By.xpath("//div[@name='email']//small[@class='text-danger']"));
@@ -85,5 +86,14 @@ public class VolunteerCreationPage extends NavigationMenu {
             errorsText.add(error.getText());
         }
         return errorsText;
+    }
+    public boolean checkEmptyFieldsErrors(List<String> errors) {
+        boolean isEqual = false;
+        for (String error : errors
+        ) {
+            if (error.equals("Field can`t be empty"));
+            isEqual = true;
+        }
+        return isEqual;
     }
 }

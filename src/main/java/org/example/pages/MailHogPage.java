@@ -17,10 +17,11 @@ public class MailHogPage extends BasePage {
     }
 
     //This method waits for new record to appear in the list of registered users;
-    public void waitForNewMessageToAppear(String emailAddress) {
+    public MailHogPage waitForNewMessageToAppear(String emailAddress) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(3));
         wait.until(ExpectedConditions.textToBe(By.xpath("//div[@class='msglist-message row ng-scope']//div[@class='ng-binding ng-scope']"),
                 emailAddress));
+        return this;
     }
 
     //This method opens new email and clicks on the Registration confirmation link

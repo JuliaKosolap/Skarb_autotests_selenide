@@ -35,38 +35,21 @@ public class Task7 extends BaseTest {
     //This test creates a partner with valid values and verifies if success message appeared
     @Test
     public void createPartnerWithValidValues() {
-        Partner partner = new Partner(corporateEmail, firstName, lastName, Gender.FEMALE, password, confirmPassword, organization, positionInOrganization);
-
-        HomePage homePage = new HomePage(driver);
-        Assert.assertTrue(homePage.isInitialized());
-
-        RegistrationPage registrationPage = homePage.goToRegistrationPage();
-        registrationPage.goToPartnerCreationPage();
-
-        PartnerCreationPage partnerCreationPage = new PartnerCreationPage(driver);
-        Assert.assertTrue(partnerCreationPage.isInitialized());
-
-        partnerCreationPage.fillInMandatoryFields(partner);
-        SuccessRegistrationPage successPage = (SuccessRegistrationPage) partnerCreationPage.submit();
+        Partner partner = new Partner(firstName, lastName, corporateEmail, Gender.FEMALE, password, confirmPassword, organization, positionInOrganization);
+        SuccessRegistrationPage successPage = (SuccessRegistrationPage) new HomePage(driver).
+                goToRegistrationPage().
+                goToPartnerCreationPage().
+                fillInMandatoryFields(partner)
+                .submit();
         Assert.assertTrue(successPage.isInitialized());
 
         //here we go to MailHog and confirm registration
         driver.get(mailHogUrl);
 
-        MailHogPage mailHogPage = new MailHogPage(driver);
-        mailHogPage.waitForNewMessageToAppear(partner.getEmail());
-        mailHogPage.confirmRegistrationOfNewPartner(partner.getEmail());
+        (new MailHogPage(driver)).waitForNewMessageToAppear(partner.getEmail()).
+                confirmRegistrationOfNewPartner(partner.getEmail());
 
-        //here we switch from mailHog window to the base site
-        String parentPage = driver.getWindowHandle();
-        Set<String> s = driver.getWindowHandles();
-        Iterator<String> I1 = s.iterator();
-        while (I1.hasNext()) {
-            String child_window = I1.next();
-            if (!parentPage.equals(child_window)) {
-                driver.switchTo().window(child_window);
-            }
-        }
+        switchBetweenWindows();
         SuccessRegistrationPage successRegistrationPage = new SuccessRegistrationPage(driver);
         Assert.assertTrue(successRegistrationPage.isInitialized());
 

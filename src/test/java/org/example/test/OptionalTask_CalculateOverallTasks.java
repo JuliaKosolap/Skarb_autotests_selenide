@@ -21,10 +21,7 @@ public class OptionalTask_CalculateOverallTasks extends BaseTest {
 
     @Test
     public void calculateNumberOfTasks() throws InterruptedException {
-        HomePage homePage = new HomePage(driver);
-        Assert.assertTrue(homePage.isInitialized());
-
-        PartnerTasksPage partnerTasksPage = (PartnerTasksPage) homePage.goToTasksPage(TasksType.PARTNERS);
+        PartnerTasksPage partnerTasksPage = (PartnerTasksPage) (new HomePage(driver)).goToTasksPage(TasksType.PARTNERS);
 
         int lastPageNumber = Integer.parseInt(partnerTasksPage.getTheLastPageNumber());
         ArrayList<String> listOfTasks =  partnerTasksPage.getListOfTasksForGivenNumberOfPages(lastPageNumber);

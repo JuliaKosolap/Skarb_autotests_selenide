@@ -23,10 +23,12 @@ public class RegistrationPage extends NavigationMenu {
     public String getHeader() {
         return header.getText();
     }
-    public void goToVolunteerCreationPage() {
+    public VolunteerCreationPage goToVolunteerCreationPage() {
         createVolunteerButton.click();
+        return new VolunteerCreationPage(driver);
     }
-    public void goToPartnerCreationPage() {
+    public PartnerCreationPage goToPartnerCreationPage() {
         createPartnerButton.click();
+        return new PartnerCreationPage(driver);
     }
 }

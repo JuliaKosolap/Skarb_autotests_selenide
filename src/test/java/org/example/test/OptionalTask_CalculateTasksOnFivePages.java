@@ -25,10 +25,7 @@ public class OptionalTask_CalculateTasksOnFivePages extends BaseTest {
 
     @Test
     public void calculateNumberOfTasksOnFivePages() throws InterruptedException {
-        HomePage homePage = new HomePage(driver);
-        Assert.assertTrue(homePage.isInitialized());
-
-        PartnerTasksPage partnerTasksPage = (PartnerTasksPage) homePage.goToTasksPage(TasksType.PARTNERS);
+        PartnerTasksPage partnerTasksPage = (PartnerTasksPage) (new HomePage(driver)).goToTasksPage(TasksType.PARTNERS);
 
         ArrayList<String> listOfTasks = partnerTasksPage.getListOfTasksForGivenNumberOfPages(5);
 
