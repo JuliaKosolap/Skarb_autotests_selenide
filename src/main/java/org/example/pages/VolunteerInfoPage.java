@@ -17,7 +17,7 @@ public class VolunteerInfoPage extends NavigationMenu {
         this.strategy = new SearchStrategy();
 
     }
-
+   //This method do search on the Volunteers Info Page for provided string and returns names on the found cards
     public List<String> search(String txt) {
         List<String> volunteerName = new ArrayList<>();
         this.strategy.searchEntity(txt);
@@ -29,6 +29,8 @@ public class VolunteerInfoPage extends NavigationMenu {
         return volunteerName;
     }
 
+    //This method compares the name on the found card with the provided string
+    // and returns true if the name contains the provided text or false if not
     public boolean isVolunteerFound(List<String> volunteerNames, String searchTxt) {
         for (String volunteerName : volunteerNames
         ) {
