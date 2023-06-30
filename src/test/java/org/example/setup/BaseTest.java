@@ -1,5 +1,6 @@
 package org.example.setup;
 
+import org.example.pages.WebDriverSingleton;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
@@ -14,7 +15,7 @@ public class BaseTest {
 
     @BeforeClass
     public static void setUp(){
-        driver = new ChromeDriver();
+        driver = WebDriverSingleton.getInstance();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
     @BeforeMethod
