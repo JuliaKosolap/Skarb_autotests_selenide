@@ -18,10 +18,11 @@ public class LoginPage extends NavigationMenu{
     @FindBy(name = "login-button")
     private WebElement loginButton;
 
+    //The method verifies if user is already logged in. If not  - then tries to log in
     public HomePage login(String username, String password) {
-        inputLogin.sendKeys(username);
-        inputPassword.sendKeys(password);
-        loginButton.click();
+            inputLogin.sendKeys(username);
+            inputPassword.sendKeys(password);
+            loginButton.click();
         return new HomePage(driver);
     }
 }

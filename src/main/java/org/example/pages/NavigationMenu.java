@@ -1,5 +1,7 @@
 package org.example.pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -64,6 +66,8 @@ public class NavigationMenu extends BasePage {
 
     @FindBy(xpath = "//i[@class='fa fa-sign-in fa-3x text-dark-red']")
     private WebElement loginIcon;
+    @FindBy(xpath = "//i[@class='fa fa-sign-out fa-3x text-dark-red']")
+    private WebElement logoutIcon;
 
     public void expandAboutProjectMenu() {
         aboutProjectMenuItem.click();
@@ -132,7 +136,11 @@ public class NavigationMenu extends BasePage {
     }
 
     public LoginPage goToLoginPage() {
-        loginIcon.click();
+        try {
+            loginIcon.click();
+        } catch (NoSuchElementException e) {
+            logoutIcon.click();
+        }
         return new LoginPage(driver);
     }
 
@@ -143,5 +151,14 @@ public class NavigationMenu extends BasePage {
             case UA -> ukrainianMenuItem.click();
             case RU -> russianMenuItem.click();
         }
+    }
+    public boolean isLoggedIn() {
+        boolean isLoggedIn  = false;
+        try {
+            driver.findElement(By.xpath("//i[@class='fa fa-user-circle-o fa-3x text-dark-red']"));
+            isLoggedIn = true;
+        } catch (NoSuchElementException e) {
+        }
+        return isLoggedIn;
     }
 }

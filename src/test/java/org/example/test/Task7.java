@@ -4,22 +4,12 @@ import entity.Gender;
 import entity.Partner;
 import org.example.pages.*;
 import org.example.setup.BaseTest;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import test_data.RandomData;
-
-import java.time.Duration;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-
+import static common.CustomLogger.logger;
+@Listeners(common.CustomListener.class)
 public class Task7 extends BaseTest {
 
     private String mailHogUrl = "http://185.149.40.46:8025/";
@@ -36,19 +26,26 @@ public class Task7 extends BaseTest {
     @Test
     public void createPartnerWithValidValues() throws InterruptedException {
         Partner partner = new Partner(corporateEmail, firstName, lastName, Gender.FEMALE, password, confirmPassword, organization, positionInOrganization);
+        logger.info("Data for new partner was generated");
+
         new HomePage(driver).
                 goToRegistrationPage().
                 goToPartnerCreationPage().
                 fillInMandatoryFields(partner)
                 .submit();
-        Thread.sleep(1000);
+        logger.info("Partner was created");
+
         //here we go to MailHog and confirm registration
         driver.get(mailHogUrl);
+        logger.info("MailHog site was opened");
 
         (new MailHogPage(driver)).waitForNewMessageToAppear(partner.getEmail()).
                 confirmRegistrationOfNewPartner(partner.getEmail());
+        logger.info("Waiting for new email to appear");
 
         switchBetweenWindows();
+        logger.info("Switched to the main site");
+
         SuccessRegistrationPage successRegistrationPage = new SuccessRegistrationPage(driver);
         Assert.assertTrue(successRegistrationPage.isInitialized());
 

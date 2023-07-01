@@ -4,15 +4,13 @@ import entity.Gender;
 import entity.Partner;
 import org.example.pages.*;
 import org.example.setup.BaseTest;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import test_data.RandomData;
+import static common.CustomLogger.logger;
+
+@Listeners(common.CustomListener.class)
 
 public class Task6 extends BaseTest {
     private String baseUrl = "https://skarb.foxminded.ua/";
@@ -29,11 +27,14 @@ public class Task6 extends BaseTest {
     @Test
     public void createPartnerWithValidValues() {
         Partner partner = new Partner(email, firstName, lastName, Gender.FEMALE, password, confirmPassword, organization, positionInOrganization);
+        logger.info("Data for new partner was generated");
+
         SuccessRegistrationPage successPage = (SuccessRegistrationPage) new HomePage(driver).
                 goToRegistrationPage().
                 goToPartnerCreationPage().
                 fillInMandatoryFields(partner)
                 .submit();
+        logger.info("Partner was created");
 
         Assert.assertEquals(successPage.getMessage(), "Congratulation! Your registration succeeded! Message was sent to your email. " +
                 "Please confirm it.");
