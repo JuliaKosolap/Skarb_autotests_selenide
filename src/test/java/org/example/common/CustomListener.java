@@ -1,8 +1,8 @@
-package common;
+package org.example.common;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import static common.CustomLogger.logger;
+import static org.example.common.CustomLogger.logger;
 public class CustomListener implements ITestListener {
     @Override
     public void onTestStart(ITestResult result) {

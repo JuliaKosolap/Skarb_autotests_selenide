@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import static org.example.common.CustomLogger.logger;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,7 @@ public class VolunteerTasksPage extends NavigationMenu {
 
     //this method returns the names of the tasks on the last page
     public List<String> getListOfTasksOnLastPage() {
+        logger.info("Waiting for the Next link is loaded");
         new WebDriverWait(driver, Duration.ofSeconds(30))
                 .until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("page-link")));
 
@@ -26,6 +27,7 @@ public class VolunteerTasksPage extends NavigationMenu {
         int startIndex = 0;
         while (startIndex < attemptCount) {
             try {
+                logger.info("Last page link is clicked");
                 driver.findElements(By.className("page-link")).get(6).click();
                 break;
             } catch (StaleElementReferenceException e) {
@@ -35,11 +37,13 @@ public class VolunteerTasksPage extends NavigationMenu {
         }
         //from time to time the StaleElementReferenceException is thrown if element is not loaded yet so I catch this exception
         try {
+            logger.info("Waiting for the last page to be loaded");
             new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.attributeContains(By
                     .xpath("//nav[@id='paginationContainer']//li[9]"), "class", "page-item disabled"));
         } catch (StaleElementReferenceException e) {
             e.printStackTrace();
         }
+        logger.info("Getting the list of the tasks on the last page");
         return getListOfTasksOnCurrentPage();
     }
     //this method waits until all tasks on the current page are loaded,
@@ -54,6 +58,7 @@ public class VolunteerTasksPage extends NavigationMenu {
         List<WebElement> searchResultContainer = null;
         while (startIndex < attemptCount) {
             try {
+                logger.info("Getting the list of the tasks on the current page");
                 searchResultContainer = driver.findElements(By.xpath("//div[@name='task-card']//div[@name='task-header']//div[@class='row']//h5"));
                 break;
             } catch (StaleElementReferenceException e) {
@@ -64,6 +69,7 @@ public class VolunteerTasksPage extends NavigationMenu {
         for (int i = 0; i < searchResultContainer.size(); i++) {
             //from time to time the StaleElementReferenceException is thrown if cards are not loaded yet so I catch this exception
             try {
+                logger.info("Getting the names of the tasks on the current page");
                 String text = driver.findElements(By.
                         xpath("//div[@name='task-card']//div[@name='task-header']//div[@class='row']//h5")).get(i).getText();
                 tasks.add(text);
@@ -75,6 +81,7 @@ public class VolunteerTasksPage extends NavigationMenu {
 
     public void printTheNamesOfTheTasks(List<String> taskNames) {
         for (int i = 0; i < taskNames.size(); i++) {
+            logger.info("Printing the names of the tasks");
             System.out.println("Task #" + (i + 1) + ": " + taskNames.get(i));
         }
     }

@@ -5,6 +5,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import static org.example.common.CustomLogger.logger;
 
 public class NavigationMenu extends BasePage {
     public NavigationMenu(WebDriver driver) {
@@ -70,95 +71,120 @@ public class NavigationMenu extends BasePage {
     private WebElement logoutIcon;
 
     public void expandAboutProjectMenu() {
+        logger.info("'About Project' menu item is clicked");
         aboutProjectMenuItem.click();
     }
 
     public void expandMembersMenu() {
+        logger.info("'Members' menu item is clicked");
         membersMenuItem.click();
     }
 
     public void expandTasksMenu() {
+        logger.info("'Tasks' menu item is clicked");
         tasksMenuItem.click();
     }
 
     //This method checks what type of task is provided (Volunteer tasks or Partner tasks), then clicks on appropriate
     // link and creates the appropriate instance of a Page and returns it.
     public BasePage goToTasksPage(EntityType type) {
+        logger.info("'Tasks' menu item is clicked");
         tasksMenuItem.click();
+
         if (type.equals(EntityType.VOLUNTEERS)) {
+            logger.info("'For volunteers' menu sub-item is clicked");
             tasksForVolunteersMenuItem.click();
+
             return new VolunteerTasksPage(driver);
         } else {
+            logger.info("'For Partners' menu sub-item is clicked");
             tasksForPartnersMenuItem.click();
+
             return new PartnerTasksPage(driver);
         }
     }
 
     public RegistrationPage goToRegistrationPage() {
+        logger.info("'Registration' menu item is clicked");
         registrationMenuItem.click();
+
         return new RegistrationPage(driver);
     }
 
     public AboutUsPage goToAboutUsPage() {
-        aboutProjectMenuItem.click();
+        expandAboutProjectMenu();
+
+        logger.info("'About Us' menu sub-item is clicked");
         aboutUsMenuItem.click();
+
         return new AboutUsPage(driver);
     }
 
     public NewsPage goToNewsPage() {
-        aboutProjectMenuItem.click();
+        expandAboutProjectMenu();
+
+        logger.info("'News' menu sub-item is clicked");
         newsMenuItem.click();
+
         return new NewsPage(driver);
     }
 
     public RulesPage goToRulesPage() {
-        aboutProjectMenuItem.click();
+        expandAboutProjectMenu();
+
+        logger.info("'Rules' menu sub-item is clicked");
         rulesMenuItem.click();
+
         return new RulesPage(driver);
     }
 
     public HelpPage goToHelpPage() {
-        aboutProjectMenuItem.click();
+        expandAboutProjectMenu();
+
+        logger.info("'Help' menu sub-item is clicked");
         helpMenuItem.click();
+
         return new HelpPage(driver);
     }
     public BasePage goToEntityInfoPage(EntityType entityType) {
-        membersMenuItem.click();
+        expandMembersMenu();
         if (entityType.equals(EntityType.VOLUNTEERS)){
+            logger.info("'Volunteers' menu sub-item is clicked");
             memberVolunteersMenuItem.click();
+
             return new VolunteerInfoPage(driver);
         } else if (entityType.equals(EntityType.PARTNERS)) {
+            logger.info("'Partners' menu sub-item is clicked");
             memberPartnersMenuItem.click();
+
             return new PartnerInfoPge(driver);
         } else  {
+            logger.info("'Organizations' menu sub-item is clicked");
+            memberOrganizationsMenuItem.click();
             return new OrganizationInfoPage(driver);
         }
     }
 
     public LoginPage goToLoginPage() {
         try {
+            logger.info("'Login' menu items is clicked");
             loginIcon.click();
         } catch (NoSuchElementException e) {
+            logger.info("'Logout' menu items is clicked");
             logoutIcon.click();
         }
         return new LoginPage(driver);
     }
 
     public void selectLanguage(Language language) {
+        logger.info("'Language' menu items is clicked");
         languageMenuItem.click();
+
+       logger.info("Language is selected");
         switch (language) {
             case EN -> englishMenuItem.click();
             case UA -> ukrainianMenuItem.click();
             case RU -> russianMenuItem.click();
         }
-    }
-    public boolean isLoggedIn() {
-        boolean isLoggedIn  = false;
-        try {
-            driver.findElement(By.xpath("//i[@class='fa fa-user-circle-o fa-3x text-dark-red']"));
-            isLoggedIn = true;
-        } catch (NoSuchElementException e) {
-        }
-        return isLoggedIn;
     }
 }

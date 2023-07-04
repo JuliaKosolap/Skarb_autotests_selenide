@@ -3,6 +3,7 @@ package org.example.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import static org.example.common.CustomLogger.logger;
 
 public class SuccessRegistrationPage extends NavigationMenu {
 
@@ -14,10 +15,12 @@ public class SuccessRegistrationPage extends NavigationMenu {
     }
 
     public boolean isInitialized() {
+        logger.info("Success registration page is loaded");
         return successMessage.isDisplayed();
     }
 
     public String getMessage(){
+        logger.info("Success message is received");
         return successMessage.getText();
     }
 }
