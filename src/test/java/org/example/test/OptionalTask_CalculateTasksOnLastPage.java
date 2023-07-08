@@ -2,6 +2,8 @@ package org.example.test;
 
 import org.example.common.CustomListener;
 import org.example.pages.*;
+import org.example.pages.tasks.PartnerTasksPage;
+import org.example.pages.tasks.VolunteerTasksPage;
 import org.example.setup.BaseTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;

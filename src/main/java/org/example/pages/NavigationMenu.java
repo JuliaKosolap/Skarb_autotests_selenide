@@ -1,6 +1,8 @@
 package org.example.pages;
 
-import org.openqa.selenium.By;
+import org.example.pages.registration.RegistrationPage;
+import org.example.pages.tasks.PartnerTasksPage;
+import org.example.pages.tasks.VolunteerTasksPage;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -106,8 +108,15 @@ public class NavigationMenu extends BasePage {
 
     public RegistrationPage goToRegistrationPage() {
         logger.info("'Registration' menu item is clicked");
-        registrationMenuItem.click();
-
+        try {
+            registrationMenuItem.click();
+        } catch (NoSuchElementException e) {
+            logger.info("Unable to click Registration menu item because user is logged");
+            logger.info("Log out from the app");
+            logoutIcon.click();
+            logger.info("'Registration' menu item is clicked");
+            registrationMenuItem.click();
+        }
         return new RegistrationPage(driver);
     }
 

@@ -5,9 +5,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import static org.example.common.Props.initProperties;
+import static org.example.common.Props.resetProperties;
+
 
 public class BaseTest {
     protected static WebDriver driver;
@@ -19,13 +23,15 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
     @BeforeMethod
-    public void testSetUp() {
+    public void testSetUp() throws IOException {
         driver.get(baseUrl);
         driver.manage().window().maximize();
+        initProperties();
     }
 
     @AfterClass
     public static void tearDown(){
+        resetProperties();
         if (driver != null) {
             driver.close();
             driver.quit();

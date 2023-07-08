@@ -1,6 +1,7 @@
-package org.example.pages;
+package org.example.pages.tasks;
 
 import com.beust.ah.A;
+import org.example.pages.NavigationMenu;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;

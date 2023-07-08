@@ -1,5 +1,6 @@
-package org.example.pages;
+package org.example.pages.tasks;
 
+import org.example.pages.NavigationMenu;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;

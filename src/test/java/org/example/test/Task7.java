@@ -4,6 +4,8 @@ import org.example.entity.Gender;
 import org.example.entity.Partner;
 import org.example.common.CustomListener;
 import org.example.pages.*;
+import org.example.pages.registration.MailHogPage;
+import org.example.pages.registration.SuccessRegistrationPage;
 import org.example.setup.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;

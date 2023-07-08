@@ -1,13 +1,17 @@
-package org.example.pages;
+package org.example.pages.registration;
 
 import org.example.entity.Gender;
+import org.example.entity.Organization;
 import org.example.entity.Partner;
+import org.example.pages.BasePage;
+import org.example.pages.NavigationMenu;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
 import static org.example.common.CustomLogger.logger;
 
-public class PartnerCreationPage extends NavigationMenu {
+public class OrganizationRegistrationPage extends NavigationMenu {
     @FindBy(id = "firstName")
     private WebElement firstName;
 
@@ -37,55 +41,58 @@ public class PartnerCreationPage extends NavigationMenu {
     private WebElement submitButton;
 
     public boolean isInitialized() {
-        return firstName.isDisplayed();
+        return email.isDisplayed();
     }
 
-    public PartnerCreationPage(WebDriver driver) {
+    public OrganizationRegistrationPage(WebDriver driver) {
         super(driver);
     }
 
-    public void enterFirstName(String firstName) {
-        logger.info("First name was typed");
-        this.firstName.sendKeys(firstName);
-    }
-
-    public void enterLastName(String lastName) {
-        logger.info("Last name was typed");
-        this.lastName.sendKeys(lastName);
-    }
-
-    public void enterEmail(String email) {
+    public OrganizationRegistrationPage enterEmail(String email) {
         logger.info("Email was typed");
         this.email.sendKeys(email);
+        return this;
+    }
+    public OrganizationRegistrationPage enterFirstName(String firstName) {
+        logger.info("First name was typed");
+        this.firstName.sendKeys(firstName);
+        return this;
     }
 
-    public void selectRadioButton(Gender gender) {
+    public OrganizationRegistrationPage enterLastName(String lastName) {
+        logger.info("Last name was typed");
+        this.lastName.sendKeys(lastName);
+        return this;
+    }
+
+    public OrganizationRegistrationPage selectRadioButton(Gender gender) {
         logger.info("Gender is selected");
         switch (gender) {
             case MALE -> maleRadioButton.click();
             case FEMALE -> femaleRadioButton.click();
         }
+        return this;
     }
 
-    public PartnerCreationPage enterPassword(String password) {
+    public OrganizationRegistrationPage enterPassword(String password) {
         logger.info("Password was typed");
         this.password.sendKeys(password);
         return this;
     }
 
-    public PartnerCreationPage enterConfirmPassword(String confirmPassword) {
+    public OrganizationRegistrationPage enterConfirmPassword(String confirmPassword) {
         logger.info("Password confirmation was typed");
         this.confirmPassword.sendKeys(confirmPassword);
         return this;
     }
 
-    public PartnerCreationPage enterOrganization(String organization) {
+    public OrganizationRegistrationPage enterOrganization(String organization) {
         logger.info("Organization was typed");
         this.organization.sendKeys(organization);
         return this;
     }
 
-    public PartnerCreationPage enterPositionInOrganization(String position) {
+    public OrganizationRegistrationPage enterPositionInOrganization(String position) {
         logger.info("Position in organization was typed");
         this.positionInOrganization.sendKeys(position);
         return this;
@@ -98,22 +105,22 @@ public class PartnerCreationPage extends NavigationMenu {
 
         logger.info("A title of the current page is got");
         String pageTitle = driver.getTitle();
-        if (pageTitle.equals("Partner registration") || pageTitle.equals("Регистрация партнера") || pageTitle.equals("Реєстрація партнера")) {
+        if (pageTitle.equals("Organization registration") || pageTitle.equals("Регистрация организации") || pageTitle.equals("Реєстрація організацї")) {
             return this;
         } else {
             return new SuccessRegistrationPage(driver);
         }
     }
     //This method fills the mandatory fields for registration with provided values
-    public PartnerCreationPage fillInMandatoryFields(Partner partner) {
-        enterFirstName(partner.getFirstName());
-        enterLastName(partner.getLastName());
-        enterEmail(partner.getEmail());
-        selectRadioButton(partner.getGender());
-        enterPassword(partner.getPassword());
-        enterConfirmPassword(partner.getConfirmPassword());
-        enterOrganization(partner.getOrganizationName());
-        enterPositionInOrganization(partner.getOrganizationPosition());
+    public OrganizationRegistrationPage fillInMandatoryFields(Organization organization) {
+        enterFirstName(organization.getFirstName());
+        enterLastName(organization.getLastName());
+        enterEmail(organization.getEmail());
+        selectRadioButton(organization.getGender());
+        enterPassword(organization.getPassword());
+        enterConfirmPassword(organization.getConfirmPassword());
+        enterOrganization(organization.getOrganizationName());
+        enterPositionInOrganization(organization.getOrganizationPosition());
         return this;
     }
 }

@@ -1,7 +1,6 @@
 package org.example.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
+import org.example.pages.tasks.TaskCreationPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +13,8 @@ public class HomePage extends NavigationMenu {
 
     @FindBy(className = "info_title")
     private WebElement header;
+    @FindBy(name = "tasks-button")
+    private WebElement createTaskButton;
 
 
     public String getPageHeader() {
@@ -24,7 +25,10 @@ public class HomePage extends NavigationMenu {
         logger.info("Home Page is initialized");
         return header.isDisplayed();
     }
-
+    public TaskCreationPage goToTaskCreationPage() {
+        createTaskButton.click();
+        return new TaskCreationPage(driver);
+    }
 
 
 }

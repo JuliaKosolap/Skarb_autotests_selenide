@@ -1,6 +1,8 @@
-package org.example.pages;
+package org.example.pages.registration;
 
 import org.example.entity.Volunteer;
+import org.example.pages.BasePage;
+import org.example.pages.NavigationMenu;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

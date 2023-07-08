@@ -1,5 +1,6 @@
-package org.example.pages;
+package org.example.pages.registration;
 
+import org.example.pages.NavigationMenu;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,5 +36,10 @@ public class RegistrationPage extends NavigationMenu {
         logger.info("Create partner button is clicked");
         createPartnerButton.click();
         return new PartnerCreationPage(driver);
+    }
+    public OrganizationRegistrationPage goToOrganizationRegistrationPage() {
+        logger.info("Create organization button is clicked");
+        createOrganizationButton.click();
+        return new OrganizationRegistrationPage(driver);
     }
 }

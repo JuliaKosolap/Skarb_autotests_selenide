@@ -2,7 +2,7 @@ package org.example.test;
 
 import org.example.common.CustomListener;
 import org.example.pages.HomePage;
-import org.example.pages.PartnerTasksPage;
+import org.example.pages.tasks.PartnerTasksPage;
 import org.example.pages.EntityType;
 import org.example.setup.BaseTest;
 import org.testng.annotations.Listeners;

@@ -4,6 +4,7 @@ import org.example.entity.Gender;
 import org.example.entity.Partner;
 import org.example.common.CustomListener;
 import org.example.pages.*;
+import org.example.pages.registration.SuccessRegistrationPage;
 import org.example.setup.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -27,10 +28,10 @@ public class Task6 extends BaseTest {
     //This test creates a partner with valid values and verifies if success message appeared
     @Test
     public void createPartnerWithValidValues() {
-        logger.info("Data for new partner was generated");
+        logger.info("Data for new partner is generated");
         Partner partner = new Partner(email, firstName, lastName, Gender.FEMALE, password, confirmPassword, organization, positionInOrganization);
 
-        logger.info("Partner was created");
+        logger.info("Partner is created");
         SuccessRegistrationPage successPage = (SuccessRegistrationPage) new HomePage(driver).
                 goToRegistrationPage().
                 goToPartnerCreationPage().
