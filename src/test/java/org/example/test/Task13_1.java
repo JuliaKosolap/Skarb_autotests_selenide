@@ -1,7 +1,7 @@
 package org.example.test;
 
 import org.example.common.CustomListener;
-import org.example.entity.Volunteer;
+import org.example.entity.Volunteer_old;
 import org.example.pages.HomePage;
 import org.example.pages.registration.SuccessRegistrationPage;
 import org.example.setup.BaseTest;
@@ -20,7 +20,7 @@ public class Task13_1  extends BaseTest {
     public void createVolunteer(String firstName, String lastName, String email, String phoneNumber,
                                 String password, String confirmPassword) {
        logger.info("Data for new volunteer was generated");
-       Volunteer volunteer = new Volunteer(firstName, lastName, email, phoneNumber, password, confirmPassword);
+       Volunteer_old volunteer = new Volunteer_old(firstName, lastName, email, phoneNumber, password, confirmPassword);
 
        logger.info("Creating new volunteer");
        SuccessRegistrationPage successPage = (SuccessRegistrationPage) new HomePage(driver).
