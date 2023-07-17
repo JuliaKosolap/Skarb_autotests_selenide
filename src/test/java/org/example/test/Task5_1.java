@@ -1,6 +1,6 @@
 package org.example.test;
 
-import org.example.entity.Volunteer_old;
+import org.example.entity.Volunteer;
 import org.example.common.CustomListener;
 import org.example.pages.HomePage;
 import org.example.pages.registration.RegistrationPage;
@@ -30,7 +30,7 @@ public class Task5_1 extends BaseTest {
     @Test
     public void createVolunteerWithValidValues() {
         logger.info("Data for new volunteer was generated");
-        Volunteer_old volunteer = new Volunteer_old(firstName, lastName, email, phoneNumber, password, confirmPassword);
+        Volunteer volunteer = new Volunteer(firstName, lastName, email, phoneNumber, password, confirmPassword);
 
         logger.info("Home page was opened");
         HomePage homePage = new HomePage(driver);
@@ -58,7 +58,7 @@ public class Task5_1 extends BaseTest {
     @Test
     public void createVolunteerWithInvalidEmail() {
         logger.info("Data for new volunteer was generated with invalid email");
-        Volunteer_old volunteerWithInvalidEmail = new Volunteer_old(firstName, lastName, invalidEmail, phoneNumber, password, confirmPassword);
+        Volunteer volunteerWithInvalidEmail = new Volunteer(firstName, lastName, invalidEmail, phoneNumber, password, confirmPassword);
 
         logger.info("Home page was opened");
         HomePage homePage = new HomePage(driver);

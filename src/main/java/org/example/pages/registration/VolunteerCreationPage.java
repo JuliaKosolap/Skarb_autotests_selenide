@@ -1,6 +1,6 @@
 package org.example.pages.registration;
 
-import org.example.entity.Volunteer_old;
+import org.example.entity.Volunteer;
 import org.example.pages.BasePage;
 import org.example.pages.NavigationMenu;
 import org.openqa.selenium.By;
@@ -79,7 +79,7 @@ public class VolunteerCreationPage extends NavigationMenu {
         }
     }
     //This method fills the mandatory fields for registration with provided values
-    public VolunteerCreationPage fillInMandatoryFields(Volunteer_old volunteer) {
+    public VolunteerCreationPage fillInMandatoryFields(Volunteer volunteer) {
         enterFirstName(volunteer.getFirstName());
         enterLastName(volunteer.getLastName());
         enterEmail(volunteer.getEmail());
