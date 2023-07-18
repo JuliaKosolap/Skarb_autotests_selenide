@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class VolunteerDBService {
-    static final String JDBC_DRIVER = "org.h2.Driver";
     private  Connection connection;
     private PreparedStatement createSt;
     public VolunteerDBService() {
@@ -19,13 +18,6 @@ public class VolunteerDBService {
      }
     }
     public void selectFromUsersTable() throws SQLException {
-        try {
-            connection = DBConnection.getConnection();
-            String sql = "select * from users";
-            createSt = connection.prepareStatement(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         ResultSet resultSet = createSt.executeQuery();
         System.out.println(resultSet);
     }
