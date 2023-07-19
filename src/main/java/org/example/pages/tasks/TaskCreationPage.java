@@ -3,17 +3,11 @@ package org.example.pages.tasks;
 import org.example.entity.Task;
 import org.example.pages.BasePage;
 import org.example.pages.NavigationMenu;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -30,7 +24,7 @@ public class TaskCreationPage extends NavigationMenu {
     private WebElement taskCategoryDropdown;
     @FindBy(id = "bs-select-1-1")
     private WebElement graphicDesignDropdownItem;
-    @FindBy(id = "bs-select-1-2")
+    @FindBy(id = "bs-select-1-6")
     private WebElement softDrinksDropdownItem;
     @FindBy(id = "bs-select-1-2")
     private WebElement logoDesignDropdownItem;
