@@ -4,11 +4,8 @@ import org.example.common.CustomListener;
 import org.example.common.Props;
 import org.example.entity.Gender;
 import org.example.entity.Organization;
-import org.example.entity.Partner;
 import org.example.entity.Task;
-import org.example.pages.BasePage;
 import org.example.pages.HomePage;
-import org.example.pages.LoginPage;
 import org.example.pages.registration.MailHogPage;
 import org.example.pages.registration.SuccessRegistrationPage;
 import org.example.pages.tasks.TaskCategory;
@@ -22,20 +19,12 @@ import org.testng.annotations.Test;
 import test_data.RandomData;
 
 import java.text.ParseException;
-import java.util.Date;
 
 import static org.example.common.CustomLogger.logger;
 
 @Listeners(CustomListener.class)
 public class Task13_3 extends BaseTest {
     private String mailHogUrl = "http://185.149.40.46:8025/";
-    private String firstName = RandomData.randomFirstOrLastName(8);
-    private String lastName = RandomData.randomFirstOrLastName(8);
-    private String corporateEmail = RandomData.randomCorporateEmail();
-    private String password = RandomData.randomPassword(8);
-    private String confirmPassword = password;
-    private String organization = RandomData.randomString(10);
-    private String positionInOrganization = RandomData.randomString(10);
 
     @Test(dataProvider = "organizationdata")
     public void registerOrganization(String corporateEmail, String firstName, String lastName, Gender gender,

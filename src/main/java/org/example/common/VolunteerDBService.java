@@ -1,5 +1,6 @@
 package org.example.common;
 
+import org.example.entity.Volunteer;
 import org.example.entity.VolunteerDTO;
 
 import java.sql.Connection;
@@ -12,19 +13,25 @@ import static org.example.common.CustomLogger.logger;
 public class VolunteerDBService {
     private  Connection connection;
     private PreparedStatement selectSt;
+    private PreparedStatement updateSt;
     private PreparedStatement createSt;
     public VolunteerDBService() {
      try {
         connection = DBConnection.getConnection();
-         String sql = "select * from users";
          String createVolunteerSql = "insert into users (first_name, last_name, password, sex, email, role, status, " +
                  "phone, skype, linked_in, social_networks, email_confirmed, owner, organization_id, " +
                  "position_in_organization, volunteer_data_id, last_active_date, created_date, updated_date, " +
                  "locale, phone_displayed, skype_displayed, linked_in_displayed, social_displayed, " +
                  "notifications_to_email, news_to_email, avatar_id, mfa_enabled, completed_task_count) values (?,?,?,?,?," +
                  "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-         logger.info("Update statement was created");
+         logger.info("Insert statement was created");
          createSt = connection.prepareStatement(createVolunteerSql);
+
+         String updateStatusSql = "UPDATE users SET email_confirmed = '1' WHERE email = ?";
+         logger.info("Update statement was created");
+         updateSt = connection.prepareStatement(updateStatusSql);
+
+         String sql = "select * from users";
          logger.info("Select statement was created");
          selectSt = connection.prepareStatement(sql);
     } catch (SQLException e) {
@@ -64,6 +71,13 @@ public class VolunteerDBService {
         createSt.setInt(29, volunteer.getCompletedTaskNumber());
         logger.info("Update was executed");
         return createSt.executeUpdate();
+    }
+
+    //This method updates email_confirmed field from 0 to 1 in order to make new volunteer account active without
+    //login to MailHog
+    public int updateEmailConfirmedField(Volunteer volunteer) throws SQLException {
+        updateSt.setString(1, volunteer.getEmail());
+        return updateSt.executeUpdate();
     }
     public void selectFromUsersTable() throws SQLException {
         ResultSet resultSet = selectSt.executeQuery();
