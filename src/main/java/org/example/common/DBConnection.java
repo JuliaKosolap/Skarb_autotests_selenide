@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-    private static String dbUrl = "jdbc:h2:mem:SkarbNgoDB;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false";
-    private static String userName = "user";
+    private static String dbUrl = "jdbc:sqlserver://185.149.40.46:1433;database=SkarbNgoDB;encrypt=false";
+    private static String userName = "sa";
     private static String password = "37Y5Nb8uTo2";
 
     public static Connection getConnection() {
