@@ -1,12 +1,14 @@
 package org.example.test;
 
+import org.example.common.CustomListener;
 import org.example.common.VolunteerDBService;
 import org.example.entity.VolunteerDTO;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.sql.SQLException;
-
+@Listeners(CustomListener.class)
 public class Task14 {
     @Test
     public void createVolunteerUsingJDBC() throws SQLException {

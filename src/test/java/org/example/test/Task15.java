@@ -1,5 +1,6 @@
 package org.example.test;
 
+import com.aventstack.extentreports.Status;
 import org.example.common.CustomListener;
 import org.example.common.VolunteerDBService;
 import org.example.entity.Volunteer;
@@ -14,6 +15,7 @@ import test_data.RandomData;
 
 import java.sql.SQLException;
 
+import static org.example.common.CustomListener.test;
 import static org.example.common.CustomLogger.logger;
 @Listeners(CustomListener.class)
 public class Task15 extends BaseTest {
@@ -21,8 +23,10 @@ public class Task15 extends BaseTest {
     @Test(dataProvider = "volunteerData")
     public void registerVolunteer(String firstName, String lastName, String email, String phoneNumber,
                                      String password, String confirmPassword) throws SQLException {
+
         logger.info("Data for new volunteer is generated");
         Volunteer volunteer = new Volunteer(firstName, lastName, email, phoneNumber, password, confirmPassword);
+        test.log(Status.INFO, "Volunteer object was created");
 
         logger.info("Creating new volunteer...");
         SuccessRegistrationPage successPage = (SuccessRegistrationPage) new HomePage(driver).
@@ -30,17 +34,20 @@ public class Task15 extends BaseTest {
                 goToVolunteerCreationPage().
                 fillInMandatoryFields(volunteer)
                 .submit();
+        test.log(Status.INFO, "Data were submitted");
 
         Assert.assertEquals(successPage.getMessage(), "Congratulation! Your registration succeeded! Message was sent to your email. " +
                 "Please confirm it.");
+        test.log(Status.INFO, "New Volunteer was registered");
 
         VolunteerDBService volunteerDBService = new VolunteerDBService();
         Assert.assertEquals(volunteerDBService.updateEmailConfirmedField(volunteer), 1);
+        test.log(Status.INFO, "New volunteer account was activated via DB");
 
         logger.info("Trying to login...");
         HomePage homePage = successPage.goToLoginPage().login(volunteer.getEmail(), volunteer.getPassword());
         Assert.assertTrue(homePage.isInitialized());
-
+        test.log(Status.INFO, "New volunteer was logged in successfully");
     }
     @DataProvider(name = "volunteerData")
     public Object[][] volunteerDataFeed() {

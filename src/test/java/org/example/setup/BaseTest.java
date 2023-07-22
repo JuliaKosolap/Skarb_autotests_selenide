@@ -22,7 +22,7 @@ public class BaseTest {
     private String baseUrl = "https://skarb.foxminded.ua/";
 
     @BeforeClass
-    public static void setUp(){
+    public void setUp(){
         driver = WebDriverSingleton.getInstance();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
@@ -35,7 +35,7 @@ public class BaseTest {
     }
 
     @AfterClass
-    public static void tearDown(){
+    public void tearDown(){
         resetProperties();
         if (driver != null) {
             driver.close();
