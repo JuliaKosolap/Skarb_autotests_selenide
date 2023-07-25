@@ -1,0 +1,1 @@
+In order to get Extend Report just run the Register Volunteer test that is in the Task15 class. Then open extentReport.html in any browser (it is created in the root of the project once the test is completed.)
