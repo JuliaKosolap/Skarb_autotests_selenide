@@ -1,5 +1,6 @@
 package org.example.pages;
 
+import io.qameta.allure.Step;
 import org.example.pages.tasks.TaskCreationPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,6 +26,7 @@ public class HomePage extends NavigationMenu {
         logger.info("Home Page is initialized");
         return header.isDisplayed();
     }
+    @Step("Go to Task Creation Page")
     public TaskCreationPage goToTaskCreationPage() {
         createTaskButton.click();
         return new TaskCreationPage(driver);

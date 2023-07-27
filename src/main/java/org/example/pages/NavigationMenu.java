@@ -1,5 +1,6 @@
 package org.example.pages;
 
+import io.qameta.allure.Step;
 import org.example.pages.registration.RegistrationPage;
 import org.example.pages.tasks.PartnerTasksPage;
 import org.example.pages.tasks.VolunteerTasksPage;
@@ -77,15 +78,18 @@ public class NavigationMenu extends BasePage {
         aboutProjectMenuItem.click();
     }
 
+    @Step("Expand Members Menu item")
     public void expandMembersMenu() {
         logger.info("'Members' menu item is clicked");
         membersMenuItem.click();
     }
 
+    @Step("Expand Tasks Menu item")
     public void expandTasksMenu() {
         logger.info("'Tasks' menu item is clicked");
         tasksMenuItem.click();
     }
+    @Step("Go to Tasks Page")
 
     //This method checks what type of task is provided (Volunteer tasks or Partner tasks), then clicks on appropriate
     // link and creates the appropriate instance of a Page and returns it.
@@ -105,7 +109,7 @@ public class NavigationMenu extends BasePage {
             return new PartnerTasksPage(driver);
         }
     }
-
+    @Step("Open registration page")
     public RegistrationPage goToRegistrationPage() {
         logger.info("'Registration' menu item is clicked");
         try {
@@ -138,6 +142,7 @@ public class NavigationMenu extends BasePage {
         return new NewsPage(driver);
     }
 
+    @Step("Go to Rules Page")
     public RulesPage goToRulesPage() {
         expandAboutProjectMenu();
 
@@ -147,6 +152,7 @@ public class NavigationMenu extends BasePage {
         return new RulesPage(driver);
     }
 
+    @Step("Go to Help Page")
     public HelpPage goToHelpPage() {
         expandAboutProjectMenu();
 
@@ -155,6 +161,7 @@ public class NavigationMenu extends BasePage {
 
         return new HelpPage(driver);
     }
+    @Step("Go to Entity Info Page")
     public BasePage goToEntityInfoPage(EntityType entityType) {
         expandMembersMenu();
         if (entityType.equals(EntityType.VOLUNTEERS)){
@@ -173,7 +180,7 @@ public class NavigationMenu extends BasePage {
             return new OrganizationInfoPage(driver);
         }
     }
-
+    @Step("Go to Login Page")
     public LoginPage goToLoginPage() {
         try {
             logger.info("'Login' menu items is clicked");
@@ -185,6 +192,7 @@ public class NavigationMenu extends BasePage {
         return new LoginPage(driver);
     }
 
+    @Step("Select language")
     public void selectLanguage(Language language) {
         logger.info("'Language' menu items is clicked");
         languageMenuItem.click();

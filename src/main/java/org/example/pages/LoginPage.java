@@ -1,5 +1,6 @@
 package org.example.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,6 +20,7 @@ public class LoginPage extends NavigationMenu{
     @FindBy(name = "login-button")
     private WebElement loginButton;
 
+    @Step("Log in to the site")
     //The method verifies if user is already logged in. If not  - then tries to log in
     public HomePage login(String username, String password) {
             logger.info("Username is typed");

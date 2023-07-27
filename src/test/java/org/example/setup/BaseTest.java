@@ -1,12 +1,13 @@
 package org.example.setup;
 
+import io.qameta.allure.Step;
 import org.example.pages.HomePage;
 import org.example.pages.Language;
 import org.example.pages.WebDriverSingleton;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -21,11 +22,12 @@ public class BaseTest {
     protected static WebDriver driver;
     private String baseUrl = "https://skarb.foxminded.ua/";
 
-    @BeforeClass
+    @BeforeSuite
     public void setUp(){
         driver = WebDriverSingleton.getInstance();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
+    @Step("Start browser and open Home Page")
     @BeforeMethod
     public void testSetUp() throws IOException {
         driver.get(baseUrl);
@@ -34,7 +36,7 @@ public class BaseTest {
         initProperties();
     }
 
-    @AfterClass
+    @AfterSuite
     public void tearDown(){
         resetProperties();
         if (driver != null) {
@@ -42,6 +44,7 @@ public class BaseTest {
             driver.quit();
         }
     }
+    @Step("Return to the main site")
     //method that allows to switch between windows in a current browser
     public void switchBetweenWindows() {
         String parentPage = driver.getWindowHandle();

@@ -1,5 +1,6 @@
 package org.example.pages.tasks;
 
+import io.qameta.allure.Step;
 import org.example.entity.Task;
 import org.example.pages.BasePage;
 import org.example.pages.NavigationMenu;
@@ -107,6 +108,7 @@ public class TaskCreationPage extends NavigationMenu {
         }
         return this;
     }
+    @Step("Click Submit Button")
     public BasePage submit() {
         logger.info("Create Task button is clicked");
         createTaskButton.click();
@@ -120,6 +122,7 @@ public class TaskCreationPage extends NavigationMenu {
         }
     }
 
+    @Step("Fill Mandatory Fields")
     public TaskCreationPage fillMandatoryFields(Task task) {
         enterTaskName(task.getTaskName());
         selectCategory(task.getCategory());

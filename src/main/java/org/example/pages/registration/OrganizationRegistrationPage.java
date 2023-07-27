@@ -1,8 +1,8 @@
 package org.example.pages.registration;
 
+import io.qameta.allure.Step;
 import org.example.entity.Gender;
 import org.example.entity.Organization;
-import org.example.entity.Partner;
 import org.example.pages.BasePage;
 import org.example.pages.NavigationMenu;
 import org.openqa.selenium.WebDriver;
@@ -97,6 +97,7 @@ public class OrganizationRegistrationPage extends NavigationMenu {
         this.positionInOrganization.sendKeys(position);
         return this;
     }
+    @Step("Click Submit button")
 
     //This method submits the partner creation form and returns success page in case of success registration or current page is case of any error
     public BasePage submit(){
@@ -111,6 +112,7 @@ public class OrganizationRegistrationPage extends NavigationMenu {
             return new SuccessRegistrationPage(driver);
         }
     }
+    @Step("Fill all mandatory fields")
     //This method fills the mandatory fields for registration with provided values
     public OrganizationRegistrationPage fillInMandatoryFields(Organization organization) {
         enterFirstName(organization.getFirstName());

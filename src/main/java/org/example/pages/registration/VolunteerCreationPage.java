@@ -1,5 +1,6 @@
 package org.example.pages.registration;
 
+import io.qameta.allure.Step;
 import org.example.entity.Volunteer;
 import org.example.pages.BasePage;
 import org.example.pages.NavigationMenu;
@@ -7,10 +8,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import static org.example.common.CustomLogger.logger;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.example.common.CustomLogger.logger;
 
 public class VolunteerCreationPage extends NavigationMenu {
     @FindBy(id="firstName")
@@ -65,6 +67,7 @@ public class VolunteerCreationPage extends NavigationMenu {
         logger.info("Password confirmation is typed");
         this.confirmPassword.sendKeys(confirmPassword);
     }
+    @Step("Click Submit button")
     public BasePage submit(){
 
         logger.info("Submit button is clicked");
@@ -78,6 +81,7 @@ public class VolunteerCreationPage extends NavigationMenu {
             return new SuccessRegistrationPage(driver);
         }
     }
+    @Step("Fill mandatory fields")
     //This method fills the mandatory fields for registration with provided values
     public VolunteerCreationPage fillInMandatoryFields(Volunteer volunteer) {
         enterFirstName(volunteer.getFirstName());

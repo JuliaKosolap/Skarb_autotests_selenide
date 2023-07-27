@@ -1,15 +1,17 @@
 package org.example.pages.registration;
 
+import io.qameta.allure.Step;
 import org.example.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import static org.example.common.CustomLogger.logger;
+
 import java.time.Duration;
 import java.util.List;
+
+import static org.example.common.CustomLogger.logger;
 
 public class MailHogPage extends BasePage {
 
@@ -17,6 +19,7 @@ public class MailHogPage extends BasePage {
         super(driver);
     }
 
+    @Step("Go to MailHog and wait for new registration message to be received")
     //This method waits for new record to appear in the list of registered users;
     public MailHogPage waitForNewMessageToAppear(String emailAddress) {
         logger.info("New email is being waited on MailHog");
@@ -26,6 +29,7 @@ public class MailHogPage extends BasePage {
         return this;
     }
 
+    @Step("Confirm registration")
     //This method opens new email and clicks on the Registration confirmation link
     public void confirmRegistrationOfNewPartner(String emailAddress) {
         logger.info("Trying to get the list of emails in MailHog");

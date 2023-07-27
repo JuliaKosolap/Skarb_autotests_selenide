@@ -25,17 +25,7 @@ public class Task5_3 extends BaseTest {
         Assert.assertEquals(homePage.getPageHeader(), "Довгий заголовок на два рядки");
     }
 
-    @Test
-    public void switchToRussian() {
-        logger.info("Home page was opened");
-        HomePage homePage = new HomePage(driver);
-        Assert.assertTrue(homePage.isInitialized());
 
-        logger.info("Russian language was selected");
-        homePage.selectLanguage(Language.RU);
-
-        Assert.assertEquals(homePage.getPageHeader(), "Длинный заголовок в 2 строчки");
-    }
 
     @Test
     public void switchToEnglish() {
@@ -48,5 +38,16 @@ public class Task5_3 extends BaseTest {
 
         Assert.assertEquals(homePage.getPageHeader(), "Long caption for 2 rows");
 
+    }
+    @Test
+    public void switchToRussian() {
+        logger.info("Home page was opened");
+        HomePage homePage = new HomePage(driver);
+        Assert.assertTrue(homePage.isInitialized());
+
+        logger.info("Russian language was selected");
+        homePage.selectLanguage(Language.RU);
+
+        Assert.assertEquals(homePage.getPageHeader(), "Длинный заголовок в 2 строчки");
     }
 }
