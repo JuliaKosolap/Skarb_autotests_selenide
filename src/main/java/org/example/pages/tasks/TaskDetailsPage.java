@@ -1,13 +1,12 @@
 package org.example.pages.tasks;
 
-import jdk.jfr.Category;
 import org.example.pages.NavigationMenu;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.tracing.opentelemetry.SeleniumSpanExporter;
 import org.openqa.selenium.support.FindBy;
 
-import static org.example.common.CustomLogger.logger;
+import java.util.List;
 
 public class TaskDetailsPage extends NavigationMenu {
     public TaskDetailsPage(WebDriver driver) {
@@ -40,6 +39,16 @@ public class TaskDetailsPage extends NavigationMenu {
 
     @FindBy(xpath = "//div[@name='task-author']//span[@class='text-muted'][2]")
     private WebElement authorLastName;
+    @FindBy(xpath = "//div[@id='successMsgAlert']/h4")
+    private WebElement successMessage;
+
+    @FindBy(xpath = "//div[@id='candidatesContainerParent']//i[@class='fa fa-chevron-down']")
+    private WebElement potentialPerformersExpandButton;
+    @FindBy(xpath = "//div[@id='respondedContainerParent']//i[@class='fa fa-chevron-down']")
+    private WebElement respondedExpandButton;
+
+    @FindBy(id = "taskRespondBtn")
+    private WebElement respondButton;
 
     public String getTaskName() {
         return taskName.getText();
@@ -79,5 +88,49 @@ public class TaskDetailsPage extends NavigationMenu {
     }
     public String getTaskDuration() {
         return taskDuration.getText();
+    }
+    public String getSuccessMessage() {
+        return successMessage.getText();
+    }
+    public boolean assignVolunteerToTask(String firstName, String lastName) {
+        potentialPerformersExpandButton.click();
+        List<WebElement> volunteerCards = driver.findElements(By.
+                xpath("//div[@id='candidatesContainer']//div[@class='col-5']"));
+        for (int i = 0; i < volunteerCards.size(); i++) {
+            List<WebElement> volunteerNames = volunteerCards.get(i).findElements(By.tagName("span"));
+            String volFirstName = volunteerNames.get(0).getText();
+            String volLastName = volunteerNames.get(1).getText();
+            if (volFirstName.equals(firstName) && volLastName.equals(lastName)) {
+                List<WebElement> buttons = driver.findElements(By.xpath("//div[@id='candidatesContainerParent']//button"));
+                buttons.get(i).click();
+                driver.findElement(By.id("taskInvitePerformerModal")).findElement(By.tagName("a")).click();
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean checkVolunteerAssigned(String firstName, String lastName) throws InterruptedException {
+        respondedExpandButton.click();
+        List<WebElement> volunteerCards = driver.findElements(By.
+                xpath("//div[@id='respondedContainer']//div[@class='col-5']"));
+        for (int i = 0; i < volunteerCards.size(); i++) {
+            List<WebElement> volunteerNames = volunteerCards.get(i).findElements(By.tagName("span"));
+            String volFirstName = volunteerNames.get(0).getText();
+            String volLastName = volunteerNames.get(1).getText();
+            if (volFirstName.equals(firstName) && volLastName.equals(lastName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public TaskDetailsPage respondToBecomePerformer() {
+        respondButton.click();
+        WebElement taskRespondModal = driver.findElement(By.xpath("//div[@class='modal-footer']//a"));
+        taskRespondModal.click();
+        boolean isDisplayed = driver.findElement(By.xpath("//div[@class='modal-footer']//a")).isDisplayed();
+        if (isDisplayed) {
+            taskRespondModal.click();
+        }
+        return this;
     }
 }

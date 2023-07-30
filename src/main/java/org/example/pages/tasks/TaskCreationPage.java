@@ -53,6 +53,9 @@ public class TaskCreationPage extends NavigationMenu {
     @FindBy(xpath = "//button[@value='DRAFT']")
     private WebElement createTaskButton;
 
+    @FindBy(xpath = "//button[@value='PUBLISHED']")
+    private WebElement createAndPublishTask;
+
     public boolean isInitialized() {
         logger.info("Task creation page is initialized");
         return taskName.isDisplayed();
@@ -108,10 +111,23 @@ public class TaskCreationPage extends NavigationMenu {
         }
         return this;
     }
-    @Step("Click Submit Button")
-    public BasePage submit() {
+    @Step("Click Create Task Button")
+    public BasePage clickCreateTaskButton() {
         logger.info("Create Task button is clicked");
         createTaskButton.click();
+        String pageTitle = driver.getTitle();
+        if (pageTitle.equals("Task page") || pageTitle.equals("Страница задачи") || pageTitle.equals("Сторінка завдання")) {
+            logger.info("New task details page was opened");
+            return new TaskDetailsPage(driver);
+        } else {
+            logger.info("New task details page was not opened");
+            return this;
+        }
+    }
+    @Step("Click Create and Publish Task Button")
+    public BasePage clickCreateAndPublishTaskButton() {
+        logger.info("Create and Publish Task button is clicked");
+        createAndPublishTask.click();
         String pageTitle = driver.getTitle();
         if (pageTitle.equals("Task page") || pageTitle.equals("Страница задачи") || pageTitle.equals("Сторінка завдання")) {
             logger.info("New task details page was opened");
@@ -147,4 +163,5 @@ public class TaskCreationPage extends NavigationMenu {
         String format = pattern.format(date);
         return format;
     }
+
 }

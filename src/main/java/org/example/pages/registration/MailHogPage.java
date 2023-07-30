@@ -54,4 +54,29 @@ public class MailHogPage extends BasePage {
             break;
         }
     }
+    @Step("Confirm registration")
+    //This method opens new email and clicks on the Registration confirmation link
+    public void confirmToBecomeTaskPerformer(String emailAddress) {
+        logger.info("Trying to get the list of emails in MailHog");
+        List<WebElement> msgRows = driver.findElements(By.xpath("//div[@class='msglist-message row ng-scope']"));
+        logger.info("The list of emails is got");
+
+        for (int i = 0; i < msgRows.size(); i++) {
+            logger.info("Searching the new invitation email");
+            WebElement email = msgRows.get(i).findElement(By.xpath("//div[@class='ng-binding ng-scope']"));
+
+            if (email.getText().equals(emailAddress)) {
+                logger.info("New email is found");
+                WebElement invitationConfirmation = msgRows.get(i).findElement(By.xpath("//span[@class='subject unread ng-binding']"));
+
+                logger.info("New email is opened");
+                invitationConfirmation.click();
+
+                WebElement confirmationLink = driver.findElement(By.xpath("//div[@id='preview-plain']//a"));
+                logger.info("Invitation Confirmation link is clicked");
+                confirmationLink.click();
+            }
+            break;
+        }
+    }
 }

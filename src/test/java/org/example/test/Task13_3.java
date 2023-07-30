@@ -71,7 +71,7 @@ public class Task13_3 extends BaseTest {
                 Props.organizationPassword).
                 goToTaskCreationPage().
                 fillMandatoryFields(task).
-                submit();
+                clickCreateTaskButton();
 
         Assert.assertEquals(taskDetailsPage.getTaskName(), task.getTaskName());
         Assert.assertEquals(taskDetailsPage.getTaskDescription(), task.getTaskDescription());

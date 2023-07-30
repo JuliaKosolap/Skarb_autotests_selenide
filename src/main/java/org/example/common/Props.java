@@ -10,6 +10,8 @@ public class Props {
     public static String baseUrl = "";
     public static String volunteerLogin = "";
     public static String volunteerPassword = "";
+    public static String volunteerFirstName = "";
+    public static String volunteerLastName = "";
     public static String partnerLogin = "";
     public static String partnerPassword = "";
     public static String organizationLogin = "";
@@ -25,6 +27,8 @@ public class Props {
             baseUrl = prop.getProperty("baseUrl");
             volunteerLogin = prop.getProperty("volunteerLogin");
             volunteerPassword = prop.getProperty("volunteerPassword");
+            volunteerFirstName = prop.getProperty("volunteerFirstName");
+            volunteerLastName = prop.getProperty("volunteerLastName");
             partnerLogin = prop.getProperty("partnerLogin");
             partnerPassword = prop.getProperty("partnerPassword");
             organizationLogin = prop.getProperty("organizationLogin");
