@@ -92,6 +92,8 @@ public class TaskDetailsPage extends NavigationMenu {
     public String getSuccessMessage() {
         return successMessage.getText();
     }
+    //Get the list of candidates to be assigned to the task
+    //If needed volunteer is found then invite him to become performer of the task
     public boolean assignVolunteerToTask(String firstName, String lastName) {
         potentialPerformersExpandButton.click();
         List<WebElement> volunteerCards = driver.findElements(By.
@@ -109,6 +111,9 @@ public class TaskDetailsPage extends NavigationMenu {
         }
         return false;
     }
+
+    //Get the list of the volunteers assigned to the task and find the current volunteer there
+    //If not found - return false
     public boolean checkVolunteerAssigned(String firstName, String lastName) throws InterruptedException {
         respondedExpandButton.click();
         List<WebElement> volunteerCards = driver.findElements(By.
@@ -123,6 +128,7 @@ public class TaskDetailsPage extends NavigationMenu {
         }
         return false;
     }
+    //Confirm to become performer of the task
     public TaskDetailsPage respondToBecomePerformer() {
         respondButton.click();
         WebElement taskRespondModal = driver.findElement(By.xpath("//div[@class='modal-footer']//a"));

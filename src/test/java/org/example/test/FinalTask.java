@@ -49,10 +49,17 @@ public class FinalTask extends BaseTest {
             switchBetweenWindows();
             String taskUrl = driver.getCurrentUrl();
 
+            logger.info("Log in to site as volunteer");
             new TaskDetailsPage(driver).goToLoginPage().login(Props.volunteerLogin, Props.volunteerPassword);
+
+            logger.info("Open the task");
             driver.get(taskUrl);
+
+            logger.info("Confirm to be performer of the task");
             taskDetailsPage = new TaskDetailsPage(driver);
             taskDetailsPage.respondToBecomePerformer();
+
+            logger.info("Verify that volunteer was assigned to the task");
             taskDetailsPage = new TaskDetailsPage(driver);
         Assert.assertTrue(taskDetailsPage.checkVolunteerAssigned(Props.volunteerFirstName, Props.volunteerLastName));
 
