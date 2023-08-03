@@ -1,5 +1,0 @@
-Selenium
-Testim
-SahiPro
-LambdaTest
-Mockito
