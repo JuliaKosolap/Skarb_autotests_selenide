@@ -1,60 +1,36 @@
 package org.example.pages.tasks;
 
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.example.entity.Task;
 import org.example.pages.BasePage;
-import org.example.pages.NavigationMenu;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selenide.$;
 import static org.example.common.CustomLogger.logger;
 
-public class TaskCreationPage extends NavigationMenu {
-    public TaskCreationPage(WebDriver driver) {
-        super(driver);
-    }
-    @FindBy(id = "name")
-    private WebElement taskName;
+public class TaskCreationPage extends BasePage {
 
-    @FindBy(className = "filter-option")
-    private WebElement taskCategoryDropdown;
-    @FindBy(id = "bs-select-1-1")
-    private WebElement graphicDesignDropdownItem;
-    @FindBy(id = "bs-select-1-6")
-    private WebElement softDrinksDropdownItem;
-    @FindBy(id = "bs-select-1-2")
-    private WebElement logoDesignDropdownItem;
-    @FindBy(id = "deadline")
-    private WebElement taskDeadline;
+    SelenideElement taskName = $("#name");
+    SelenideElement taskCategoryDropdown = $(byClassName("filter-option"));
+    SelenideElement graphicDesignDropdownItem = $("#bs-select-1-1");
+    SelenideElement softDrinksDropdownItem = $("#bs-select-1-6");
+    SelenideElement logoDesignDropdownItem = $("#bs-select-1-2");
+    SelenideElement taskDeadline = $("#deadline");
+    SelenideElement taskDescription = $("#description");
+    SelenideElement taskResult = $("#expectedOutcome");
+    SelenideElement volunteerBenefit = $("#benefit");
+    SelenideElement savedMoney = $("#savedMoney");
+    SelenideElement stage1Duration = $(byAttribute("name", "stages[0].duration"));
+    SelenideElement stage2Duration = $(byAttribute("name","stages[1].duration"));
+    SelenideElement createTaskButton = $(byXpath("//button[@value='DRAFT']"));
+    SelenideElement createAndPublishTask = $(byXpath("//button[@value='PUBLISHED']"));
 
-    @FindBy(id = "description")
-    private WebElement taskDescription;
-
-    @FindBy(id = "expectedOutcome")
-    private WebElement taskResult;
-
-    @FindBy(id = "benefit")
-    private WebElement volunteerBenefit;
-
-    @FindBy(id = "savedMoney")
-    private WebElement savedMoney;
-
-    @FindBy(name = "stages[0].duration")
-    private WebElement stage1Duration;
-
-    @FindBy(name = "stages[1].duration")
-    private WebElement stage2Duration;
-
-    @FindBy(xpath = "//button[@value='DRAFT']")
-    private WebElement createTaskButton;
-
-    @FindBy(xpath = "//button[@value='PUBLISHED']")
-    private WebElement createAndPublishTask;
 
     public boolean isInitialized() {
         logger.info("Task creation page is initialized");
@@ -115,10 +91,11 @@ public class TaskCreationPage extends NavigationMenu {
     public BasePage clickCreateTaskButton() {
         logger.info("Create Task button is clicked");
         createTaskButton.click();
-        String pageTitle = driver.getTitle();
+        String pageTitle = Selenide.title();
+        System.out.println(pageTitle);
         if (pageTitle.equals("Task page") || pageTitle.equals("Страница задачи") || pageTitle.equals("Сторінка завдання")) {
             logger.info("New task details page was opened");
-            return new TaskDetailsPage(driver);
+            return new TaskDetailsPage();
         } else {
             logger.info("New task details page was not opened");
             return this;
@@ -128,10 +105,10 @@ public class TaskCreationPage extends NavigationMenu {
     public BasePage clickCreateAndPublishTaskButton() {
         logger.info("Create and Publish Task button is clicked");
         createAndPublishTask.click();
-        String pageTitle = driver.getTitle();
+        String pageTitle = $("title").getText();
         if (pageTitle.equals("Task page") || pageTitle.equals("Страница задачи") || pageTitle.equals("Сторінка завдання")) {
             logger.info("New task details page was opened");
-            return new TaskDetailsPage(driver);
+            return new TaskDetailsPage();
         } else {
             logger.info("New task details page was not opened");
             return this;

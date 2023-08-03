@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="NavigationMenuTests"
+           tests="4"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="0.739">
+    <properties></properties>
+
+
+
+            <testcase
+                name="goToRulesPage"
+                time="0.186"
+                classname="org.example.test.Task5_2">
+            </testcase>
+            <testcase
+                name="goToHelpPage"
+                time="0.172"
+                classname="org.example.test.Task5_2">
+            </testcase>
+            <testcase
+                name="goToAboutUsPage"
+                time="0.193"
+                classname="org.example.test.Task5_2">
+            </testcase>
+            <testcase
+                name="goToNewsPage"
+                time="0.188"
+                classname="org.example.test.Task5_2">
+            </testcase>
+</testsuite>

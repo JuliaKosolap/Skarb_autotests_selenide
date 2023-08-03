@@ -5,12 +5,12 @@ import org.example.entity.Volunteer;
 import org.example.pages.HomePage;
 import org.example.pages.registration.SuccessRegistrationPage;
 import org.example.setup.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import test_data.RandomData;
 
+import static com.codeborne.selenide.Condition.exactText;
 import static org.example.common.CustomLogger.logger;
 
 @Listeners(CustomListener.class)
@@ -23,14 +23,13 @@ public class Task13_1  extends BaseTest {
        Volunteer volunteer = new Volunteer(firstName, lastName, email, phoneNumber, password, confirmPassword);
 
        logger.info("Creating new volunteer");
-       SuccessRegistrationPage successPage = (SuccessRegistrationPage) new HomePage(driver).
+       SuccessRegistrationPage successPage = (SuccessRegistrationPage) new HomePage().
                goToRegistrationPage().
                goToVolunteerCreationPage().
                fillInMandatoryFields(volunteer).submit();
 
-       Assert.assertTrue(successPage.isInitialized());
-       Assert.assertEquals(successPage.getMessage(), "Congratulation! Your registration succeeded! Message was sent to your email. " +
-               "Please confirm it.");
+       successPage.getSuccessMessage().shouldHave(exactText("Congratulation! Your registration succeeded! " +
+               "Message was sent to your email. Please confirm it."));
    }
     // Create object array with 3 rows and 6 columns: first parameter is row and second is column
    @DataProvider(name = "testdata")

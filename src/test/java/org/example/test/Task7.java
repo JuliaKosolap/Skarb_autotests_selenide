@@ -1,21 +1,24 @@
 package org.example.test;
 
+import org.example.common.CustomListener;
+import org.example.common.Props;
 import org.example.entity.Gender;
 import org.example.entity.Partner;
-import org.example.common.CustomListener;
-import org.example.pages.*;
+import org.example.pages.HomePage;
 import org.example.pages.registration.MailHogPage;
 import org.example.pages.registration.SuccessRegistrationPage;
 import org.example.setup.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import test_data.RandomData;
+
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.switchTo;
 import static org.example.common.CustomLogger.logger;
 @Listeners(CustomListener.class)
 public class Task7 extends BaseTest {
 
-    private String mailHogUrl = "http://185.149.40.46:8025/";
     private String firstName = RandomData.randomFirstOrLastName(8);
     private String lastName = RandomData.randomFirstOrLastName(8);
     private String corporateEmail = RandomData.randomCorporateEmail();
@@ -32,7 +35,7 @@ public class Task7 extends BaseTest {
         Partner partner = new Partner(corporateEmail, firstName, lastName, Gender.FEMALE, password, confirmPassword, organization, positionInOrganization);
 
         logger.info("Partner was created");
-        new HomePage(driver).
+        new HomePage().
                 goToRegistrationPage().
                 goToPartnerCreationPage().
                 fillInMandatoryFields(partner)
@@ -40,18 +43,16 @@ public class Task7 extends BaseTest {
 
         //here we go to MailHog and confirm registration
         logger.info("MailHog site was opened");
-        driver.get(mailHogUrl);
+        open(Props.mailHogUrl);
 
         logger.info("Waiting for new email to appear");
-        (new MailHogPage(driver)).waitForNewMessageToAppear(partner.getEmail()).
-                confirmRegistrationOfNewPartner(partner.getEmail());
+        (new MailHogPage()).confirmRegistrationOfNewPartner(partner.getEmail());
 
         logger.info("Switched to the main site");
-        switchBetweenWindows();
+        switchTo().window("Registration");
 
-        SuccessRegistrationPage successRegistrationPage = new SuccessRegistrationPage(driver);
-        Assert.assertTrue(successRegistrationPage.isInitialized());
+        SuccessRegistrationPage successRegistrationPage = new SuccessRegistrationPage();
 
-        Assert.assertEquals(successRegistrationPage.getMessage(), "Your email confirmed!");
+        successRegistrationPage.getSuccessMessage().shouldHave(exactText( "Your email confirmed!"));
     }
 }

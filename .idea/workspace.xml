@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="94568d8c-63ae-40e6-beb8-f61a28a94334" name="Changes" comment="Final task is implemented">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/NavigationMenuLocators.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/common/Props.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/common/Props.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/AboutUsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/AboutUsPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/BasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/BasePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/HelpPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/HelpPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/HomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/LoginPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/NavigationMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/NavigationMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/NewsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/NewsPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/OrganizationInfoPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/OrganizationInfoPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/PartnerInfoPge.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/RulesPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/RulesPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/VolunteerInfoPage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/WebDriverSingleton.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/entity_search/IEntitySearchStrategy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/entity_search/SearchStrategy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/entity_search/SearchStrategyContext.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/registration/MailHogPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/registration/MailHogPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/registration/OrganizationRegistrationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/registration/OrganizationRegistrationPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/registration/PartnerCreationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/registration/PartnerCreationPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/registration/RegistrationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/registration/RegistrationPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/registration/SuccessRegistrationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/registration/SuccessRegistrationPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/registration/VolunteerCreationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/registration/VolunteerCreationPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/tasks/PartnerTasksPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/tasks/PartnerTasksPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/tasks/TaskCreationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/tasks/TaskCreationPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/tasks/TaskDetailsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/tasks/TaskDetailsPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pages/tasks/VolunteerTasksPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pages/tasks/VolunteerTasksPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/setup/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/setup/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/ChromeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/EdgeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/FinalTask.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/FirefoxTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/InternetExplorerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/OptionalTask_CalculateOverallTasks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/OptionalTask_CalculateTasksOnFivePages.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/OptionalTask_CalculateTasksOnLastPage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/SafariTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/Task11.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/Task13_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/test/Task13_1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/Task13_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/test/Task13_2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/Task13_3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/test/Task13_3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/Task14.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/Task15.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/test/Task15.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/Task5_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/test/Task5_1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/Task5_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/test/Task5_2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/Task5_3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/test/Task5_3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/Task6.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/test/Task6.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/test/Task7.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/test/Task7.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dbConnection_with_hibernate" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$USER_HOME$/java/apache-maven-3.9.3-bin/apache-maven-3.9.3" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2Pvm4cPFIyG0GSPVM4RiWVewtSQ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_directory_selection": "C:/Users/jkoso/IdeaProjects/Skarb_automation_tests/src/test/java",
+    "last_opened_file_path": "C:/Users/jkoso/IdeaProjects/Skarb_automation_tests_selenide",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.46666667",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "MavenSettings"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jkoso\IdeaProjects\Skarb_automation_tests\src\test\java" />
+      <recent name="C:\Users\jkoso\IdeaProjects\Skarb_automation_tests\src\test\java\org\example" />
+      <recent name="C:\Users\jkoso\IdeaProjects\Skarb_automation_tests\src\main\resources" />
+      <recent name="C:\Users\jkoso\IdeaProjects\Skarb_automation_tests" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.example" />
+      <recent name="common" />
+    </key>
+  </component>
+  <component name="RunManager" selected="TestNG.Task15">
+    <configuration name="Task13_2" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="skarb-wd-automation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.test" />
+      <option name="MAIN_CLASS_NAME" value="org.example.test.Task13_2" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Task13_3" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="skarb-wd-automation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.test" />
+      <option name="MAIN_CLASS_NAME" value="org.example.test.Task13_3" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Task13_3.registerOrganization" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="skarb-wd-automation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.test" />
+      <option name="MAIN_CLASS_NAME" value="org.example.test.Task13_3" />
+      <option name="METHOD_NAME" value="registerOrganization" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Task15" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="skarb-wd-automation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.test" />
+      <option name="MAIN_CLASS_NAME" value="org.example.test.Task15" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Task15.registerVolunteer" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="skarb-wd-automation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.test" />
+      <option name="MAIN_CLASS_NAME" value="org.example.test.Task15" />
+      <option name="METHOD_NAME" value="registerVolunteer" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="TestNG.Task15" />
+        <item itemvalue="TestNG.Task15.registerVolunteer" />
+        <item itemvalue="TestNG.Task13_3" />
+        <item itemvalue="TestNG.Task13_3.registerOrganization" />
+        <item itemvalue="TestNG.Task13_2" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="94568d8c-63ae-40e6-beb8-f61a28a94334" name="Changes" comment="" />
+      <created>1684345742434</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684345742434</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Task3">
+      <created>1684345912212</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1684345912212</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Test">
+      <created>1684346246646</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1684346246646</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Test">
+      <created>1684346667121</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1684346667121</updated>
+    </task>
+    <task id="LOCAL-00004" summary="HomeTask #4">
+      <created>1684693160592</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1684693160592</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fix: made the tests independent">
+      <created>1684750641736</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1684750641736</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Task5">
+      <created>1685198133807</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1685198133807</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Fixed navigation">
+      <created>1685363576404</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1685363576404</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Task6">
+      <created>1685637429871</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1685637429871</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Task6">
+      <created>1685904143302</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1685904143302</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Button name corrected">
+      <created>1686045509108</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1686045509108</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Task7 implemented">
+      <created>1686161862811</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1686161862811</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Unused code was deleted">
+      <created>1686161930253</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1686161930253</updated>
+    </task>
+    <task id="LOCAL-00013" summary="RandomData class was created;&#10;Comments were added">
+      <created>1686252148751</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1686252148751</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Optional task: Calculate tasks">
+      <created>1686726728716</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1686726728716</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Optional task: Calculate tasks on 5 pages">
+      <created>1687188843161</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1687188843161</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Task 9 implemented">
+      <created>1687376026499</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1687376026499</updated>
+    </task>
+    <task id="LOCAL-00017" summary="OptionalTask_CalculateTasksOnFivePages fixed">
+      <created>1687382716750</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1687382716750</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Refactoring">
+      <created>1687495057452</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1687495057452</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Refactoring">
+      <created>1687529214240</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1687529214240</updated>
+    </task>
+    <task id="LOCAL-00020" summary="OptionalTask_CalculateTasksOnLastPage implemented">
+      <created>1687720655386</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1687720655386</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Code reformatted, comments added">
+      <created>1687726849288</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1687726849288</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Thread.sleep was removed">
+      <created>1687727402904</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1687727402904</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Refactoring">
+      <created>1687860390210</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1687860390210</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Task 10 have been done">
+      <created>1687865664296</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1687865664296</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Task7 class error fixed">
+      <created>1687866680815</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1687866680815</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Task 11 implemented">
+      <created>1688121548707</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1688121548707</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Missed Comments for methods are added">
+      <created>1688122474619</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1688122474619</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Task 12 implemented">
+      <created>1688229817337</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1688229817337</updated>
+    </task>
+    <task id="LOCAL-00029" summary="The logging for all pages was added">
+      <created>1688456723568</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1688456723568</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Task 13 implemented">
+      <created>1688833539018</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1688833539018</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Task 14 in progress">
+      <created>1689234937307</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1689234937307</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Task 14 in progress (Hibernate library was used)">
+      <created>1689512090354</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1689512090354</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Task 14 v1 reverted">
+      <created>1689622460219</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1689622460219</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Extra code was deleted">
+      <created>1689660134689</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1689660134689</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Broken tests were fixed">
+      <created>1689791601637</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1689791601637</updated>
+    </task>
+    <task id="LOCAL-00036" summary="14 task is completed">
+      <created>1689872263789</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1689872263789</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Task 15 is implemented">
+      <created>1689882209676</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1689882209676</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Task 18 is implemented">
+      <created>1690276546758</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1690276546758</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Task 18 is implemented">
+      <created>1690277494857</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1690277494857</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Task 19 is implemented">
+      <created>1690456061372</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1690456061372</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Task 20 is done">
+      <created>1690660094844</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1690660094844</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Final task is implemented">
+      <created>1690734412323</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1690734412323</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Optional task: Calculate tasks on 5 pages" />
+    <MESSAGE value="Task 9 implemented" />
+    <MESSAGE value="OptionalTask_CalculateTasksOnFivePages fixed" />
+    <MESSAGE value="OptionalTask_CalculateTasksOnLastPage implemented" />
+    <MESSAGE value="Code reformatted, comments added" />
+    <MESSAGE value="Thread.sleep was removed" />
+    <MESSAGE value="Refactoring" />
+    <MESSAGE value="Task 10 have been done" />
+    <MESSAGE value="Task7 class error fixed" />
+    <MESSAGE value="Task 11 implemented" />
+    <MESSAGE value="Missed Comments for methods are added" />
+    <MESSAGE value="Task 12 implemented" />
+    <MESSAGE value="The logging for all pages was added" />
+    <MESSAGE value="Task 13 implemented" />
+    <MESSAGE value="Task 14 in progress (Hibernate library was used)" />
+    <MESSAGE value="Task 14 in progress" />
+    <MESSAGE value="Task 14 v1 reverted" />
+    <MESSAGE value="Extra code was deleted" />
+    <MESSAGE value="Broken tests were fixed" />
+    <MESSAGE value="14 task is completed" />
+    <MESSAGE value="Task 15 is implemented" />
+    <MESSAGE value="Task 18 is implemented" />
+    <MESSAGE value="Task 19 is implemented" />
+    <MESSAGE value="Task 20 is done" />
+    <MESSAGE value="Final task is implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final task is implemented" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/pages/tasks/PartnerTasksPage.java</url>
+          <line>14</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/pages/tasks/PartnerTasksPage.java</url>
+          <line>110</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/pages/tasks/TaskDetailsPage.java</url>
+          <line>113</line>
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/org/example/test/Task7.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/org/example/test/Task13_3.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/org/example/test/Task15.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/org/example/test/Task5_2.java</url>
+          <line>18</line>
+          <properties class="org.example.test.Task5_2" method="goToAboutUsPage">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="TestNG">
+        <watch expression="connection" language="JAVA" />
+        <watch expression="e" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Skarb_automation_tests$Task13_2.ic" NAME="Task13_2 Coverage Results" MODIFIED="1688475423866" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.example.test.*</FILTER>
+    </SUITE>
+  </component>
+</project>

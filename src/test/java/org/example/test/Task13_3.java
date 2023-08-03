@@ -12,7 +12,6 @@ import org.example.pages.tasks.TaskCategory;
 import org.example.pages.tasks.TaskCreationPage;
 import org.example.pages.tasks.TaskDetailsPage;
 import org.example.setup.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -20,12 +19,13 @@ import test_data.RandomData;
 
 import java.text.ParseException;
 
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.switchTo;
 import static org.example.common.CustomLogger.logger;
 
 @Listeners(CustomListener.class)
 public class Task13_3 extends BaseTest {
-    private String mailHogUrl = "http://185.149.40.46:8025/";
-
     @Test(dataProvider = "organizationdata")
     public void registerOrganization(String corporateEmail, String firstName, String lastName, Gender gender,
                                      String password, String confirmPassword,
@@ -35,29 +35,27 @@ public class Task13_3 extends BaseTest {
                 organization, positionInOrganization );
 
         logger.info("Creating new organization...");
-        SuccessRegistrationPage successPage = (SuccessRegistrationPage) new HomePage(driver).
+        SuccessRegistrationPage successPage = (SuccessRegistrationPage) new HomePage().
                 goToRegistrationPage().
                 goToOrganizationRegistrationPage().
                 fillInMandatoryFields(newOrganization)
                 .submit();
 
-        Assert.assertEquals(successPage.getMessage(), "Congratulation! Your registration succeeded! Message was sent to your email. " +
-                "Please confirm it.");
+        successPage.getSuccessMessage().shouldHave(exactText("Congratulation! Your registration succeeded! " +
+                "Message was sent to your email. Please confirm it."));
 
         //here we go to MailHog and confirm registration
         logger.info("MailHog site was opened");
-        driver.get(mailHogUrl);
+        open(Props.mailHogUrl);
 
         logger.info("Waiting for new email to appear");
-        (new MailHogPage(driver)).waitForNewMessageToAppear(newOrganization.getEmail()).
-                confirmRegistrationOfNewPartner(newOrganization.getEmail());
+        (new MailHogPage()).confirmRegistrationOfNewPartner(newOrganization.getEmail());
 
         logger.info("Switched to the main site");
-        switchBetweenWindows();
+        switchTo().window("Registration");
 
-        SuccessRegistrationPage successRegistrationPage = new SuccessRegistrationPage(driver);
-        Assert.assertTrue(successRegistrationPage.isInitialized());
-        Assert.assertEquals(successRegistrationPage.getMessage(), "Your email confirmed!");
+        SuccessRegistrationPage successRegistrationPage = new SuccessRegistrationPage();
+        successRegistrationPage.getSuccessMessage().shouldHave(exactText( "Your email confirmed!"));
     }
     @Test(dataProvider = "taskdata")
     public void createTask(String name, TaskCategory category, String deadline, String description, String result,
@@ -65,7 +63,7 @@ public class Task13_3 extends BaseTest {
 
         Task task = new Task(name, category, deadline, description, result, benefit, savedMoney, duration1, duration2);
 
-        TaskDetailsPage taskDetailsPage = (TaskDetailsPage) new HomePage(driver).
+        TaskDetailsPage taskDetailsPage = (TaskDetailsPage) new HomePage().
                 goToLoginPage().
                 login(Props.organizationLogin,
                 Props.organizationPassword).
@@ -73,13 +71,12 @@ public class Task13_3 extends BaseTest {
                 fillMandatoryFields(task).
                 clickCreateTaskButton();
 
-        Assert.assertEquals(taskDetailsPage.getTaskName(), task.getTaskName());
-        Assert.assertEquals(taskDetailsPage.getTaskDescription(), task.getTaskDescription());
-        Assert.assertEquals(taskDetailsPage.getExpectedResult(), task.getTaskResult());
-        Assert.assertEquals(taskDetailsPage.getVolunteerBenefit(), task.getVolunteerBenefit());
-        Assert.assertEquals(taskDetailsPage.getTaskCategory(), task.getCategory());
-        Assert.assertEquals(taskDetailsPage.getActualUntil(), task.getTaskDeadline());
-        Assert.assertEquals(taskDetailsPage.getTaskDuration(), "Up to month");
+        taskDetailsPage.getTaskName().shouldHave(exactText(task.getTaskName()));
+        taskDetailsPage.getTaskDescription().shouldHave(exactText(task.getTaskDescription()));
+        taskDetailsPage.getExpectedResult().shouldHave(exactText(task.getTaskResult()));
+        taskDetailsPage.getVolunteerBenefit().shouldHave(exactText(task.getVolunteerBenefit()));
+        taskDetailsPage.getActualUntil().shouldHave(exactText(task.getTaskDeadline()));
+        taskDetailsPage.getTaskDuration().shouldHave(exactText("Up to month"));
     }
     @DataProvider(name = "organizationdata")
     // Create object array with 1 row and 8 columns: first parameter is row and second is column

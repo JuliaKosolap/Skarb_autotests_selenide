@@ -1,18 +1,21 @@
 package org.example.test;
 
-import org.example.entity.Volunteer;
+import com.codeborne.selenide.SelenideElement;
 import org.example.common.CustomListener;
+import org.example.entity.Volunteer;
 import org.example.pages.HomePage;
 import org.example.pages.registration.RegistrationPage;
 import org.example.pages.registration.SuccessRegistrationPage;
 import org.example.pages.registration.VolunteerCreationPage;
 import org.example.setup.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
 import test_data.RandomData;
 
-import java.util.List;
+import java.util.ArrayList;
 
+import static com.codeborne.selenide.Condition.exactText;
 import static org.example.common.CustomLogger.logger;
 
 @Listeners(CustomListener.class)
@@ -33,16 +36,14 @@ public class Task5_1 extends BaseTest {
         Volunteer volunteer = new Volunteer(firstName, lastName, email, phoneNumber, password, confirmPassword);
 
         logger.info("Home page was opened");
-        HomePage homePage = new HomePage(driver);
-        Assert.assertTrue(homePage.isInitialized());
+        HomePage homePage = new HomePage();
 
         logger.info("Registration page was opened");
         RegistrationPage registrationPage = homePage.goToRegistrationPage();
 
         logger.info("Volunteer creation page was opened");
         registrationPage.goToVolunteerCreationPage();
-        VolunteerCreationPage volunteerCreationPage = new VolunteerCreationPage(driver);
-        Assert.assertTrue(volunteerCreationPage.isInitialized());
+        VolunteerCreationPage volunteerCreationPage = new VolunteerCreationPage();
 
         logger.info("All mandatory fields were filled");
         volunteerCreationPage.fillInMandatoryFields(volunteer);
@@ -50,9 +51,9 @@ public class Task5_1 extends BaseTest {
         logger.info("Submit button was clicked");
         SuccessRegistrationPage successPage = (SuccessRegistrationPage) volunteerCreationPage.submit();
 
-        Assert.assertTrue(successPage.isInitialized());
-        Assert.assertEquals(successPage.getMessage(), "Congratulation! Your registration succeeded! Message was sent to your email. " +
-                "Please confirm it.");
+        successPage.getSuccessMessage().
+                shouldHave(exactText("Congratulation! Your registration succeeded! Message was sent to your email. Please confirm it."));
+
     }
 
     @Test
@@ -61,16 +62,14 @@ public class Task5_1 extends BaseTest {
         Volunteer volunteerWithInvalidEmail = new Volunteer(firstName, lastName, invalidEmail, phoneNumber, password, confirmPassword);
 
         logger.info("Home page was opened");
-        HomePage homePage = new HomePage(driver);
-        Assert.assertTrue(homePage.isInitialized());
+        HomePage homePage = new HomePage();
 
         logger.info("Registration page was opened");
         RegistrationPage registrationPage = homePage.goToRegistrationPage();
 
         logger.info("Volunteer creation page was opened");
         registrationPage.goToVolunteerCreationPage();
-        VolunteerCreationPage volunteerCreationPage = new VolunteerCreationPage(driver);
-        Assert.assertTrue(volunteerCreationPage.isInitialized());
+        VolunteerCreationPage volunteerCreationPage = new VolunteerCreationPage();
 
         logger.info("All mandatory fields were filled");
         volunteerCreationPage.fillInMandatoryFields(volunteerWithInvalidEmail);
@@ -78,21 +77,29 @@ public class Task5_1 extends BaseTest {
         logger.info("Submit button was clicked");
         volunteerCreationPage.submit();
 
-        Assert.assertEquals(volunteerCreationPage.getEmailError(), "Email is incorrect");
+        volunteerCreationPage.getEmailError().shouldHave(exactText("Email is incorrect"));
     }
 
     @Test
     public void createVolunteerWithEmptyFields() {
+        logger.info("Home page was opened");
+        HomePage homePage = new HomePage();
+
+        logger.info("Registration page was opened");
+        RegistrationPage registrationPage = homePage.goToRegistrationPage();
+
+        logger.info("Volunteer creation page was opened");
+        registrationPage.goToVolunteerCreationPage();
+        VolunteerCreationPage volunteerCreationPage = new VolunteerCreationPage();
+
         logger.info("Submit button was clicked without filling the mandatory fields");
-        VolunteerCreationPage volunteerCreationPage = (VolunteerCreationPage) (new HomePage(driver))
-                .goToRegistrationPage().
-                goToVolunteerCreationPage().
-                submit();
+        volunteerCreationPage.submit();
 
         logger.info("All error messages on the page were collected");
-        List<String> allErrorsOnPage = volunteerCreationPage.getAllErrorsOnPage();
+        ArrayList<SelenideElement> allErrorsOnPage = volunteerCreationPage.getAllErrorsOnPage();
 
-        Assert.assertEquals(allErrorsOnPage.size(), 5);
-        Assert.assertTrue(volunteerCreationPage.checkEmptyFieldsErrors(allErrorsOnPage));
+
+       Assert.assertEquals(allErrorsOnPage.size(), 5);
+       allErrorsOnPage.iterator().next().shouldHave(exactText("Field can`t be empty"));
     }
 }

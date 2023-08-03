@@ -1,22 +1,17 @@
 package org.example.pages;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.example.pages.tasks.TaskCreationPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+
+import static com.codeborne.selenide.Selectors.byAttribute;
+import static com.codeborne.selenide.Selenide.$;
 import static org.example.common.CustomLogger.logger;
 
 public class HomePage extends NavigationMenu {
-    public HomePage(WebDriver driver) {
-        super(driver);
-    }
 
-    @FindBy(className = "info_title")
-    private WebElement header;
-    @FindBy(name = "tasks-button")
-    private WebElement createTaskButton;
-
+    SelenideElement header  = $(byAttribute("class", "title info_title title--red"));
+    SelenideElement createTaskButton = $(byAttribute("name", "tasks-button"));
 
     public String getPageHeader() {
         logger.info("Page header is returned");
@@ -29,7 +24,7 @@ public class HomePage extends NavigationMenu {
     @Step("Go to Task Creation Page")
     public TaskCreationPage goToTaskCreationPage() {
         createTaskButton.click();
-        return new TaskCreationPage(driver);
+        return new TaskCreationPage();
     }
 
 

@@ -1,22 +1,21 @@
 package org.example.test;
 
+import org.example.common.CustomListener;
 import org.example.entity.Gender;
 import org.example.entity.Partner;
-import org.example.common.CustomListener;
-import org.example.pages.*;
+import org.example.pages.HomePage;
 import org.example.pages.registration.SuccessRegistrationPage;
 import org.example.setup.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import test_data.RandomData;
+
+import static com.codeborne.selenide.Condition.exactText;
 import static org.example.common.CustomLogger.logger;
 
 @Listeners(CustomListener.class)
 
 public class Task6 extends BaseTest {
-    private String baseUrl = "https://skarb.foxminded.ua/";
-    private String successPageUrl = "https://skarb.foxminded.ua/registration/result/success";
     private String firstName = RandomData.randomFirstOrLastName(8);
     private String lastName = RandomData.randomFirstOrLastName(8);
     private String email = RandomData.randomCorporateEmail();
@@ -32,14 +31,14 @@ public class Task6 extends BaseTest {
         Partner partner = new Partner(email, firstName, lastName, Gender.FEMALE, password, confirmPassword, organization, positionInOrganization);
 
         logger.info("Partner is created");
-        SuccessRegistrationPage successPage = (SuccessRegistrationPage) new HomePage(driver).
+        SuccessRegistrationPage successPage = (SuccessRegistrationPage) new HomePage().
                 goToRegistrationPage().
                 goToPartnerCreationPage().
                 fillInMandatoryFields(partner)
                 .submit();
 
-        Assert.assertEquals(successPage.getMessage(), "Congratulation! Your registration succeeded! Message was sent to your email. " +
-                "Please confirm it.");
+        successPage.getSuccessMessage().
+                shouldHave(exactText("Congratulation! Your registration succeeded! Message was sent to your email. Please confirm it."));
 
     }
 

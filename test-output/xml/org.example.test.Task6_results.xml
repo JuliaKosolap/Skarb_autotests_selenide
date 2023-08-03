@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Skarb_automation_tests_selenide"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="1.406">
+    <properties></properties>
+
+
+
+            <testcase
+                name="createPartnerWithValidValues"
+                time="1.406"
+                classname="org.example.test.Task6">
+            </testcase>
+</testsuite>

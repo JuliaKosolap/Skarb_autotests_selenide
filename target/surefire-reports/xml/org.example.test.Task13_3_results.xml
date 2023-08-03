@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="RegisterOrganizationWithValidValues, CreateTask"
+           tests="4"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="75.314">
+    <properties></properties>
+
+
+
+            <testcase
+                name="createTask"
+                time="4.221"
+                classname="org.example.test.Task13_3">
+            </testcase>
+            <testcase
+                name="createTask"
+                time="14.207"
+                classname="org.example.test.Task13_3">
+            </testcase>
+            <testcase
+                name="registerOrganization"
+                time="42.595"
+                classname="org.example.test.Task13_3">
+            </testcase>
+            <testcase
+                name="createTask"
+                time="14.291"
+                classname="org.example.test.Task13_3">
+            </testcase>
+</testsuite>

@@ -1,16 +1,17 @@
 package org.example.test;
+
 import org.example.common.CustomListener;
 import org.example.entity.Gender;
 import org.example.entity.Partner;
 import org.example.pages.HomePage;
 import org.example.pages.registration.SuccessRegistrationPage;
 import org.example.setup.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import test_data.RandomData;
 
+import static com.codeborne.selenide.Condition.exactText;
 import static org.example.common.CustomLogger.logger;
 
 @Listeners(CustomListener.class)
@@ -23,14 +24,14 @@ public class Task13_2 extends BaseTest {
                 organization, positionInOrganization );
 
         logger.info("Creating new partner...");
-        SuccessRegistrationPage successPage = (SuccessRegistrationPage) new HomePage(driver).
+        SuccessRegistrationPage successPage = (SuccessRegistrationPage) new HomePage().
                 goToRegistrationPage().
                 goToPartnerCreationPage().
                 fillInMandatoryFields(partner)
                 .submit();
 
-        Assert.assertEquals(successPage.getMessage(), "Congratulation! Your registration succeeded! Message was sent to your email. " +
-                "Please confirm it.");
+        successPage.getSuccessMessage().shouldHave(exactText("Congratulation! Your registration succeeded! " +
+                "Message was sent to your email. Please confirm it."));
 
     }
     // Create object array with 4 rows and 8 columns: first parameter is row and second is column

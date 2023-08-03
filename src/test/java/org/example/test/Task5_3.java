@@ -16,7 +16,7 @@ public class Task5_3 extends BaseTest {
     @Test
     public void switchToUkrainian() {
         logger.info("Home page was opened");
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage();
         Assert.assertTrue(homePage.isInitialized());
 
         logger.info("Ukrainian language was selected");
@@ -25,12 +25,10 @@ public class Task5_3 extends BaseTest {
         Assert.assertEquals(homePage.getPageHeader(), "Довгий заголовок на два рядки");
     }
 
-
-
     @Test
     public void switchToEnglish() {
         logger.info("Home page was opened");
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage();
         Assert.assertTrue(homePage.isInitialized());
 
         logger.info("English language was selected");
@@ -42,7 +40,7 @@ public class Task5_3 extends BaseTest {
     @Test
     public void switchToRussian() {
         logger.info("Home page was opened");
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage();
         Assert.assertTrue(homePage.isInitialized());
 
         logger.info("Russian language was selected");

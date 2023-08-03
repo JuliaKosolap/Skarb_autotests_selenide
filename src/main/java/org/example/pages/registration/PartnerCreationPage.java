@@ -1,51 +1,32 @@
 package org.example.pages.registration;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.example.entity.Gender;
 import org.example.entity.Partner;
 import org.example.pages.BasePage;
-import org.example.pages.NavigationMenu;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+
+import static com.codeborne.selenide.Selectors.byAttribute;
+import static com.codeborne.selenide.Selenide.$;
 import static org.example.common.CustomLogger.logger;
 
-public class PartnerCreationPage extends NavigationMenu {
-    @FindBy(id = "firstName")
-    private WebElement firstName;
+public class PartnerCreationPage extends BasePage {
+    SelenideElement firstName = $("#firstName");
+    SelenideElement lastName = $("#lastName");
+    SelenideElement email = $("#email");
+    SelenideElement maleRadioButton = $("#male");
+    SelenideElement femaleRadioButton = $("#female");
+    SelenideElement password = $("#password");
+    SelenideElement confirmPassword = $("#confirmPassword");
+    SelenideElement organization = $("#organizationName");
+    SelenideElement positionInOrganization = $("#positionInOrganization");
+    SelenideElement submitButton = $(byAttribute("name", "submit"));
 
-    @FindBy(id = "lastName")
-    private WebElement lastName;
-    @FindBy(id = "email")
-    private WebElement email;
-
-    @FindBy(id = "male")
-    private WebElement maleRadioButton;
-    @FindBy(id = "female")
-    private WebElement femaleRadioButton;
-
-    @FindBy(id = "password")
-    private WebElement password;
-
-    @FindBy(id = "confirmPassword")
-    private WebElement confirmPassword;
-
-    @FindBy(id = "organizationName")
-    private WebElement organization;
-
-    @FindBy(id = "positionInOrganization")
-    private WebElement positionInOrganization;
-
-    @FindBy(name = "submit")
-    private WebElement submitButton;
 
     public boolean isInitialized() {
         return firstName.isDisplayed();
     }
 
-    public PartnerCreationPage(WebDriver driver) {
-        super(driver);
-    }
 
     public PartnerCreationPage enterFirstName(String firstName) {
         logger.info("First name was typed");
@@ -104,12 +85,12 @@ public class PartnerCreationPage extends NavigationMenu {
         logger.info("Submit button was clicked");
         submitButton.click();
 
+        String title = $("title").getText();
         logger.info("A title of the current page is got");
-        String pageTitle = driver.getTitle();
-        if (pageTitle.equals("Partner registration") || pageTitle.equals("Регистрация партнера") || pageTitle.equals("Реєстрація партнера")) {
+        if (title.equals("Partner registration") || title.equals("Регистрация партнера") || title.equals("Реєстрація партнера")) {
             return this;
         } else {
-            return new SuccessRegistrationPage(driver);
+            return new SuccessRegistrationPage();
         }
     }
     @Step("Fill mandatory fields for registration")

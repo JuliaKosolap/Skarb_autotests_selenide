@@ -1,24 +1,17 @@
 package org.example.pages;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+
+import static com.codeborne.selenide.Selectors.byAttribute;
+import static com.codeborne.selenide.Selenide.$;
 import static org.example.common.CustomLogger.logger;
 
 public class LoginPage extends NavigationMenu{
-    public LoginPage(WebDriver driver) {
-        super(driver);
-    }
 
-    @FindBy (id = "login")
-    private WebElement inputLogin;
-
-    @FindBy (id = "password")
-    private WebElement inputPassword;
-
-    @FindBy(name = "login-button")
-    private WebElement loginButton;
+    SelenideElement inputLogin = $("#login");
+    SelenideElement inputPassword = $("#password");
+    SelenideElement loginButton = $(byAttribute("name", "login-button"));
 
     @Step("Log in to the site")
     //The method verifies if user is already logged in. If not  - then tries to log in
@@ -31,6 +24,8 @@ public class LoginPage extends NavigationMenu{
 
             logger.info("Submit button is clicked");
             loginButton.click();
-        return new HomePage(driver);
+        return new HomePage();
     }
+
+
 }

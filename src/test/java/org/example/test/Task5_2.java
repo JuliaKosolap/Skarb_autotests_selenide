@@ -1,60 +1,63 @@
 package org.example.test;
 
 import org.example.common.CustomListener;
+import org.example.common.Props;
 import org.example.pages.HomePage;
 import org.example.setup.BaseTest;
-import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+
+import static com.codeborne.selenide.Selenide.webdriver;
+import static com.codeborne.selenide.WebDriverConditions.url;
 import static org.example.common.CustomLogger.logger;
 
 @Listeners(CustomListener.class)
 
 public class Task5_2 extends BaseTest {
-    String baseUrl = "https://skarb.foxminded.ua/";
-
 
     @Test
     public void goToAboutUsPage() {
         logger.info("Home page was opened");
-        HomePage homePage = new HomePage(driver);
-        Assert.assertTrue(homePage.isInitialized());
+        HomePage homePage = new HomePage();
 
         logger.info("About Us menu item was selected");
         homePage.goToAboutUsPage();
-        Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "static/about");
+        webdriver().shouldHave(url(Props.siteUrl + "static/about"));
+
     }
     @Test
     public void goToNewsPage() {
         logger.info("Home page was opened");
-        HomePage homePage = new HomePage(driver);
-        Assert.assertTrue(homePage.isInitialized());
+        HomePage homePage = new HomePage();
 
         logger.info("News menu item was selected");
         homePage.goToNewsPage();
 
-        Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "news");
+        webdriver().shouldHave(url(Props.siteUrl + "news"));
+
     }
 
     @Test
     public void goToRulesPage() {
         logger.info("Home page was opened");
-        HomePage homePage = new HomePage(driver);
-        Assert.assertTrue(homePage.isInitialized());
+        HomePage homePage = new HomePage();
+
 
         logger.info("Rules menu item was selected");
         homePage.goToRulesPage();
 
-        Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "static/rules");
+        webdriver().shouldHave(url(Props.siteUrl + "static/rules"));
+
     }
      @Test
      public void goToHelpPage() {
          logger.info("Home page was opened");
-         HomePage homePage = new HomePage(driver);
-         Assert.assertTrue(homePage.isInitialized());
+         HomePage homePage = new HomePage();
 
          logger.info("Help menu item was selected");
          homePage.goToHelpPage();
 
-         Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "static/help");
+         webdriver().shouldHave(url(Props.siteUrl + "static/help"));
+
      }
 }

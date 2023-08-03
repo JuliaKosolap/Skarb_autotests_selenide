@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Skarb_automation_tests_selenide"
+           tests="4"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="1.190">
+    <properties></properties>
+
+
+
+            <testcase
+                name="goToNewsPage"
+                time="0.265"
+                classname="org.example.test.Task5_2">
+            </testcase>
+            <testcase
+                name="goToHelpPage"
+                time="0.222"
+                classname="org.example.test.Task5_2">
+            </testcase>
+            <testcase
+                name="goToRulesPage"
+                time="0.226"
+                classname="org.example.test.Task5_2">
+            </testcase>
+            <testcase
+                name="goToAboutUsPage"
+                time="0.477"
+                classname="org.example.test.Task5_2">
+            </testcase>
+</testsuite>

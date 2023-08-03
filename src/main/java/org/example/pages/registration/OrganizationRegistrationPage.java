@@ -1,52 +1,26 @@
 package org.example.pages.registration;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.example.entity.Gender;
 import org.example.entity.Organization;
 import org.example.pages.BasePage;
-import org.example.pages.NavigationMenu;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
+import static com.codeborne.selenide.Selectors.byAttribute;
+import static com.codeborne.selenide.Selenide.$;
 import static org.example.common.CustomLogger.logger;
 
-public class OrganizationRegistrationPage extends NavigationMenu {
-    @FindBy(id = "firstName")
-    private WebElement firstName;
-
-    @FindBy(id = "lastName")
-    private WebElement lastName;
-    @FindBy(id = "email")
-    private WebElement email;
-
-    @FindBy(id = "male")
-    private WebElement maleRadioButton;
-    @FindBy(id = "female")
-    private WebElement femaleRadioButton;
-
-    @FindBy(id = "password")
-    private WebElement password;
-
-    @FindBy(id = "confirmPassword")
-    private WebElement confirmPassword;
-
-    @FindBy(id = "organizationName")
-    private WebElement organization;
-
-    @FindBy(id = "positionInOrganization")
-    private WebElement positionInOrganization;
-
-    @FindBy(name = "submit")
-    private WebElement submitButton;
-
-    public boolean isInitialized() {
-        return email.isDisplayed();
-    }
-
-    public OrganizationRegistrationPage(WebDriver driver) {
-        super(driver);
-    }
+public class OrganizationRegistrationPage extends BasePage {
+    SelenideElement firstName = $("#firstName");
+    SelenideElement lastName = $("#lastName");
+    SelenideElement email = $("#email");
+    SelenideElement maleRadioButton = $("#male");
+    SelenideElement femaleRadioButton = $("#female");
+    SelenideElement password = $("#password");
+    SelenideElement confirmPassword = $("#confirmPassword");
+    SelenideElement organization = $("#organizationName");
+    SelenideElement positionInOrganization = $("#positionInOrganization");
+    SelenideElement submitButton = $(byAttribute("name", "submit"));
 
     public OrganizationRegistrationPage enterEmail(String email) {
         logger.info("Email was typed");
@@ -105,11 +79,11 @@ public class OrganizationRegistrationPage extends NavigationMenu {
         submitButton.click();
 
         logger.info("A title of the current page is got");
-        String pageTitle = driver.getTitle();
+        String pageTitle = $("title").getText();
         if (pageTitle.equals("Organization registration") || pageTitle.equals("Регистрация организации") || pageTitle.equals("Реєстрація організацї")) {
             return this;
         } else {
-            return new SuccessRegistrationPage(driver);
+            return new SuccessRegistrationPage();
         }
     }
     @Step("Fill all mandatory fields")

@@ -7,7 +7,8 @@ import java.util.Properties;
 public class Props {
     //path to the config file
     public static final String PATH_TO_PROPERTIES = "src/main/resources/config.properties";
-    public static String baseUrl = "";
+    public static String siteUrl = "";
+    public static String mailHogUrl = "";
     public static String volunteerLogin = "";
     public static String volunteerPassword = "";
     public static String volunteerFirstName = "";
@@ -24,7 +25,8 @@ public class Props {
         try (FileInputStream fileInputStream = new FileInputStream(PATH_TO_PROPERTIES)) {
             //load properties file and read the data from it
             prop.load(fileInputStream);
-            baseUrl = prop.getProperty("baseUrl");
+            siteUrl = prop.getProperty("siteUrl");
+            mailHogUrl = prop.getProperty("mailHogUrl");
             volunteerLogin = prop.getProperty("volunteerLogin");
             volunteerPassword = prop.getProperty("volunteerPassword");
             volunteerFirstName = prop.getProperty("volunteerFirstName");
@@ -36,7 +38,7 @@ public class Props {
         }
     }
     public static void resetProperties() {
-        baseUrl = "";
+        siteUrl = "";
         volunteerLogin = "";
         volunteerPassword = "";
         partnerLogin = "";

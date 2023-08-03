@@ -1,0 +1,265 @@
+<html lang="en" xmlns="http://www.w3.org/1999/html"><head>
+    <meta charset="UTF-8">
+    <title>Volunteer registration</title>
+
+    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/sidebar-styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/dropDownButton.css">
+
+    <script src="/js/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="/js/popper.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" crossorigin="anonymous">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css" crossorigin="anonymous">
+
+    <script src="/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="/js/bootstrap-select.min.js"></script>
+
+    <!-- Custom application javascript -->
+    <script src="/js/app.js"></script>
+
+    <!-- Language management javascript -->
+    <script src="/js/lang-change.js"></script>
+
+    <link rel="shortcut icon" href="/img/foxminded_3232.png">
+</head>
+
+<body class="pd-t-71">
+
+<div class="fixed-top">
+
+    <header name="header" style="background-color: rgb(254,254,253);">
+    <div class="container">
+        <div class="row">
+            <nav class="col-12 navbar-expand-lg navbar navbar-light border-bottom">
+                <a class="navbar-brand" href="/"><h4 class="text-dark-red">SKARB NGO</h4></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse ml-5" id="navbarNav">
+
+                    <ul class="navbar-nav">
+
+                        <!-- Main -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">
+                                <h5 class="text-dark-red">Main</h5></a>
+                        </li>
+
+                        <!-- About -->
+                        <li class="nav-item dropdown ml-5">
+                            <h5 class="nav-link text-dark-red text-nowrap" id="aboutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span>About project</span> <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            </h5>
+                            <div class="dropdown-menu" aria-labelledby="aboutDropdown">
+                                <a class="dropdown-item text-dark-red font-weight-bold link" href="/static/about">About us</a>
+                                <a class="dropdown-item text-dark-red font-weight-bold link" href="/news">News</a>
+                                <a class="dropdown-item text-dark-red font-weight-bold link" href="/static/rules">Rules</a>
+                                <a class="dropdown-item text-dark-red font-weight-bold link" href="/static/help">Help</a>
+                                <a class="dropdown-item text-dark-red font-weight-bold  link">Contacts</a>
+                            </div>
+                        </li>
+
+                        <!-- Members -->
+                        <li class="nav-item dropdown ml-5">
+                            <h5 class="nav-link text-dark-red text-nowrap" id="membersDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span>Members</span> <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            </h5>
+                            <div id="membersContainer" class="dropdown-menu" aria-labelledby="membersDropdown">
+                                <a class="dropdown-item text-dark-red font-weight-bold link" href="/info/volunteers">Volunteers</a>
+                                <a class="dropdown-item text-dark-red font-weight-bold link" href="/info/organizations/ngo">Organizations</a>
+                                <a class="dropdown-item text-dark-red font-weight-bold link" href="/info/organizations/partners">Partners</a>
+                            </div>
+                        </li>
+
+                        <!-- Tasks -->
+                        <li class="nav-item dropdown ml-5">
+                            <h5 class="nav-link text-dark-red text-nowrap" id="tasksDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span>Tasks</span> <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            </h5>
+                            <div id="tasksContainer" class="dropdown-menu" aria-labelledby="tasksDropdown">
+                                <a class="dropdown-item text-dark-red font-weight-bold link" href="/tasks/partner/search/criteria">For partners</a>
+                                <a class="dropdown-item text-dark-red font-weight-bold link" href="/tasks/volunteer/search/criteria">For volunteers</a>
+                                
+                                
+                            </div>
+                        </li>
+
+                        <!-- Success Stories -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/stories/search/criteria">
+                                <h5 class="text-dark-red">Success stories</h5></a>
+                        </li>
+
+                        <!-- Language link -->
+                        <li class="nav-item dropdown ml-5">
+                            <h5 id="langDropdown" class="nav-link text-dark-red" role="button" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-language fa-lg" aria-hidden="true"></i>
+                            </h5>
+                            <div class="dropdown-menu" aria-labelledby="langDropdown">
+                                <a class="dropdown-item link text-dark-red font-weight-bold changeLang" data-lang="en">EN</a>
+                                <a class="dropdown-item link text-dark-red font-weight-bold changeLang" data-lang="ru">RU</a>
+                                <a class="dropdown-item link text-dark-red font-weight-bold changeLang" data-lang="uk">UA</a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    <!-- User profile link -->
+                    
+
+                    <!-- Registration link -->
+                    <a class="nav-link ml-auto" href="/registration">
+                        <i class="fa fa-user-plus fa-3x text-dark-red" aria-hidden="true"></i>
+                    </a>
+
+                    <!-- Login link -->
+                    <a class="nav-link" href="/login">
+                        <i class="fa fa-sign-in fa-3x text-dark-red" aria-hidden="true"></i>
+                    </a>
+
+
+                    <!-- Logout link -->
+                    
+
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+</div>
+
+<div id="content">
+    
+    
+
+    <div>
+    <form name="registration-form" action="/registration/volunteers" method="post">
+        <div class="panel panel-success">
+            <div class="panel-heading">Registration volunteer</div>
+
+            <div class="form-row">
+                <div name="first-name" class="form-group col-md-6">
+                    <label for="firstName" class="col-form-label col-4">First name</label>
+                    <input type="text" id="firstName" class="form-control ensure-pascal-case" name="firstName" value="">
+                    <small class="text-danger">Field can`t be empty</small>
+                </div>
+                <div name="last-name" class="form-group col-md-6">
+                    <label for="lastName" class="col-form-label col-4">Last name</label>
+                    <input type="text" id="lastName" class="form-control ensure-pascal-case" name="lastName" value="">
+                    <small class="text-danger">Field can`t be empty</small>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div name="email" class="form-group col-md-6">
+                    <label for="email" class="col-form-label col-4">Email</label>
+                    <input type="text" id="email" class="form-control" name="email" value="">
+                    <small class="text-danger">Field can`t be empty</small>
+                </div>
+                <div name="phone" class="form-group col-md-6">
+                    <label for="phoneNumber" class="col-form-label">Phonenumber (optional)</label>
+                    <input type="number" id="phoneNumber" class="form-control" name="phone" value="">
+                    
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label for="sex" class="col-form-label col-4">Sex</label>
+                <div class="dropdown bootstrap-select colorful-select dropdown-primary md-form col-2"><select name="sex" id="sex" class="colorful-select dropdown-primary md-form col-2" tabindex="-98">
+                    <option value="MALE" selected="selected">M</option>
+                    <option value="FEMALE">F</option>
+                </select><button type="button" class="btn dropdown-toggle btn-light" data-toggle="dropdown" role="combobox" aria-owns="bs-select-1" aria-haspopup="listbox" aria-expanded="false" data-id="sex" title="M"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">M</div></div> </div></button><div class="dropdown-menu "><div class="inner show" role="listbox" id="bs-select-1" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
+                
+            </div>
+
+            <div name="language" class="form-row">
+                <label for="language" class="col-form-label col-4">Change lang</label>
+                <div class="dropdown bootstrap-select colorful-select dropdown-primary md-form col-2"><select id="language" class="colorful-select dropdown-primary md-form col-2" name="locale" tabindex="-98">
+                    <option id="ukrainian-language-link" value="UK" selected="selected">UA</option>
+                    <option id="russian-language-link" value="RU">RU</option>
+                    <option id="english-language-link" value="EN">EN</option>
+                </select><button type="button" class="btn dropdown-toggle btn-light" data-toggle="dropdown" role="combobox" aria-owns="bs-select-2" aria-haspopup="listbox" aria-expanded="false" data-id="language" title="UA"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">UA</div></div> </div></button><div class="dropdown-menu "><div class="inner show" role="listbox" id="bs-select-2" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
+                
+            </div>
+
+            <div class="form-row">
+                <div name="password" class="form-group col-md-6">
+                    <label for="password" class="col-form-label col-6">Password</label>
+                    <input type="password" id="password" class="form-control" name="password" value="">
+                    <small class="text-danger">Field can`t be empty</small>
+                </div>
+                <div name="confirm-password" class="form-group col-md-6">
+                    <label for="confirmPassword" class="col-form-label col-6">Confirm password</label>
+                    <input type="password" id="confirmPassword" class="form-control" name="confirmPassword" value="">
+                    <small class="text-danger">Field can`t be empty</small>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="about" class="col-form-label col-4">About</label>
+                    <textarea name="about" type="text" id="about" class="form-control"></textarea>
+                    
+                </div>
+            </div>
+
+            <div name="categories" class="form-row">
+                
+                    <label for="categories" class="col-form-label col-3">Category</label>
+                    <input type="hidden" name="_categoryIds" value="1"><div class="dropdown bootstrap-select show-tick colorful-select dropdown-primary md-form col-4"><select id="categories" class="selectpicker colorful-select dropdown-primary md-form col-4" multiple="" data-live-search="true" name="categoryIds" tabindex="-98">
+                        <option value="1">Graphic design</option>
+                        <option value="2">Logo design</option>
+                        <option value="3">Website design</option>
+                        <option value="4">UA-UX</option>
+                        <option value="5">Programming</option>
+                        <option value="6">Soft drinks</option>
+                        <option value="7">Sporting equipment</option>
+                        <option value="8">Sporting clothes</option>
+                        <option value="9">Sales</option>
+                        <option value="10">Brand promotion</option>
+                    </select><button type="button" class="btn dropdown-toggle btn-light bs-placeholder" data-toggle="dropdown" role="combobox" aria-owns="bs-select-3" aria-haspopup="listbox" aria-expanded="false" data-id="categories" title="Nothing selected"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">Nothing selected</div></div> </div></button><div class="dropdown-menu "><div class="bs-searchbox"><input type="search" class="form-control" autocomplete="off" role="combobox" aria-label="Search" aria-controls="bs-select-3" aria-autocomplete="list"></div><div class="inner show" role="listbox" id="bs-select-3" tabindex="-1" aria-multiselectable="true"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
+                    
+                
+            </div>
+
+        </div>
+        <div class="col-sm-offset-2 col-sm-10">
+            <button name="submit" type="submit" class="btn btn-success">Sign up</button>
+        </div>
+    </form>
+
+
+    <script>
+        $('select').selectpicker();
+
+        $('.ensure-pascal-case').on('input', event => event.target.value = event.target.value.length > 1 ? event.target.value.substring(0, 1).toUpperCase() + event.target.value.substring(1) : event.target.value);
+    </script>
+</div>
+
+</div>
+
+<footer name="footer" class="mt-auto main-footer py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <a class="nav-link link"><h5 class="text-white">SKARB NGO</h5></a>
+            </div>
+            <div class="col-md-3 offset-md-3">
+                <a class="nav-link link" href="/feedback">
+                    <h5 class="text-white" action="#">Contact us</h5></a>
+            </div>
+            <div class="col-md-3 offset-md-1">
+                <a class="nav-link link">
+                    <h5 class="text-white"><i class="fa fa-copyright" aria-hidden="true"></i> 2020 Skarb NGO</h5></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+</body></html>

@@ -1,0 +1,285 @@
+<html ng-app="mailhogApp" class="ng-scope"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+    <title>MailHog</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="no-referrer">
+
+    <link rel="icon" type="image/png" href="images/hog.png">
+
+    <link rel="stylesheet" href="css/jquery-ui-1.10.4-smoothness.css">
+    <link rel="stylesheet" href="css/bootstrap-3.3.2.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body ng-controller="MailCtrl" ng-click="keepopen=false" style="" class="ng-scope">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container-fluid">
+        <div class="col-md-2 col-sm-3">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+              <img src="images/hog.png" height="20" alt="MailHog"> MailHog
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-10 col-sm-9">
+          <form class="navbar-form navbar-left ng-pristine ng-valid" role="search">
+            <div class="form-group left-inner-addon">
+              <i class="glyphicon glyphicon-search"></i>
+
+              <input ng-model="searchText" type="text" ng-key-enter="search('containing', searchText)" class="form-control ng-pristine ng-untouched ng-valid" autocomplete="off" placeholder="Search" id="search" ng-focus="keepopen=true" ng-click="$event.stopPropagation()">
+
+              <!-- ngIf: searchText.length > 0 && keepopen -->
+            </div>
+          </form>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a target="_blank" href="https://github.com/mailhog/MailHog">
+                <img src="images/github.png" height="16" alt="GitHub"> GitHub
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2 col-sm-3">
+          <ul class="nav nav-pills nav-stacked">
+            <li>
+              <a href="#" title="Event stream connected" ng-click="toggleStream()" class="ng-binding">
+                <span class="glyphicon glyphicon-off has-event-source"></span>
+                Connected
+              </a>
+            </li>
+
+            <li>
+              <a href="#" ng-click="backToInboxFirst()" class="ng-binding">
+                Inbox (3384)
+              </a>
+            </li>
+
+            <li>
+              <a href="#" ng-click="deleteAll()">
+                <span class="glyphicon glyphicon-remove-circle"></span>
+                Delete all messages
+              </a>
+            </li>
+          </ul>
+
+          <div class="well jim-well">
+            <h3>Jim</h3>
+            <p>
+              Jim is a chaos monkey.<br>
+              <a href="https://github.com/mailhog/MailHog/blob/master/docs/JIM.md" target="_blank">Find out more at GitHub</a>.
+            </p>
+            <!-- ngIf: jim -->
+            <!-- ngIf: jim -->
+            <!-- ngIf: !jim --><div ng-if="!jim" class="ng-scope">
+              <a href="#" ng-click="enableJim()" class="btn btn-xs btn-default">Enable Jim</a>
+            </div><!-- end ngIf: !jim -->
+          </div>
+        </div>
+
+        <div class="col-md-10 col-sm-9 content">
+          <!-- ngIf: !preview && !searching -->
+
+<!-- ngIf: !preview && !searching -->
+
+<!-- ngIf: searching -->
+
+<!-- ngIf: searching -->
+
+<!-- ngIf: preview --><div class="toolbar ng-scope" ng-if="preview">
+  <button class="btn btn-default" ng-click="backToInbox()" title="Back to Inbox">
+    <i class="glyphicon glyphicon-arrow-left"></i>
+  </button>
+
+  <div class="spacer"></div>
+
+  <button class="btn btn-default" ng-click="deleteOne(preview); preview = null">
+    <i class="glyphicon glyphicon-trash"></i>
+  </button>
+
+  <a class="btn btn-default" title="Download" href="api/v1/messages/OmIbr-BDFlWywMMbiEKHmsGApJbHSol7GfWgQhtZRwY=@mailhog.example/download">
+    <i class="glyphicon glyphicon-save"></i>
+  </a>
+
+  <button class="btn btn-default" title="Release" ng-click="releaseOne(preview)">
+    <i class="glyphicon glyphicon-share"></i>
+  </button>
+</div><!-- end ngIf: preview -->
+
+<!-- ngIf: preview --><div class="preview ng-scope" ng-if="preview">
+  <div class="row headers">
+    <div class="col-md-10">
+      <table>
+        <!-- ngIf: !previewAllHeaders --><tbody ng-if="!previewAllHeaders" class="ng-scope">
+          <tr>
+            <th>From</th>
+            <td class="ng-binding">appinfo@foxminded.com.ua</td>
+          </tr>
+          <tr>
+            <th>Subject</th>
+            <td><strong class="ng-binding">Registration confirmation</strong></td>
+          </tr>
+          <tr>
+            <th>To</th>
+            <td class="ng-binding">
+              qSxeW2EpdG@skarb.ngo
+            </td>
+          </tr>
+        </tbody><!-- end ngIf: !previewAllHeaders -->
+        <!-- ngIf: previewAllHeaders -->
+      </table>
+    </div>
+    <div class="col-md-2">
+      <!-- ngIf: previewAllHeaders -->
+
+      <!-- ngIf: !previewAllHeaders --><button id="show-headers" ng-if="!previewAllHeaders" ng-click="toggleHeaders(true)" type="button" class="btn btn-default pull-right btn-xs ng-scope">
+        Show headers <i class="glyphicon glyphicon-chevron-down"></i>
+      </button><!-- end ngIf: !previewAllHeaders -->
+    </div>
+  </div>
+
+  <div class="mail-content">
+    <ul class="nav nav-tabs">
+      <!-- ngIf: hasHTML(preview) -->
+      <li ng-class="{ active: !hasHTML(preview) }" class="active"><a href="#preview-plain" data-toggle="tab">Plain text</a></li>
+      <li><a href="#preview-source" data-toggle="tab">Source</a></li>
+      <!-- ngIf: preview.MIME -->
+    </ul>
+
+    <div class="tab-content" style="height: 434px;">
+      <!-- ngIf: hasHTML(preview) -->
+      <div class="tab-pane ng-binding active" ng-class="{ active: !hasHTML(preview) }" id="preview-plain" ng-bind-html="formatMessagePlain(preview)" style="height: 454px;">Dear Vmpeywnl Sracanmo. Your registration was successful! Please, follow this link for confirmation: <a href="https://skarb.foxminded.ua/registration/confirm?token=b5416e1c-e281-4abc-bb3f-1425097fddee" target="_blank">https://skarb.foxminded.ua/registration/confirm?token=b5416e1c-e281-4abc-bb3f-1425097fddee</a></div>
+      <div class="tab-pane ng-binding" id="preview-source" style="height: 454px;">Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 3 Aug 2023 05:42:00 +0000 (UTC)
+From: appinfo@foxminded.com.ua
+MIME-Version: 1.0
+Message-ID: &lt;1062406184.1670.1691041320003@a3b491220798&gt;
+Received: from a3b491220798 by mailhog.example (MailHog)
+          id OmIbr-BDFlWywMMbiEKHmsGApJbHSol7GfWgQhtZRwY=@mailhog.example; Thu, 03 Aug 2023 05:42:00 +0000
+Return-Path: &lt;appinfo@foxminded.com.ua&gt;
+Subject: Registration confirmation
+To: qSxeW2EpdG@skarb.ngo
+
+Dear Vmpeywnl Sracanmo. Your registration was successful! Please, follow this link for confirmation: https://skarb.foxminded.ua/registration/confirm?token=b5416e1c-e281-4abc-bb3f-1425097fddee</div>
+      <div class="tab-pane" id="preview-mime" style="height: 434px;">
+        <!-- ngRepeat: part in preview.MIME.Parts -->
+      </div>
+    </div>
+  </div>
+</div><!-- end ngIf: preview -->
+
+
+<div class="modal fade" id="confirm-delete-all">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Delete all messages?</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete all messages?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" ng-click="deleteAllConfirm()">Delete all messages</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="release-one">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Release message</h4>
+      </div>
+      <div class="modal-body">
+        <p>To release this message, select an SMTP server or enter custom settings:</p>
+        <form role="form" class="ng-pristine ng-valid">
+          <div class="form-group">
+            <select ng-model="selectedOutgoingSMTP" id="release-message-outgoing" class="form-control ng-pristine ng-untouched ng-valid">
+              <!-- ngRepeat: s in outgoingSMTP -->
+              <option value="">Use custom settings</option>
+            </select>
+          </div>
+          <!-- ngIf: selectedOutgoingSMTP == '' --><div ng-if="selectedOutgoingSMTP == ''" class="ng-scope">
+            <div class="form-group">
+              <div class="checkbox">
+                <label for="release-message-save">
+                  <input ng-model="saveSMTPServer" type="checkbox" id="release-message-save" class="ng-pristine ng-untouched ng-valid">
+                  Save these settings
+                </label>
+              </div>
+            </div>
+            <!-- ngIf: saveSMTPServer -->
+          </div><!-- end ngIf: selectedOutgoingSMTP == '' -->
+          <div class="form-group">
+            <label for="release-message-email">Email address</label>
+            <input type="email" autofocus="" class="form-control" id="release-message-email" placeholder="someone@example.com">
+          </div>
+          <!-- ngIf: selectedOutgoingSMTP == '' --><div ng-if="selectedOutgoingSMTP == ''" class="ng-scope">
+            <div class="form-group">
+              <label for="release-message-smtp-host">SMTP server</label>
+              <input type="text" class="form-control" id="release-message-smtp-host" placeholder="mail.example.com">
+            </div>
+            <div class="form-group">
+              <label for="release-message-smtp-port">SMTP port</label>
+              <input type="number" class="form-control" id="release-message-smtp-port" value="25">
+            </div>
+            <div class="form-group">
+              <label for="release-message-smtp-username">Authentication</label>
+              <select ng-model="smtpmech" id="release-message-smtp-mechanism" class="form-control ng-pristine ng-untouched ng-valid">
+                <option selected="" value="NONE">None</option>
+                <option value="PLAIN">PLAIN</option>
+                <option value="CRAMMD5">CRAM-MD5</option>
+              </select>
+            </div>
+            <!-- ngIf: smtpmech != 'NONE' -->
+            <!-- ngIf: smtpmech != 'NONE' -->
+          </div><!-- end ngIf: selectedOutgoingSMTP == '' -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" ng-click="confirmReleaseMessage()">Release message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.min.js"></script>
+    <script src="js/bootstrap-3.3.2.min.js"></script>
+    <script src="js/angular-1.3.8.js"></script>
+    <script src="js/moment-2.8.4.js"></script>
+    <script src="js/filesize-3.1.2.min.js"></script>
+    <script src="js/strutil.js"></script>
+    <script src="js/controllers.js"></script>
+    <script>
+      function endsWith(str, suffix) {
+        return str.indexOf(suffix, str.length - suffix.length) !== -1;
+      }
+
+      var apiHost = "";
+      if(apiHost.length > 0 && !endsWith(apiHost, "/")) {
+        apiHost += "/";
+      }
+
+      var columns = [15,15,40,20,10];
+    </script>
+  
+
+</body></html>

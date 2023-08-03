@@ -1,69 +1,44 @@
 package org.example.pages.tasks;
 
-import org.example.pages.NavigationMenu;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import com.codeborne.selenide.SelenideElement;
+import org.example.pages.BasePage;
 
 import java.util.List;
 
-public class TaskDetailsPage extends NavigationMenu {
-    public TaskDetailsPage(WebDriver driver) {
-        super(driver);
+import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
+public class TaskDetailsPage extends BasePage {
+
+    SelenideElement taskName = $(byAttribute("name", "task-name"));
+    SelenideElement taskDescription = $(byAttribute("name", "task-description"));
+    SelenideElement expectedResult = $(byAttribute("name", "expected-outcome"));
+    SelenideElement volunteerBenefit = $(byAttribute("name", "volunteer-benefit"));
+    SelenideElement category = $(byAttribute("name", "categories"));
+    SelenideElement actualUntil = $(byAttribute("name", "task-deadline"));
+    SelenideElement taskDuration = $(byAttribute("name", "task-duration"));
+    SelenideElement authorFirstName = $(byXpath("//div[@name='task-author']//span[@class='text-muted'][1]"));
+    SelenideElement authorLastName = $(byXpath("//div[@name='task-author']//span[@class='text-muted'][2]"));
+    SelenideElement successMessage = $(byXpath("//div[@id='successMsgAlert']/h4"));
+    SelenideElement potentialPerformersExpandButton = $(byXpath("//div[@id='candidatesContainerParent']//i[@class='fa fa-chevron-down']"));
+    SelenideElement respondedExpandButton = $(byXpath("//div[@id='respondedContainerParent']//i[@class='fa fa-chevron-down']"));
+    SelenideElement respondButton = $("#taskRespondBtn");
+
+    public SelenideElement getTaskName() {
+        return taskName;
     }
 
-    @FindBy(name = "task-name")
-    private WebElement taskName;
-
-    @FindBy(name = "task-description")
-    private WebElement taskDescription;
-
-    @FindBy(name = "expected-outcome")
-    private WebElement expectedResult;
-
-    @FindBy(name = "volunteer-benefit")
-    private WebElement volunteerBenefit;
-
-    @FindBy(name = "categories")
-    private WebElement category;
-
-    @FindBy(name = "task-deadline")
-    private WebElement actualUntil;
-
-    @FindBy(name = "task-duration")
-    private WebElement taskDuration;
-
-    @FindBy(xpath = "//div[@name='task-author']//span[@class='text-muted'][1]")
-    private WebElement authorFirstName;
-
-    @FindBy(xpath = "//div[@name='task-author']//span[@class='text-muted'][2]")
-    private WebElement authorLastName;
-    @FindBy(xpath = "//div[@id='successMsgAlert']/h4")
-    private WebElement successMessage;
-
-    @FindBy(xpath = "//div[@id='candidatesContainerParent']//i[@class='fa fa-chevron-down']")
-    private WebElement potentialPerformersExpandButton;
-    @FindBy(xpath = "//div[@id='respondedContainerParent']//i[@class='fa fa-chevron-down']")
-    private WebElement respondedExpandButton;
-
-    @FindBy(id = "taskRespondBtn")
-    private WebElement respondButton;
-
-    public String getTaskName() {
-        return taskName.getText();
+    public SelenideElement getTaskDescription() {
+        return taskDescription;
     }
 
-    public String getTaskDescription() {
-        return taskDescription.getText();
+    public SelenideElement getExpectedResult() {
+        return expectedResult;
     }
 
-    public String getExpectedResult() {
-        return expectedResult.getText();
-    }
-
-    public String getVolunteerBenefit() {
-        return volunteerBenefit.getText();
+    public SelenideElement getVolunteerBenefit() {
+        return volunteerBenefit;
     }
 
     public TaskCategory getTaskCategory() {
@@ -77,35 +52,34 @@ public class TaskDetailsPage extends NavigationMenu {
         } return null;
     }
 
-    public String getAuthorFirstName() {
-        return authorFirstName.getText();
+    public SelenideElement getAuthorFirstName() {
+        return authorFirstName;
     }
-    public String getAuthorLastName() {
-        return authorLastName.getText();
+    public SelenideElement getAuthorLastName() {
+        return authorLastName;
     }
-    public String getActualUntil() {
-        return actualUntil.getText();
+    public SelenideElement getActualUntil() {
+        return actualUntil;
     }
-    public String getTaskDuration() {
-        return taskDuration.getText();
+    public SelenideElement getTaskDuration() {
+        return taskDuration;
     }
-    public String getSuccessMessage() {
-        return successMessage.getText();
+    public SelenideElement getSuccessMessage() {
+        return successMessage;
     }
     //Get the list of candidates to be assigned to the task
     //If needed volunteer is found then invite him to become performer of the task
     public boolean assignVolunteerToTask(String firstName, String lastName) {
         potentialPerformersExpandButton.click();
-        List<WebElement> volunteerCards = driver.findElements(By.
-                xpath("//div[@id='candidatesContainer']//div[@class='col-5']"));
+        List<SelenideElement> volunteerCards = $$(byXpath(("//div[@id='candidatesContainer']//div[@class='col-5']")));
         for (int i = 0; i < volunteerCards.size(); i++) {
-            List<WebElement> volunteerNames = volunteerCards.get(i).findElements(By.tagName("span"));
+            List<SelenideElement> volunteerNames = volunteerCards.get(i).$$(byTagName("span"));
             String volFirstName = volunteerNames.get(0).getText();
             String volLastName = volunteerNames.get(1).getText();
             if (volFirstName.equals(firstName) && volLastName.equals(lastName)) {
-                List<WebElement> buttons = driver.findElements(By.xpath("//div[@id='candidatesContainerParent']//button"));
+                List<SelenideElement> buttons = $$(byXpath("//div[@id='candidatesContainerParent']//button"));
                 buttons.get(i).click();
-                driver.findElement(By.id("taskInvitePerformerModal")).findElement(By.tagName("a")).click();
+                $("#taskInvitePerformerModal").$(byTagName("a")).click();
                 return true;
             }
         }
@@ -114,29 +88,29 @@ public class TaskDetailsPage extends NavigationMenu {
 
     //Get the list of the volunteers assigned to the task and find the current volunteer there
     //If not found - return false
-    public boolean checkVolunteerAssigned(String firstName, String lastName) throws InterruptedException {
-        respondedExpandButton.click();
-        List<WebElement> volunteerCards = driver.findElements(By.
-                xpath("//div[@id='respondedContainer']//div[@class='col-5']"));
-        for (int i = 0; i < volunteerCards.size(); i++) {
-            List<WebElement> volunteerNames = volunteerCards.get(i).findElements(By.tagName("span"));
-            String volFirstName = volunteerNames.get(0).getText();
-            String volLastName = volunteerNames.get(1).getText();
-            if (volFirstName.equals(firstName) && volLastName.equals(lastName)) {
-                return true;
-            }
-        }
-        return false;
-    }
+//    public boolean checkVolunteerAssigned(String firstName, String lastName) throws InterruptedException {
+//        respondedExpandButton.click();
+//        List<WebElement> volunteerCards = driver.findElements(By.
+//                xpath("//div[@id='respondedContainer']//div[@class='col-5']"));
+//        for (int i = 0; i < volunteerCards.size(); i++) {
+//            List<WebElement> volunteerNames = volunteerCards.get(i).findElements(By.tagName("span"));
+//            String volFirstName = volunteerNames.get(0).getText();
+//            String volLastName = volunteerNames.get(1).getText();
+//            if (volFirstName.equals(firstName) && volLastName.equals(lastName)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
     //Confirm to become performer of the task
-    public TaskDetailsPage respondToBecomePerformer() {
-        respondButton.click();
-        WebElement taskRespondModal = driver.findElement(By.xpath("//div[@class='modal-footer']//a"));
-        taskRespondModal.click();
-        boolean isDisplayed = driver.findElement(By.xpath("//div[@class='modal-footer']//a")).isDisplayed();
-        if (isDisplayed) {
-            taskRespondModal.click();
-        }
-        return this;
-    }
+//    public TaskDetailsPage respondToBecomePerformer() {
+//        respondButton.click();
+//        WebElement taskRespondModal = driver.findElement(By.xpath("//div[@class='modal-footer']//a"));
+//        taskRespondModal.click();
+//        boolean isDisplayed = driver.findElement(By.xpath("//div[@class='modal-footer']//a")).isDisplayed();
+//        if (isDisplayed) {
+//            taskRespondModal.click();
+//        }
+//        return this;
+//    }
 }

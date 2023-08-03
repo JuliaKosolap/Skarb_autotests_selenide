@@ -1,0 +1,625 @@
+<html lang="en" xmlns="http://www.w3.org/1999/html"><head>
+    <meta charset="UTF-8">
+    <title>New task registration</title>
+
+    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/sidebar-styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/dropDownButton.css">
+
+    <script src="/js/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="/js/popper.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" crossorigin="anonymous">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css" crossorigin="anonymous">
+
+    <script src="/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="/js/bootstrap-select.min.js"></script>
+
+    <!-- Custom application javascript -->
+    <script src="/js/app.js"></script>
+
+    <!-- Language management javascript -->
+    <script src="/js/lang-change.js"></script>
+
+    <link rel="shortcut icon" href="/img/foxminded_3232.png">
+</head>
+
+<body class="pd-t-71">
+
+<div class="fixed-top">
+
+    <header name="header" style="background-color: rgb(254,254,253);">
+    <div class="container">
+        <div class="row">
+            <nav class="col-12 navbar-expand-lg navbar navbar-light border-bottom">
+                <a class="navbar-brand" href="/"><h4 class="text-dark-red">SKARB NGO</h4></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse ml-5" id="navbarNav">
+
+                    <ul class="navbar-nav">
+
+                        <!-- Main -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">
+                                <h5 class="text-dark-red">Main</h5></a>
+                        </li>
+
+                        <!-- About -->
+                        <li class="nav-item dropdown ml-5">
+                            <h5 class="nav-link text-dark-red text-nowrap" id="aboutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span>About project</span> <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            </h5>
+                            <div class="dropdown-menu" aria-labelledby="aboutDropdown">
+                                <a class="dropdown-item text-dark-red font-weight-bold link" href="/static/about">About us</a>
+                                <a class="dropdown-item text-dark-red font-weight-bold link" href="/news">News</a>
+                                <a class="dropdown-item text-dark-red font-weight-bold link" href="/static/rules">Rules</a>
+                                <a class="dropdown-item text-dark-red font-weight-bold link" href="/static/help">Help</a>
+                                <a class="dropdown-item text-dark-red font-weight-bold  link">Contacts</a>
+                            </div>
+                        </li>
+
+                        <!-- Members -->
+                        <li class="nav-item dropdown ml-5">
+                            <h5 class="nav-link text-dark-red text-nowrap" id="membersDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span>Members</span> <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            </h5>
+                            <div id="membersContainer" class="dropdown-menu" aria-labelledby="membersDropdown">
+                                <a class="dropdown-item text-dark-red font-weight-bold link" href="/info/volunteers">Volunteers</a>
+                                <a class="dropdown-item text-dark-red font-weight-bold link" href="/info/organizations/ngo">Organizations</a>
+                                <a class="dropdown-item text-dark-red font-weight-bold link" href="/info/organizations/partners">Partners</a>
+                            </div>
+                        </li>
+
+                        <!-- Tasks -->
+                        <li class="nav-item dropdown ml-5">
+                            <h5 class="nav-link text-dark-red text-nowrap" id="tasksDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span>Tasks</span> <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            </h5>
+                            <div id="tasksContainer" class="dropdown-menu" aria-labelledby="tasksDropdown">
+                                <a class="dropdown-item text-dark-red font-weight-bold link" href="/tasks/partner/search/criteria">For partners</a>
+                                <a class="dropdown-item text-dark-red font-weight-bold link" href="/tasks/volunteer/search/criteria">For volunteers</a>
+                                <a class="dropdown-item text-dark-red font-weight-bold link" href="/tasks/register/volunteer">Create volunteer task</a>
+                                
+                            </div>
+                        </li>
+
+                        <!-- Success Stories -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/stories/search/criteria">
+                                <h5 class="text-dark-red">Success stories</h5></a>
+                        </li>
+
+                        <!-- Language link -->
+                        <li class="nav-item dropdown ml-5">
+                            <h5 id="langDropdown" class="nav-link text-dark-red" role="button" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-language fa-lg" aria-hidden="true"></i>
+                            </h5>
+                            <div class="dropdown-menu" aria-labelledby="langDropdown">
+                                <a class="dropdown-item link text-dark-red font-weight-bold changeLang" data-lang="en">EN</a>
+                                <a class="dropdown-item link text-dark-red font-weight-bold changeLang" data-lang="ru">RU</a>
+                                <a class="dropdown-item link text-dark-red font-weight-bold changeLang" data-lang="uk">UA</a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    <!-- User profile link -->
+                    <a class="nav-link ml-auto" href="/profile">
+                        <i class="fa fa-user-circle-o fa-3x text-dark-red" aria-hidden="true"></i>
+                    </a>
+
+                    <!-- Registration link -->
+                    
+
+                    <!-- Login link -->
+                    
+
+
+                    <!-- Logout link -->
+                    <a class="nav-link" href="/logout">
+                        <i class="fa fa-sign-out fa-3x text-dark-red" aria-hidden="true"></i>
+                    </a>
+
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+</div>
+
+<div id="content" class="pd-b-127">
+
+    <div class="row">
+
+        <!-- Volunteer task registration form -->
+        <div class="col-md-12">
+            <!-- Information message alerts -->
+            <div id="successMsgAlert" class="alert alert-success alert-dismissible fade show d-none" role="alert">
+                <h4></h4>
+                <button type="button" class="close alertCloseBtn" aria-label="Close">
+                 <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div id="errorMsgAlert" class="alert alert-danger alert-dismissible fade show d-none" role="alert">
+                <h4></h4>
+                <button type="button" class="close alertCloseBtn" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <!-- Form fragment -->
+            <div class="row" id="taskFormContainer">
+
+        <form class="col-md-12 d-flex justify-content-center" action="/tasks/register/volunteer" id="taskForm" method="post">
+
+            <div class="col-md-12">
+                <div class="panel panel-success">
+
+                    <!-- Form main title -->
+                    <div name="form-main-title" class="form-group row">
+                        <h2 class="col-md-6 offset-md-3 panel-heading text-center">
+                            <span>Create volunteer task</span>:
+                        </h2>
+                    </div>
+                    <!-- Form secondary title -->
+                    <div name="form-secondary-title" class="form-group row mb-5">
+                        <h4 class="col-md-6 offset-md-3 panel-heading text-center">
+                            <span>You can edit the task later, before the administrator approves it</span>
+                        </h4>
+                    </div>
+
+                    <input type="hidden" name="authorId" value="737">
+
+                    
+
+
+
+    <!-- Task name -->
+    <div name="task-name" class="form-group row mt-5">
+        <div class="col-md-6">
+            <label for="name" class="col-form-label">
+                <span class="font-weight-bold">Task name</span>:
+            </label>
+            <span class="form-text text-muted">Come up with a name for the task.</span>
+        </div>
+        <div class="col-md-6">
+                            <textarea id="name" class="form-control" rows="3" name="name"></textarea>
+            
+        </div>
+    </div>
+
+    <!-- Selected category badges -->
+    <div class="form-group row mt-5">
+        <div name="categories-container" id="categoryContainer" class="col-md-6 offset-md-6"><span id="categoryBadge-6" class="badge badge-primary mr-2 mb-2 categoryBadge">
+    <h6>
+        <span class="categoryBadgeText">Soft drinks</span>
+        <button type="button" class="close badgeCategoryRemoveBtn" aria-label="Dismiss" data-option-val="6">
+            <span aria-hidden="true">×</span>
+        </button>
+    </h6>
+</span></div>
+    </div>
+
+    <!-- Task categories -->
+    <div name="categories" class="form-group row mt-5">
+        <div class="col-md-6">
+            <label for="categoryIds" class="col-form-label">
+                                <span class="font-weight-bold">What area is your task from</span>:
+            </label>
+            <span class="form-text text-muted">We recommend choosing from one to three categories. If you don't know what category your task belongs to, we recommend that you study the existing tasks on the site in the help section.</span>
+        </div>
+        <div class="col-md-6">
+            <input type="hidden" name="_categoryIds" value="1"><div class="dropdown bootstrap-select show-tick colorful-select dropdown-primary md-form show"><select id="categoryIds" class="selectpicker colorful-select dropdown-primary md-form" multiple="" data-live-search="true" name="categoryIds" tabindex="-98">
+                <option value="" disabled="" selected="selected">Select a category</option>
+                <option value="1">Graphic design</option>
+                <option value="2">Logo design</option>
+                <option value="3">Website design</option>
+                <option value="4">UA-UX</option>
+                <option value="5">Programming</option>
+                <option value="6">Soft drinks</option>
+                <option value="7">Sporting equipment</option>
+                <option value="8">Sporting clothes</option>
+                <option value="9">Sales</option>
+                <option value="10">Brand promotion</option>
+            </select><button type="button" class="btn dropdown-toggle btn-light" data-toggle="dropdown" role="combobox" aria-owns="bs-select-1" aria-haspopup="listbox" aria-expanded="true" data-id="categoryIds" title="Select a category, Soft drinks"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">Select a category, Soft drinks</div></div> </div></button><div class="dropdown-menu show" style="max-height: 569.922px; overflow: hidden; min-height: 143px; position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);" x-placement="bottom-start"><div class="bs-searchbox"><input type="search" class="form-control" autocomplete="off" role="combobox" aria-label="Search" aria-controls="bs-select-1" aria-autocomplete="list"></div><div class="inner show" role="listbox" id="bs-select-1" tabindex="-1" aria-multiselectable="true" style="max-height: 511.922px; overflow-y: auto; min-height: 85px;"><ul class="dropdown-menu inner show" role="presentation" style="margin-top: 0px; margin-bottom: 0px;"><li class="disabled selected"><a role="option" class="dropdown-item disabled selected" id="bs-select-1-0" aria-disabled="true" tabindex="-1" aria-selected="true"><span class=" bs-ok-default check-mark"></span><span class="text">Select a category</span></a></li><li><a role="option" class="dropdown-item" id="bs-select-1-1" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">Graphic design</span></a></li><li><a role="option" class="dropdown-item" id="bs-select-1-2" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">Logo design</span></a></li><li><a role="option" class="dropdown-item" id="bs-select-1-3" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">Website design</span></a></li><li><a role="option" class="dropdown-item" id="bs-select-1-4" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">UA-UX</span></a></li><li><a role="option" class="dropdown-item" id="bs-select-1-5" tabindex="0" aria-selected="false" aria-setsize="10" aria-posinset="5"><span class=" bs-ok-default check-mark"></span><span class="text">Programming</span></a></li><li class="selected"><a role="option" class="dropdown-item selected" id="bs-select-1-6" tabindex="0" aria-selected="true" aria-setsize="10" aria-posinset="6"><span class=" bs-ok-default check-mark"></span><span class="text">Soft drinks</span></a></li><li><a role="option" class="dropdown-item" id="bs-select-1-7" tabindex="0" aria-selected="false" aria-setsize="10" aria-posinset="7"><span class=" bs-ok-default check-mark"></span><span class="text">Sporting equipment</span></a></li><li><a role="option" class="dropdown-item" id="bs-select-1-8" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">Sporting clothes</span></a></li><li><a role="option" class="dropdown-item" id="bs-select-1-9" tabindex="0" aria-selected="false" aria-setsize="10" aria-posinset="9"><span class=" bs-ok-default check-mark"></span><span class="text">Sales</span></a></li><li><a role="option" class="dropdown-item" id="bs-select-1-10" tabindex="0" aria-selected="false" aria-setsize="10" aria-posinset="10"><span class=" bs-ok-default check-mark"></span><span class="text">Brand promotion</span></a></li></ul></div></div></div>
+            
+            
+        </div>
+    </div>
+
+    <!-- Task deadline -->
+    <div name="task-deadline" class="form-group row mt-5">
+        <div class="col-md-6">
+            <label for="deadline" class="col-form-label">
+                                <span class="font-weight-bold">The task is relevant until</span>:
+            </label>
+            <span class="form-text text-muted">Provide the date by which you need to find a partner.In case you do not find a volunteer before this date, the task will automatically close.</span>
+        </div>
+        <div class="col-md-6">
+            <input type="text" id="deadline" class="form-control" placeholder="DD.MM.YYYY" name="deadline" value="">
+            
+        </div>
+    </div>
+
+    <!-- Task description -->
+    <div name="task-description" class="form-group row mt-5">
+        <div class="col-md-6">
+            <label for="description" class="col-form-label">
+                                <span class="font-weight-bold">Describe your task</span>:
+            </label>
+            <span class="form-text text-muted">Tell us exactly what you need. Describe what source materials and data you have, tell us how you plan to interact with the task performer.</span>
+        </div>
+        <div class="col-md-6">
+                            <textarea id="description" class="form-control" rows="6" name="description"></textarea>
+            
+        </div>
+    </div>
+
+    <!-- Task expected outcome -->
+    <div name="expected-outcome" class="form-group row mt-5">
+        <div class="col-md-6">
+            <label for="expectedOutcome" class="col-form-label">
+                                <span class="font-weight-bold">What do you want to get in the end</span>:
+            </label>
+            <span class="form-text text-muted">Write exactly how you see the result of the work, in what format do you want to see the files, do you need advice or instructions on how to use these files, will you need further support for the task, etc.</span>
+        </div>
+        <div class="col-md-6">
+                            <textarea id="expectedOutcome" class="form-control" rows="6" name="expectedOutcome"></textarea>
+            
+        </div>
+    </div>
+
+    <!-- Volunteer benefit -->
+    <div name="volunteer-benefit" class="form-group row mt-5">
+        <div class="col-md-6">
+            <label for="benefit" class="col-form-label">
+                                <span class="font-weight-bold">Volunteer benefit</span>:
+            </label>
+            <span class="form-text text-muted">Indicate how you will benefit the volunteer, this may be a recommendation letter, a mention on your website or event, a small cash benefit etc.</span>
+        </div>
+        <div class="col-md-6">
+                            <textarea id="benefit" class="form-control" rows="2" name="benefit"></textarea>
+            
+        </div>
+    </div>
+
+    <!-- Volunteer requirements -->
+    <div name="volunteer-requirements" class="form-group row mt-5">
+        <div class="col-md-6">
+            <label for="requirements[0]" class="col-form-label">
+                                <span class="font-weight-bold">What do you expect from a volunteer</span>:
+            </label>
+            <span class="form-text text-muted">You can add up to two volunteer requirements. Please, indicate only really important requirements for the task (experience, portfolio, knowledge in a specific area). Indicate if you would like to conduct a short interview with the volunteer before starting work.</span>
+        </div>
+
+
+
+
+                        <div class="col-md-6">
+                            <div name="requirements-inputs" class="row">
+                                <div class="col-12">
+                                    <input id="requirements[0]" class="form-control" type="text" name="requirements[0]" value="">
+                                    
+                                </div>
+                                <div class="col-12 mt-2">
+                                    <input id="requirements[1]" class="form-control" type="text" name="requirements[1]" value="">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Volunteer interview required -->
+                    <div name="interview-check" class="form-group row mt-5">
+                        <div class="col-md-5 offset-md-6">
+                            <label for="interviewRequired" class="col-form-label">
+                                <span class="font-weight-bold">Volunteer interview required</span>:
+                            </label>
+                        </div>
+                        <div class="col-md-1 pr-0 mr-0">
+                            <input id="interviewRequired" class="form-control" type="checkbox" name="interviewRequired" value="true"><input type="hidden" name="_interviewRequired" value="on">
+                        </div>
+                    </div>
+
+                
+
+
+
+    <!-- Expected saved amount -->
+    <div name="expected-saved-amount" class="form-group row mt-5">
+        <div class="col-md-6">
+            <label for="savedMoney" class="col-form-label">
+                                <span class="font-weight-bold">Estimate how much money volunteer work can help you save</span>:
+            </label>
+            <span class="form-text text-muted">Write the approximate amount (or the exact amount if you know it), which a volunteer can help you save. This will help volunteers evaluate their contributions and services.</span>
+        </div>
+        <!-- Amount -->
+        <div name="amount" class="col-md-2">
+            <input type="number" id="savedMoney" class="form-control" min="1" placeholder="Enter the amount" name="savedMoney" value="">
+            
+        </div>
+        <!-- Currency -->
+        <div name="currency" class="col-md-4">
+            <div class="row">
+                <label for="currency" class="col-md-2 offset-md-4 col-form-label">
+                    <span class="font-weight-bold">Валюта</span>:
+                </label>
+                <div class="dropdown bootstrap-select col-md-6 colorful-select dropdown-primary md-form"><select id="currency" class="col-md-6 selectpicker colorful-select dropdown-primary md-form" name="currency" tabindex="-98">
+                    <option value="USD">$</option>
+                    <option value="RUB">₽</option>
+                    <option value="UAH">₴</option>
+                </select><button type="button" class="btn dropdown-toggle btn-light" data-toggle="dropdown" role="combobox" aria-owns="bs-select-2" aria-haspopup="listbox" aria-expanded="false" data-id="currency" title="$"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">$</div></div> </div></button><div class="dropdown-menu "><div class="inner show" role="listbox" id="bs-select-2" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task stages -->
+    <div name="task-stages" class="form-group row mt-5">
+        <div class="col-md-6">
+            <label for="stages" class="col-form-label">
+                                <span class="font-weight-bold">Make a work plan</span>:
+            </label>
+            <span class="form-text text-muted">We have already added a basic work plan for your task, it consists of two stages from the approval of the volunteer to the delivery of the final work. You can edit existing stages, add new one. The plan should contain at least two, at max - seven stages. For each stage you should add a name and duration, also you can add a short description.</span>
+            <br><br>
+            <span class="form-text text-muted">We will send you and task performers letters before stages deadlines and final task deadline.</span>
+        </div>
+
+        <!-- Stages -->
+        <div class="col-md-6" id="stages">
+
+            <!-- Show initial stages when initial registration request -->
+            
+                <div id="stagesContainer" class="form-row document">
+    <!-- Stage 1-->
+    <div name="stage-1" id="stage-1" class="row mb-5 stage">
+        <h4 class="panel-heading text-center col-md-3 offset-md-4">
+            <span>Stage</span>&nbsp;<span>1</span>:
+        </h4>
+
+        <!-- Stage name-->
+        <div class="form-group col-md-12">
+            <label class="col-form-label">
+                <span class="font-weight-bold">Stage name</span>:
+            </label>
+            <input type="text" name="stages[0].name" value="Утверждение плана работы" class="form-control">
+        </div>
+
+        <!-- Stage duration-->
+        <div class="col-md-12 form-group">
+            <label class="col-form-label">
+                <span class="font-weight-bold">Stage duration</span>:
+            </label>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <input type="number" name="stages[0].duration" min="1" class="form-control" placeholder="Duration">
+                </div>
+                <div class="col-md-4 offset-md-2">
+                    <select class="form-control" name="stages[0].durationMeasure" data-live-search="true">
+                        <option value="DAY">Days</option>
+                        <option value="WEEK">Weeks</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stage description-->
+        <div class="form-group col-md-12">
+            <label class="col-form-label">
+                <span class="font-weight-bold">Description of work at this stage</span>:
+            </label>
+            <textarea class="form-control" name="stages[0].description" rows="5"></textarea>
+        </div>
+    </div>
+
+    <!-- Stage 2-->
+    <div name="stage-2" id="stage-2" class="row mb-5 stage">
+        <h4 class="panel-heading text-center col-md-3 offset-md-4">
+            <span>Stage</span>&nbsp;<span>2</span>:
+        </h4>
+
+        <!-- Stage name-->
+        <div class="form-group col-md-12">
+            <label class="col-form-label">
+                <span class="font-weight-bold">Stage name</span>:
+            </label>
+            <input type="text" name="stages[1].name" value="Сдача финальных файлов" class="form-control">
+        </div>
+
+        <!-- Stage duration-->
+        <div class="col-md-12 form-group">
+            <label class="col-form-label">
+                <span class="font-weight-bold">Stage duration</span>:
+            </label>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <input type="number" name="stages[1].duration" min="1" class="form-control" placeholder="Duration">
+                </div>
+                <div class="col-md-4 offset-md-2">
+                    <select class="form-control" name="stages[1].durationMeasure" data-live-search="true">
+                        <option value="DAY">Days</option>
+                        <option value="WEEK">Weeks</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stage description-->
+        <div class="form-group col-md-12">
+            <label class="col-form-label">
+                <span class="font-weight-bold">Description of work at this stage</span>:
+            </label>
+            <textarea class="form-control" name="stages[1].description" rows="5"></textarea>
+        </div>
+    </div>
+
+</div>
+            
+
+
+            <!-- Show actual stages when validation failed -->
+            
+
+            <!-- Add stage button -->
+            <div class="form-row pb-2">
+                <button name="add-stage-button" type="button" id="addStageBtn" class="col-md-3 mt-3 offset-md-5 btn btn-outline-danger" data-target-url="/tasks/stages/">Add stage</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+                
+                <div class="container my-5">
+                    <div class="col-md-12 text-center">
+                        <button name="status" value="DRAFT" type="submit" class="btn btn-success offset-md-1">Create task</button>
+                        <button name="status" value="PUBLISHED" type="submit" class="btn btn-success offset-md-1">Create task and publish</button>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+
+            <!-- Category badge fragment -->
+            <span id="categoryBadgeTemplate" class="badge badge-primary mr-2 mb-2 categoryBadge d-none">
+    <h6>
+        <span class="categoryBadgeText"></span>
+        <button type="button" class="close badgeCategoryRemoveBtn" aria-label="Dismiss">
+            <span aria-hidden="true">×</span>
+        </button>
+    </h6>
+</span>
+
+            <!-- Task stage manage script-->
+            <script>
+
+    let stageAddFailureMsg = "You cannot add more stages for this task";
+
+    let addNewStageToForm = function () {
+
+        let addStageBtn = $(this);
+        let stageContainer = $('#stagesContainer');
+        let currentNumberOfStages = $('#stagesContainer div.stage').length;
+        let targetUrl = addStageBtn.attr('data-target-url') + currentNumberOfStages;
+        let errorMsgAlert = $('#errorMsgAlert');
+
+        hideButtonIfMaxStages(addStageBtn, currentNumberOfStages)
+
+        // check if it is possible to add new stage to the task
+        if (currentNumberOfStages >= 7) {
+            errorMsgAlert.removeClass('d-none');
+            errorMsgAlert.find('h4').text(stageAddFailureMsg);
+
+            return;
+        }
+
+        $.ajax({
+            url: targetUrl,
+            type: 'POST',
+            success: function (data) {
+                stageContainer.append(data);
+                errorMsgAlert.addClass('d-none');
+            }
+        });
+    }
+
+    let hideButtonIfMaxStages = function (button, currentNumberOfStages) {
+        if (currentNumberOfStages === 6) {
+            button.addClass('d-none');
+        }
+    }
+
+    let initStageManagement = function () {
+
+        $('#addStageBtn').on('click', addNewStageToForm);
+    };
+
+    $(function () {
+
+        initStageManagement();
+    });
+</script>
+
+            <!-- Category badge manage script-->
+            <script>
+
+    let addSelectedCategoryBadge = function () {
+        let optionValueArray = $(this).val();
+
+        let categoryContainer = $('#categoryContainer');
+
+        categoryContainer.html('');
+
+        $.each(optionValueArray, function (key, value) {
+            let optionValue = value;
+            let optionText = $("select#categoryIds option[value='" + optionValue + "']").text();
+            let categoryBadge = createCategoryBadge(optionValue, optionText);
+            categoryContainer.append(categoryBadge);
+        });
+
+        $('.badgeCategoryRemoveBtn').on('click', deselectCategory);
+    }
+
+    let createCategoryBadge = function (optionValue, badgeText) {
+        let badge = $('#categoryBadgeTemplate').clone();
+        badge.attr('id', 'categoryBadge-' + optionValue);
+        badge.removeClass('d-none')
+        badge.find('.categoryBadgeText').text(badgeText);
+        badge.find('button.badgeCategoryRemoveBtn').attr('data-option-val', optionValue);
+
+        return badge;
+    }
+
+    let deselectCategory = function () {
+        let optionValue = $(this).attr('data-option-val');
+        $("select#categoryIds option[value='" + optionValue + "']").prop('selected', false);
+        $('select#categoryIds').trigger('change');
+    }
+
+    let initBadgeManagement = function () {
+
+        $('select.selectpicker').selectpicker();
+
+        $('select#categoryIds').on('change', addSelectedCategoryBadge);
+
+        $('.badgeCategoryRemoveBtn').on('click', deselectCategory);
+    };
+
+    $(function () {
+
+        initBadgeManagement();
+    });
+</script>
+
+        </form></div>
+
+    </div>
+
+</div>
+
+<footer name="footer" class="mt-auto main-footer py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <a class="nav-link link"><h5 class="text-white">SKARB NGO</h5></a>
+            </div>
+            <div class="col-md-3 offset-md-3">
+                <a class="nav-link link" href="/feedback">
+                    <h5 class="text-white" action="#">Contact us</h5></a>
+            </div>
+            <div class="col-md-3 offset-md-1">
+                <a class="nav-link link">
+                    <h5 class="text-white"><i class="fa fa-copyright" aria-hidden="true"></i> 2020 Skarb NGO</h5></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+</div></body></html>

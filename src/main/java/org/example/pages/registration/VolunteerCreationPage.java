@@ -1,43 +1,28 @@
 package org.example.pages.registration;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.example.entity.Volunteer;
 import org.example.pages.BasePage;
-import org.example.pages.NavigationMenu;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import static org.example.common.CustomLogger.logger;
 
-public class VolunteerCreationPage extends NavigationMenu {
-    @FindBy(id="firstName")
-    private WebElement firstName;
+public class VolunteerCreationPage extends BasePage {
+    SelenideElement firstName = $("#firstName");
+    SelenideElement lastName = $("#lastName");
+    SelenideElement email = $("#email");
+    SelenideElement phoneNumber = $("#phoneNumber");
+    SelenideElement password = $("#password");
+    SelenideElement confirmPassword = $("#confirmPassword");
+    SelenideElement submitButton = $(byAttribute("name", "submit"));
 
-    @FindBy(id="lastName")
-    private WebElement lastName;
-    @FindBy(id="email")
-    private WebElement email;
-
-    @FindBy(id="phoneNumber")
-    private WebElement phoneNumber;
-
-    @FindBy(id="password")
-    private WebElement password;
-
-    @FindBy(id="confirmPassword")
-    private WebElement confirmPassword;
-
-    @FindBy(name = "submit")
-    private WebElement submitButton;
-
-    public VolunteerCreationPage(WebDriver driver) {
-        super(driver);
-    }
     public boolean isInitialized() {
         logger.info("Volunteer creation page is initialized");
         return firstName.isDisplayed();
@@ -72,13 +57,13 @@ public class VolunteerCreationPage extends NavigationMenu {
 
         logger.info("Submit button is clicked");
         submitButton.click();
-        String pageTitle = driver.getTitle();
+        String pageTitle = $("title").getText();
         if (pageTitle.equals("Volunteer registration") || pageTitle.equals("Регистрация волонтера") || pageTitle.equals("Реєстрація волонтера")) {
             logger.info("Success registration page was not opened");
             return this;
         } else {
             logger.info("Success registration page was opened");
-            return new SuccessRegistrationPage(driver);
+            return new SuccessRegistrationPage();
         }
     }
     @Step("Fill mandatory fields")
@@ -92,20 +77,16 @@ public class VolunteerCreationPage extends NavigationMenu {
         enterConfirmPassword(volunteer.getConfirmPassword());
         return this;
     }
-    public String getEmailError() {
+    public SelenideElement getEmailError() {
         logger.info("Getting email error");
-        WebElement error = driver.findElement(By.xpath("//div[@name='email']//small[@class='text-danger']"));
-        return error.getText();
+        SelenideElement error = $(byXpath("//div[@name='email']//small[@class='text-danger']"));
+        return error;
     }
-    public List<String> getAllErrorsOnPage() {
+    public ArrayList<SelenideElement> getAllErrorsOnPage() {
         logger.info("Getting all errors on the page");
-        List<WebElement> errors = driver.findElements(By.className("text-danger"));
-        List<String> errorsText = new ArrayList<>();
-        for (WebElement error: errors
-             ) {
-            errorsText.add(error.getText());
-        }
-        return errorsText;
+        ArrayList<SelenideElement> errors = $$(byAttribute("class", "text-danger")).
+                stream().collect(Collectors.toCollection(ArrayList::new));
+        return errors;
     }
     public boolean checkEmptyFieldsErrors(List<String> errors) {
         boolean isEqual = false;
